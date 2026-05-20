@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TABLEAU // FULL COURSE — HINGLISH GUIDE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #18160f;
+    --bg2: #1f1c14;
+    --rust: #8c3420;
+    --rust-light: #a84030;
+    --cream: #d6cfc0;
+    --cream-dim: #9a9184;
+    --cream-bright: #ede5d4;
+    --grid: #2e2a20;
+    --highlight: #c9401f;
+    --green: #4a7c59;
+    --mono: 'IBM Plex Mono', 'Space Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP HEADER BAR ── */
+  .top-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--grid);
+    background: var(--bg2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .top-bar-cell {
+    padding: 10px 18px;
+    border-right: 1px solid var(--grid);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .top-bar-cell:last-child { border-right: none; }
+  .top-bar-cell .label {
+    color: var(--cream-dim);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .top-bar-cell .value {
+    color: var(--cream-bright);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 320px;
+    border-bottom: 1px solid var(--grid);
+    overflow: hidden;
+  }
+  .hero-block {
+    position: relative;
+    border-right: 1px solid var(--grid);
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .hero-block:last-child { border-right: none; }
+  .hero-letter {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: clamp(180px, 22vw, 280px);
+    line-height: 0.85;
+    color: var(--rust);
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    user-select: none;
+  }
+  .hero-cutout {
+    position: absolute;
+    background: var(--bg);
+  }
+  .hero-block-1 .hero-cutout { width: 55%; height: 42%; bottom: 0; right: 0; }
+  .hero-block-2 .hero-cutout { width: 38%; height: 38%; top: 38%; left: 31%; }
+  .hero-block-3 .hero-cutout { width: 45%; height: 40%; bottom: 0; right: 0; }
+
+  /* ── INTRO BAR ── */
+  .intro-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--grid);
+    background: var(--bg2);
+  }
+  .intro-cell {
+    padding: 14px 18px;
+    border-right: 1px solid var(--grid);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+  }
+  .intro-cell strong { color: var(--cream-bright); }
+  .intro-cell:last-child { border-right: none; }
+
+  /* ── PAGE TITLE ── */
+  .page-title {
+    padding: 40px 24px 24px;
+    border-bottom: 1px solid var(--grid);
+  }
+  .page-title h1 {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: clamp(28px, 5vw, 52px);
+    letter-spacing: 0.05em;
+    color: var(--cream-bright);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .page-title h1 span { color: var(--rust); }
+  .page-title p {
+    font-size: 12px;
+    color: var(--cream-dim);
+    max-width: 700px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    border-bottom: 1px solid var(--grid);
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 24px 14px;
+    border-bottom: 1px solid var(--grid);
+    background: var(--bg2);
+  }
+  .section-num {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: 52px;
+    line-height: 1;
+    color: var(--rust);
+    min-width: 60px;
+  }
+  .section-title-wrap {}
+  .section-label {
+    font-size: 9px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: clamp(18px, 3vw, 28px);
+    color: var(--cream-bright);
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+  .section-subtitle {
+    font-size: 11px;
+    color: var(--rust-light);
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+
+  /* ── CONTENT GRID ── */
+  .content-body {
+    padding: 24px;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--grid);
+  }
+  .two-col .col {
+    padding: 20px;
+    border-right: 1px solid var(--grid);
+  }
+  .two-col .col:last-child { border-right: none; }
+
+  /* ── PROSE TEXT ── */
+  p { margin-bottom: 12px; font-size: 13px; color: var(--cream); line-height: 1.8; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--cream-bright); font-weight: 700; }
+  em { color: var(--rust-light); font-style: normal; }
+
+  /* ── PILL LABEL ── */
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border: 1px solid var(--rust);
+    color: var(--rust-light);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .pill.green { border-color: var(--green); color: #6daf85; }
+  .pill.dim { border-color: var(--grid); color: var(--cream-dim); }
+
+  /* ── COMPARISON TABLE ── */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .comp-table th {
+    background: var(--rust);
+    color: var(--cream-bright);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 11px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .comp-table th:last-child { border-right: none; }
+  .comp-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--grid);
+    border-right: 1px solid var(--grid);
+    vertical-align: top;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .comp-table td:first-child { color: var(--cream-bright); font-weight: 600; }
+  .comp-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .comp-table td:last-child { border-right: none; }
+  .comp-table td .yes { color: #6daf85; }
+  .comp-table td .no  { color: var(--rust-light); }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    border-left: 3px solid var(--rust);
+    padding: 14px 18px;
+    background: rgba(140, 52, 32, 0.08);
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .callout.green-box { border-color: var(--green); background: rgba(74, 124, 89, 0.08); }
+  .callout-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--rust-light);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .callout.green-box .callout-title { color: #6daf85; }
+
+  /* ── TOPIC LIST ── */
+  .topic-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+  .topic-list li {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--grid);
+    font-size: 13px;
+    align-items: flex-start;
+  }
+  .topic-list li:last-child { border-bottom: none; }
+  .topic-list .li-num {
+    color: var(--rust);
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 24px;
+    padding-top: 2px;
+  }
+  .topic-list .li-head { color: var(--cream-bright); font-weight: 600; }
+  .topic-list .li-desc { color: var(--cream-dim); font-size: 12px; margin-top: 2px; }
+
+  /* ── CHART GRID ── */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--grid);
+    margin-top: 4px;
+  }
+  .chart-card {
+    padding: 18px;
+    border-right: 1px solid var(--grid);
+    border-bottom: 1px solid var(--grid);
+  }
+  .chart-card:nth-child(3n) { border-right: none; }
+  .chart-card:nth-last-child(-n+3) { border-bottom: none; }
+  .chart-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .chart-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cream-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .chart-when {
+    font-size: 11px;
+    color: var(--rust-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .chart-desc { font-size: 12px; color: var(--cream-dim); line-height: 1.6; }
+
+  /* ── DATA TYPE GRID ── */
+  .dtype-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--grid);
+  }
+  .dtype-card {
+    padding: 16px;
+    border-right: 1px solid var(--grid);
+    border-bottom: 1px solid var(--grid);
+  }
+  .dtype-card:nth-child(4n) { border-right: none; }
+  .dtype-card:nth-last-child(-n+4) { border-bottom: none; }
+  .dtype-icon {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: 32px;
+    color: var(--rust);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .dtype-name { font-size: 12px; font-weight: 700; color: var(--cream-bright); text-transform: uppercase; margin-bottom: 4px; }
+  .dtype-desc { font-size: 11px; color: var(--cream-dim); line-height: 1.5; }
+  .dtype-eg { font-size: 10px; color: var(--rust-light); margin-top: 4px; }
+
+  /* ── SCHEMA VISUAL ── */
+  .schema-row {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .schema-box {
+    border: 1px solid var(--rust);
+    padding: 12px 16px;
+    min-width: 140px;
+    position: relative;
+  }
+  .schema-box.fact { border-color: var(--cream-bright); background: rgba(140,52,32,0.1); }
+  .schema-box.dim { border-color: var(--rust); }
+  .schema-box-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--rust-light);
+    margin-bottom: 4px;
+  }
+  .schema-box.fact .schema-box-label { color: var(--cream-bright); }
+  .schema-box-name { font-size: 13px; font-weight: 700; color: var(--cream-bright); }
+  .schema-box ul { margin-top: 6px; list-style: none; }
+  .schema-box ul li { font-size: 11px; color: var(--cream-dim); padding: 2px 0; }
+  .schema-connector {
+    display: flex;
+    align-items: center;
+    color: var(--rust);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* ── STEP FLOW ── */
+  .step-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--grid);
+    margin: 12px 0;
+  }
+  .step {
+    padding: 16px 14px;
+    border-right: 1px solid var(--grid);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: 36px;
+    color: var(--rust);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .step-title { font-size: 12px; font-weight: 700; color: var(--cream-bright); text-transform: uppercase; margin-bottom: 4px; }
+  .step-desc { font-size: 11px; color: var(--cream-dim); line-height: 1.5; }
+  .step::after {
+    content: '→';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rust);
+    font-size: 16px;
+    z-index: 2;
+  }
+  .step:last-child::after { display: none; }
+
+  /* ── MNEMONIC BAR ── */
+  .mnemonic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--grid);
+    margin: 12px 0;
+  }
+  .mnemonic-cell {
+    padding: 16px 20px;
+    border-right: 1px solid var(--grid);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .mnemonic-cell:last-child { border-right: none; }
+  .mnemonic-icon {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: 42px;
+    color: var(--rust);
+    line-height: 1;
+    min-width: 48px;
+  }
+  .mnemonic-icon.blue-text { color: #4a7cb5; }
+  .mnemonic-text-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--cream-dim); margin-bottom: 4px; }
+  .mnemonic-text-main { font-size: 15px; font-weight: 700; color: var(--cream-bright); margin-bottom: 4px; }
+  .mnemonic-text-desc { font-size: 12px; color: var(--cream-dim); line-height: 1.6; }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--grid);
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    margin: 12px 0;
+    overflow-x: auto;
+  }
+  .code-block .kw { color: var(--rust-light); }
+  .code-block .str { color: #6daf85; }
+  .code-block .comment { color: var(--cream-dim); opacity: 0.6; }
+
+  /* ── ACCORDION (FAQ style) ── */
+  details {
+    border-bottom: 1px solid var(--grid);
+  }
+  details summary {
+    padding: 14px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cream-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    list-style: none;
+    background: var(--bg2);
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: '+'; color: var(--rust); font-size: 20px; font-weight: 400; }
+  details[open] summary::after { content: '−'; }
+  details[open] summary { border-bottom: 1px solid var(--grid); }
+  .details-body { padding: 20px 24px; }
+
+  /* ── FULL-WIDTH RULE ── */
+  .fw-rule { border: none; border-top: 1px solid var(--grid); margin: 0; }
+
+  /* ── FOOTER ── */
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid var(--grid);
+    background: var(--bg2);
+  }
+  .footer-cell {
+    padding: 16px 20px;
+    border-right: 1px solid var(--grid);
+    font-size: 11px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .footer-cell:last-child { border-right: none; }
+  .footer-cell strong { color: var(--cream-bright); display: block; font-size: 12px; margin-bottom: 3px; }
+
+  /* ── PROGRESS INDICATOR ── */
+  .progress-bar {
+    height: 3px;
+    background: var(--grid);
+    position: relative;
+    margin: 0;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--rust);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  /* ── NAV PILLS ── */
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--grid);
+    background: var(--bg2);
+    overflow-x: auto;
+  }
+  .nav-pill {
+    padding: 10px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cream-dim);
+    text-decoration: none;
+    border-right: 1px solid var(--grid);
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-pill:hover { color: var(--cream-bright); background: rgba(255,255,255,0.04); }
+
+  /* ── HIGHLIGHT QUOTE ── */
+  .big-quote {
+    padding: 32px 24px;
+    border-bottom: 1px solid var(--grid);
+    background: var(--rust);
+  }
+  .big-quote p {
+    font-family: 'Bebas Neue', var(--mono);
+    font-size: clamp(22px, 3.5vw, 38px);
+    letter-spacing: 0.04em;
+    color: var(--cream-bright);
+    line-height: 1.25;
+    margin: 0;
+  }
+  .big-quote span { color: var(--bg); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--rust); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: 200px; }
+    .hero-block { min-height: 100px; }
+    .two-col { grid-template-columns: 1fr; }
+    .two-col .col { border-right: none; border-bottom: 1px solid var(--grid); }
+    .chart-grid { grid-template-columns: 1fr 1fr; }
+    .dtype-grid { grid-template-columns: 1fr 1fr; }
+    .step-flow { grid-template-columns: 1fr; }
+    .step::after { display: none; }
+    .footer { grid-template-columns: 1fr 1fr; }
+    .top-bar { grid-template-columns: 1fr 1fr; }
+    .intro-bar { grid-template-columns: 1fr; }
+    .mnemonic { grid-template-columns: 1fr; }
+    .mnemonic-cell:first-child { border-right: none; border-bottom: 1px solid var(--grid); }
+    .schema-row { flex-direction: column; }
+  }
+
+  @media (max-width: 480px) {
+    .chart-grid { grid-template-columns: 1fr; }
+    .dtype-grid { grid-template-columns: 1fr; }
+    .dtype-card:nth-child(4n) { border-right: 1px solid var(--grid); }
+    .chart-card:nth-child(3n) { border-right: 1px solid var(--grid); }
+  }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<!-- TOP HEADER BAR -->
+<div class="top-bar">
+  <div class="top-bar-cell">
+    <span class="label">System Archive</span>
+    <span class="value">TABLEAU // COMPLETE COURSE</span>
+  </div>
+  <div class="top-bar-cell">
+    <span class="label">Status</span>
+    <span class="value">✦ BEGINNER → ADVANCED</span>
+  </div>
+  <div class="top-bar-cell">
+    <span class="label">Language</span>
+    <span class="value">HINGLISH (हिन्दी + ENGLISH)</span>
+  </div>
+  <div class="top-bar-cell">
+    <span class="label">Level</span>
+    <span class="value">BEGINNER → ADVANCED</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-block hero-block-1">
+    <div class="hero-letter">T</div>
+    <div class="hero-cutout"></div>
+  </div>
+  <div class="hero-block hero-block-2">
+    <div class="hero-letter">B</div>
+    <div class="hero-cutout"></div>
+  </div>
+  <div class="hero-block hero-block-3">
+    <div class="hero-letter">L</div>
+    <div class="hero-cutout"></div>
+  </div>
+</div>
+
+<!-- INTRO BAR -->
+<div class="intro-bar">
+  <div class="intro-cell"><strong>SHIFT_A: BASICS</strong> — What is Tableau, Installation, Interface</div>
+  <div class="intro-cell"><strong>SHIFT_B: CORE</strong> — Data Types, Modeling, Charts</div>
+  <div class="intro-cell"><strong>SHIFT_C: ADVANCED</strong> — Dashboard, Actions, Storytelling</div>
+</div>
+
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h1>TABLEAU <span>//</span> ZERO TO HERO</h1>
+  <p>Ek complete Hinglish guide — ye padh lo, Tableau ke saare topics bilkul clear ho jaayenge. Simple language, real examples, no jargon overload.</p>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="nav-pills">
+  <a href="#s01" class="nav-pill">01 · Kya Hai?</a>
+  <a href="#s02" class="nav-pill">02 · Public vs Desktop</a>
+  <a href="#s03" class="nav-pill">03 · Installation</a>
+  <a href="#s04" class="nav-pill">04 · Interface</a>
+  <a href="#s05" class="nav-pill">05 · Data Modeling</a>
+  <a href="#s06" class="nav-pill">06 · Data Types</a>
+  <a href="#s07" class="nav-pill">07 · Measures & Dimensions</a>
+  <a href="#s08" class="nav-pill">08 · Charts</a>
+  <a href="#s09" class="nav-pill">09 · Advanced Data Types</a>
+  <a href="#s10" class="nav-pill">10 · Calculated Fields</a>
+  <a href="#s11" class="nav-pill">11 · Parameters</a>
+  <a href="#s12" class="nav-pill">12 · Dashboard</a>
+  <a href="#s13" class="nav-pill">13 · Actions</a>
+  <a href="#s14" class="nav-pill">14 · Storytelling</a>
+  <a href="#s15" class="nav-pill">15 · Publishing</a>
+</nav>
+
+<!-- BIG QUOTE -->
+<div class="big-quote">
+  <p>TABLEAU = <span>DRAG + DROP</span> + DATA = INSIGHTS // <span>KOI CODING NAHI CHAHIYE</span></p>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 01 — TABLEAU KYA HAI -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s01">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_01 · Introduction</span>
+      <div class="section-title">TABLEAU KYA HAI?</div>
+      <div class="section-subtitle">Visual Analytics Platform // Founded 2003</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p><strong>Tableau ek Visual Analytics Platform hai</strong> — yani aap data ko <em>visually</em> dekh sakte ho bina koi coding likhe. Bas drag aur drop karo, Tableau khud hi background mein SQL queries run karta hai aur data fetch karta hai.</p>
+    <p>2003 mein found hua tha, aur <strong>2019 mein Salesforce ne ise khareeda</strong>. Aaj kal almost har badi company mein Tableau use hota hai — chahe wo small startup ho ya Fortune 500 company.</p>
+
+    <div class="callout">
+      <div class="callout-title">⚡ Sabse Important Baat</div>
+      Tableau mein <strong>koi bhi programming language nahi chahiye</strong>. Ek data analyst, data scientist, ya fresher — sab log iska use kar sakte hain. Sirf samajhna hai ki data ko kaise arrange karein.
+    </div>
+
+    <div class="two-col">
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">✦ Advantages</p>
+        <ul class="topic-list">
+          <li>
+            <span class="li-num">A1</span>
+            <div><div class="li-head">Drag & Drop</div><div class="li-desc">Koi coding nahi — bas value ko kheench ke daalo, chart ban jaata hai</div></div>
+          </li>
+          <li>
+            <span class="li-num">A2</span>
+            <div><div class="li-head">Quick Calculations</div><div class="li-desc">Complex formulas ke liye built-in shortcuts hain — ek click mein running total, % of total, etc.</div></div>
+          </li>
+          <li>
+            <span class="li-num">A3</span>
+            <div><div class="li-head">Interactive Dashboards</div><div class="li-desc">Multiple charts ek jagah, filters live kaam karte hain, click karo aur data drill ho jaata hai</div></div>
+          </li>
+          <li>
+            <span class="li-num">A4</span>
+            <div><div class="li-head">Multiple Data Sources</div><div class="li-desc">Excel, CSV, databases, cloud platforms — sab se connect ho sakta hai</div></div>
+          </li>
+          <li>
+            <span class="li-num">A5</span>
+            <div><div class="li-head">Large Data Handling</div><div class="li-desc">Crores of rows bhi efficiently handle karta hai</div></div>
+          </li>
+          <li>
+            <span class="li-num">A6</span>
+            <div><div class="li-head">Windows & Mac Both</div><div class="li-desc">Power BI ke unlike, Tableau dono OS par kaam karta hai</div></div>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">✦ Disadvantages</p>
+        <ul class="topic-list">
+          <li>
+            <span class="li-num">D1</span>
+            <div><div class="li-head">Mehanga Hai (Costly)</div><div class="li-desc">Desktop version ka license dusre tools se zyada expensive hai</div></div>
+          </li>
+          <li>
+            <span class="li-num">D2</span>
+            <div><div class="li-head">Limited Data Cleaning</div><div class="li-desc">Power BI ke comparison mein Tableau mein data preprocessing kam hoti hai — pehle Excel ya Python se clean karo, phir import karo</div></div>
+          </li>
+        </ul>
+
+        <div class="callout green-box" style="margin-top:16px;">
+          <div class="callout-title">💡 Use Cases</div>
+          Finance, Marketing, Sales, Healthcare, E-commerce, Operations — literally har field mein Tableau use hota hai. Agar aapko data dikhana hai kisi ko, Tableau best option hai.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 02 — PUBLIC vs DESKTOP -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s02">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_02 · Versions</span>
+      <div class="section-title">PUBLIC vs DESKTOP</div>
+      <div class="section-subtitle">Konsa use karein? // Student vs Professional</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Tableau ke do main versions hain. <em>Public</em> — free aur students ke liye perfect. <em>Desktop</em> — paid aur professional use ke liye.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Tableau Public</th>
+          <th>Tableau Desktop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cost</td>
+          <td><span class="yes">✓ BILKUL FREE</span></td>
+          <td><span class="no">✗ Paid License (Expensive)</span></td>
+        </tr>
+        <tr>
+          <td>Data Sources</td>
+          <td>Sirf 7 sources — Excel, CSV, PDF, Spatial, Statistics, etc.</td>
+          <td>50+ sources — Cloud, Databases (MySQL, Oracle), Data Warehouses, REST APIs</td>
+        </tr>
+        <tr>
+          <td>Data Rows Limit</td>
+          <td>Maximum <strong>1.5 Million rows</strong> (15 lakh)</td>
+          <td><span class="yes">Unlimited rows</span></td>
+        </tr>
+        <tr>
+          <td>Saving Files</td>
+          <td>Locally save kar sakte ho + Tableau Public community par upload kar sakte ho (Data public hoti hai!)</td>
+          <td>Locally + Workspace mein securely share kar sakte ho</td>
+        </tr>
+        <tr>
+          <td>Data Privacy</td>
+          <td><span class="no">✗ Koi privacy nahi — data public hoti hai</span></td>
+          <td><span class="yes">✓ Data secure rahti hai organization mein</span></td>
+        </tr>
+        <tr>
+          <td>Features</td>
+          <td colspan="2" style="text-align:center;">Almost <strong>SAME features</strong> dono mein hain! Sirf upar ke differences hain.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:20px;">
+      <div class="callout-title">🎯 Simple Rule</div>
+      <strong>Student ho?</strong> → Tableau Public use karo. Free hai, saare features hain.<br>
+      <strong>Working professional?</strong> → Company waali sensitive data ke liye → Tableau Desktop.<br>
+      <strong>Company?</strong> → Big data, multiple sources, security chahiye → Tableau Desktop.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 03 — INSTALLATION -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s03">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_03 · Setup</span>
+      <div class="section-title">INSTALL KAISE KAREIN</div>
+      <div class="section-subtitle">Tableau Public // Free Download Process</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <div class="step-flow">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Google par jaao</div>
+        <div class="step-desc">"Download Tableau Public" search karo</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Sign Up</div>
+        <div class="step-desc">Tableau Public website par free account banao</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Sign In</div>
+        <div class="step-desc">Login karo, phir Products → Tableau Public mein jaao</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Download</div>
+        <div class="step-desc">"Create" → "Download Desktop Public Edition" par click karo (~500 MB)</div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-title">Install</div>
+        <div class="step-desc">Run karo, Accept → Install → Grant permission → Done!</div>
+      </div>
+    </div>
+    <div class="callout green-box">
+      <div class="callout-title">✓ New Feature (Latest Version 2024.3+)</div>
+      Pehle Tableau Public sirf cloud par save hoti thi, <strong>ab local PC par bhi save kar sakte ho!</strong> Yeh ek bahut important update hai.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 04 — INTERFACE -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s04">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_04 · Interface</span>
+      <div class="section-title">TABLEAU KA INTERFACE</div>
+      <div class="section-subtitle">3 Main Sections // Workbook → Data Source → Sheets</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Tableau ka interface initially thoda confusing lagta hai, par asal mein <strong>sirf 3 main areas hain</strong>. Ek baar samajh lo, phir sab easy ho jaata hai.</p>
+
+    <div class="chart-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="chart-card" style="background: rgba(140,52,32,0.1); border-color: var(--rust);">
+        <span class="chart-icon">📋</span>
+        <div class="chart-name">01. Workbook</div>
+        <div class="chart-when">Opening Screen</div>
+        <div class="chart-desc">Jab Tableau open hota hai, yahi dikhta hai. Yahan se aap files connect karte ho (Excel, CSV, etc.), aur recent files dikhti hain.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🗄️</span>
+        <div class="chart-name">02. Data Source</div>
+        <div class="chart-when">Data Loading Area</div>
+        <div class="chart-desc">Jab data connect karo, yeh page dikhta hai. Left mein tables hoti hain, right mein data preview. <strong>Yahan hi data modeling bhi hoti hai.</strong></div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">📊</span>
+        <div class="chart-name">03. Worksheet (Viz Area)</div>
+        <div class="chart-when">Chart Banane Ki Jagah</div>
+        <div class="chart-desc">Yahan charts bante hain. Left mein columns hain, center mein drop area hai, right mein chart types hain. Top mein Rows/Columns shelf hai.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">Worksheet ke main parts:</p>
+      <ul class="topic-list">
+        <li>
+          <span class="li-num">→</span>
+          <div><div class="li-head">Columns Shelf (Top)</div><div class="li-desc">Vertical columns define karta hai — yahan drop karo jo X-axis par chahiye</div></div>
+        </li>
+        <li>
+          <span class="li-num">→</span>
+          <div><div class="li-head">Rows Shelf (Top)</div><div class="li-desc">Horizontal rows define karta hai — yahan drop karo jo Y-axis par chahiye</div></div>
+        </li>
+        <li>
+          <span class="li-num">→</span>
+          <div><div class="li-head">Marks Card (Left)</div><div class="li-desc">Color, Size, Label, Detail, Tooltip — chart ko customize karne ke liye</div></div>
+        </li>
+        <li>
+          <span class="li-num">→</span>
+          <div><div class="li-head">Filters (Left)</div><div class="li-desc">Koi bhi field yahan drop karo → wo filter ban jaata hai</div></div>
+        </li>
+        <li>
+          <span class="li-num">→</span>
+          <div><div class="li-head">Show Me (Right)</div><div class="li-desc">Saare available chart types yahan dikhte hain — ek click mein switch kar sakte ho</div></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="callout green-box" style="margin-top: 16px;">
+      <div class="callout-title">💡 Quick Flow</div>
+      <strong>Workbook → Data Connect → Data Source page → Sheet par jaao → Drag & Drop → Chart ban gaya → Multiple sheets → Dashboard → Story</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 05 — DATA MODELING -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s05">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_05 · Data Architecture</span>
+      <div class="section-title">DATA MODELING</div>
+      <div class="section-subtitle">Star Schema · Snowflake Schema · Joins · Union</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Data Modeling matlab — <strong>multiple tables ko aapas mein connect karna</strong> taaki ek complete picture mile. Sirf Tableau mein nahi, MySQL, Power BI, Python — sab mein yeh concept use hota hai.</p>
+
+    <div class="two-col" style="margin-bottom: 20px;">
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">⭐ Star Schema</p>
+        <p>Ek <em>single Fact Table</em> ke chaaro taraf <em>Dimension Tables</em> lagi hoti hain — star ki tarah dikhta hai.</p>
+
+        <div class="schema-row">
+          <div class="schema-box dim"><div class="schema-box-label">Dimension</div><div class="schema-box-name">Regions</div></div>
+          <div class="schema-connector">──</div>
+          <div class="schema-box fact"><div class="schema-box-label">★ Fact Table</div><div class="schema-box-name">Orders</div><ul><li>Sales</li><li>Profit</li><li>Quantity</li></ul></div>
+          <div class="schema-connector">──</div>
+          <div class="schema-box dim"><div class="schema-box-label">Dimension</div><div class="schema-box-name">Products</div></div>
+        </div>
+        <div class="schema-row" style="justify-content: center;">
+          <div class="schema-box dim"><div class="schema-box-label">Dimension</div><div class="schema-box-name">Customers</div></div>
+        </div>
+
+        <div class="callout" style="margin-top: 12px;">
+          <div class="callout-title">Rule</div>
+          Fact Table se directly Dimension Tables lagte hain, Dimension Tables ke koi aur sub-dimensions nahi hote.
+        </div>
+      </div>
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">❄️ Snowflake Schema</p>
+        <p>Star schema jaisa, par <em>Dimensions ke bhi Dimensions hote hain</em> — snowflake ki tarah branches hoti hain.</p>
+
+        <div class="schema-row">
+          <div class="schema-box fact"><div class="schema-box-label">★ Fact Table</div><div class="schema-box-name">Orders</div></div>
+          <div class="schema-connector">──</div>
+          <div class="schema-box dim"><div class="schema-box-label">Dim</div><div class="schema-box-name">Customers</div></div>
+          <div class="schema-connector">──</div>
+          <div class="schema-box dim"><div class="schema-box-label">Sub-Dim</div><div class="schema-box-name">Employees</div></div>
+          <div class="schema-connector">──</div>
+          <div class="schema-box dim"><div class="schema-box-label">Sub-Sub</div><div class="schema-box-name">Office</div></div>
+        </div>
+
+        <div class="callout" style="margin-top: 12px;">
+          <div class="callout-title">Rule</div>
+          Dimension ke bhi sub-dimensions hote hain. Branches ki branches hoti hain — isliye iska naam Snowflake (❄️) hai.
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">🔗 Types of Joins (Dono Tables ko Joinne ke Tarike)</p>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <span class="chart-icon">⬛</span>
+        <div class="chart-name">Inner Join</div>
+        <div class="chart-when">Sirf Common Data</div>
+        <div class="chart-desc">Dono tables mein jo matching rows hain, <strong>sirf wahi data aata hai</strong>. Agar koi row ek table mein hai par dusri mein nahi, toh nahi aayega.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">◧</span>
+        <div class="chart-name">Left Join</div>
+        <div class="chart-when">Left ka pura + Right ka matching</div>
+        <div class="chart-desc">Left table ka <strong>poora data aata hai</strong>, aur right table se sirf wo rows jo match karti hain. Example: Customers table (left) + Orders (right) → Jo customers ne order nahi kiya, woh bhi aayenge.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">◨</span>
+        <div class="chart-name">Right Join</div>
+        <div class="chart-when">Right ka pura + Left ka matching</div>
+        <div class="chart-desc">Right table ka <strong>poora data aata hai</strong>, left table se sirf matching. Example: Orders (right) — sirf woh customers jo order kar chuke hain.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">⬜</span>
+        <div class="chart-name">Full Outer Join</div>
+        <div class="chart-when">Dono ka poora data</div>
+        <div class="chart-desc"><strong>Dono tables ka poora poora data</strong> aata hai — chahe match ho ya na ho. Jo match nahi karta, wahan NULL values aati hain.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">⬆️</span>
+        <div class="chart-name">Union</div>
+        <div class="chart-when">Tables ko stack karna (upar-neeche)</div>
+        <div class="chart-desc">Jab <strong>same structure ke tables</strong> ko ek ke neeche ek combine karna ho — jaise 2014 ka data + 2015 ka data + 2016 ka data ek table mein.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🔗</span>
+        <div class="chart-name">Relationship (Default)</div>
+        <div class="chart-when">Tableau ka default Many-to-Many</div>
+        <div class="chart-desc">Jab Data Source page par ek table doosri ke upar drop karo toh <strong>Relationship (Many-to-Many)</strong> automatically ban jaati hai. Highest data accuracy deta hai.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 20px;">
+      <div class="callout-title">📌 Simple Rule — Join vs Union?</div>
+      <strong>Join</strong> tab use karo jab dono tables mein <em>ek common column</em> ho (side-by-side merge karna ho).<br>
+      <strong>Union</strong> tab use karo jab <em>same type ka data</em> alag alag tables mein ho (stack karna ho — jaise different years ka data).
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 06 — DATA TYPES -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s06">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_06 · Data</span>
+      <div class="section-title">DATA TYPES IN TABLEAU</div>
+      <div class="section-subtitle">Common · Roles · Advanced</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Har column ka ek <strong>data type hota hai</strong> — Tableau ko batata hai ki is column mein kis tarah ka data hai. Ye data type icon ke roop mein dikhta hai (Abc, #, calendar icon, globe icon).</p>
+
+    <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">Category 1: Common Data Types</p>
+
+    <div class="dtype-grid">
+      <div class="dtype-card">
+        <div class="dtype-icon">Abc</div>
+        <div class="dtype-name">Text (String)</div>
+        <div class="dtype-desc">Alphabets, symbols, alphanumeric characters. Jab bhi koi word ya sentence hoga.</div>
+        <div class="dtype-eg">Example: "Customer Name", "City", "Product ID"</div>
+      </div>
+      <div class="dtype-card">
+        <div class="dtype-icon">📅</div>
+        <div class="dtype-name">Date</div>
+        <div class="dtype-desc">Sirf date — koi time nahi. Calendar icon dikhta hai.</div>
+        <div class="dtype-eg">Example: Order Date, Ship Date (DD/MM/YYYY)</div>
+      </div>
+      <div class="dtype-card">
+        <div class="dtype-icon">⏰</div>
+        <div class="dtype-name">Date & Time</div>
+        <div class="dtype-desc">Date + Time dono saath. Seconds tak ka data hota hai.</div>
+        <div class="dtype-eg">Example: "2024-01-15 14:30:00"</div>
+      </div>
+      <div class="dtype-card">
+        <div class="dtype-icon">#</div>
+        <div class="dtype-name">Number</div>
+        <div class="dtype-desc">Koi bhi numeric value — whole number ya decimal dono.</div>
+        <div class="dtype-eg">Example: Sales = 1500.50, Quantity = 5</div>
+      </div>
+      <div class="dtype-card" style="border-bottom: 0;">
+        <div class="dtype-icon">T/F</div>
+        <div class="dtype-name">Boolean</div>
+        <div class="dtype-desc">Sirf 2 values — True/False, Yes/No, ya 1/0.</div>
+        <div class="dtype-eg">Example: "Returned?" → Yes/No</div>
+      </div>
+      <div class="dtype-card" style="border-bottom: 0;">
+        <div class="dtype-icon">🌍</div>
+        <div class="dtype-name">Geographic Role</div>
+        <div class="dtype-desc">Koi bhi location data — state, city, country, postal code. Globe icon dikhta hai. Maps banane ke liye zaroori.</div>
+        <div class="dtype-eg">Example: State, City, Country, Postal Code</div>
+      </div>
+      <div class="dtype-card" style="border-bottom: 0;">
+        <div class="dtype-icon">🖼️</div>
+        <div class="dtype-name">Image Role</div>
+        <div class="dtype-desc">Jab column mein image URLs hoin (web links).</div>
+        <div class="dtype-eg">Example: Product image URL</div>
+      </div>
+      <div class="dtype-card" style="border-bottom: 0; border-right: none;">
+        <div class="dtype-icon">⚙️</div>
+        <div class="dtype-name">Advanced Types</div>
+        <div class="dtype-desc">Groups, Bins, Sets — hum khud banate hain. Next section mein detail mein padha hai!</div>
+        <div class="dtype-eg">Cluster Group, Histogram Bin, Comparison Set</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 16px;">
+      <div class="callout-title">⚠️ Data Type Changing</div>
+      Tableau kabhi kabhi wrong data type assign kar deta hai. <strong>Data Source page par icon par click karo → correct type select karo.</strong> Yeh bahut common problem hai — especially dates aur numbers ke saath.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 07 — MEASURES & DIMENSIONS -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s07">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_07 · Core Concept</span>
+      <div class="section-title">MEASURES &amp; DIMENSIONS</div>
+      <div class="section-subtitle">Blue = Dimension // Green = Measure // Chart ka DNA</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Yeh Tableau ka <strong>sabse important concept</strong> hai. Ek baar yeh samajh lo, charts banaana bilkul easy ho jaayega.</p>
+
+    <div class="mnemonic">
+      <div class="mnemonic-cell">
+        <div class="mnemonic-icon blue-text">DIM</div>
+        <div>
+          <div class="mnemonic-text-label">Blue Color // Horizontal Line Se Upar</div>
+          <div class="mnemonic-text-main">DIMENSION</div>
+          <div class="mnemonic-text-desc">
+            <strong>Category wala data</strong> — jo kisi cheez ke baare mein batata hai. Iska sum ya average nahi nikalta.<br><br>
+            📦 Examples: Customer Name, City, State, Category, Sub-Category, Segment, Product ID, Order Date<br><br>
+            <em>Dimension = "Kis cheez ke basis par?"</em>
+          </div>
+        </div>
+      </div>
+      <div class="mnemonic-cell">
+        <div class="mnemonic-icon" style="color: var(--green);">MEA</div>
+        <div>
+          <div class="mnemonic-text-label">Green Color // Horizontal Line Se Neeche</div>
+          <div class="mnemonic-text-main">MEASURE</div>
+          <div class="mnemonic-text-desc">
+            <strong>Numeric data</strong> — jiska sum, average, min, max, count nikaal sakte ho. Yahi chart ki "height" hoti hai.<br><br>
+            💰 Examples: Sales, Profit, Quantity, Discount, Revenue<br><br>
+            <em>Measure = "Kitna?"</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green-box" style="margin-top: 16px;">
+      <div class="callout-title">💡 Chart Formula — Yaad Rakho</div>
+      <strong>Measure BY Dimension</strong> = Ek complete chart!<br><br>
+      🔹 Sales BY Segment → Consumer, Corporate, Home Office ka Sales dikhega<br>
+      🔹 Profit BY Category → Furniture, Office Supplies, Technology ka Profit dikhega<br>
+      🔹 Discount BY Region → Har region ka average discount dikhega<br><br>
+      3 Dimensions × 4 Measures = <strong>12 alag charts ban sakte hain</strong> sirf ek dataset se!
+    </div>
+
+    <div class="callout" style="margin-top: 12px;">
+      <div class="callout-title">⚡ Shortcut to Identify</div>
+      Left panel mein ek horizontal line hoti hai — <strong>uske upar = Dimensions (Blue)</strong>, <strong>neeche = Measures (Green)</strong>.<br>
+      Note: Row ID bhi numeric hai par yeh Dimension hai — kyunki iska sum nikalna meaningless hoga. ID + Order ID type cheezein hamesha Dimensions hoti hain.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 08 — CHARTS -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s08">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_08 · Visualization</span>
+      <div class="section-title">CHARTS KE TYPES</div>
+      <div class="section-subtitle">Bar · Line · Pie · Map · Scatter · Heat Map · Tree Map · Bubble · Word Cloud</div>
+    </div>
+  </div>
+  <div class="content-body">
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <span class="chart-icon">📊</span>
+        <div class="chart-name">Bar Chart</div>
+        <div class="chart-when">Kab Use Karein? → Categorical Comparison</div>
+        <div class="chart-desc">Jab <strong>ek category ke different members ko compare</strong> karna ho. Measure ko Rows mein, Dimension ko Columns mein daalo.<br><br>
+        Example: Segment-wise Sales (Consumer vs Corporate vs Home Office)</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">📈</span>
+        <div class="chart-name">Line Chart</div>
+        <div class="chart-when">Kab Use Karein? → Trend Over Time</div>
+        <div class="chart-desc">Jab <strong>date/time ke saath koi value ka trend dekhna ho</strong>. Jaise hi Date drop karo — Tableau automatically line chart suggest karta hai.<br><br>
+        Example: Monthly Sales 2014-2017, Revenue growth over years</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🥧</span>
+        <div class="chart-name">Pie Chart</div>
+        <div class="chart-when">Kab Use Karein? → % Distribution</div>
+        <div class="chart-desc">Jab <strong>percentage distribution dikhani ho</strong> — total mein kiska kitna share hai. Quick Table Calculation → "Percent of Total" use karo.<br><br>
+        Example: Category-wise contribution to total Sales</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🗺️</span>
+        <div class="chart-name">Map Visual</div>
+        <div class="chart-when">Kab Use Karein? → Geographic Analysis</div>
+        <div class="chart-desc">Jab <strong>geographic location</strong> ke basis par data dikhana ho. State, City, Country drop karo — Tableau map ban deta hai. Color se intensity dikhao.<br><br>
+        Important: Edit Location → correct country set karo</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">⚬⚬</span>
+        <div class="chart-name">Scatter Plot</div>
+        <div class="chart-when">Kab Use Karein? → Numeric vs Numeric</div>
+        <div class="chart-desc">Jab <strong>do numeric values ke beech relationship</strong> dekhna ho. Continuous values ke liye best hai — categorical ke liye nahi.<br><br>
+        Example: Sales vs Quantity, Profit vs Discount (outliers detect karo)</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🟥</span>
+        <div class="chart-name">Heat Map</div>
+        <div class="chart-when">Kab Use Karein? → Correlation / 2D Comparison</div>
+        <div class="chart-desc">Jab <strong>do dimensions ke beech ek measure ka pattern</strong> dekhna ho. Dark color = high value, Light color = low value.<br><br>
+        Example: Sub-Category × Region → Sales (kaun sa combo best hai?)</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🟫</span>
+        <div class="chart-name">Tree Map</div>
+        <div class="chart-when">Kab Use Karein? → Part-of-Whole (Size Based)</div>
+        <div class="chart-desc">Rectangles/tiles jitne bade, utni badi value. <strong>Ek nazar mein proportions samajh aate hain</strong>.<br><br>
+        Example: Category/Sub-Category wise Sales — Technology ka tile sabse bada hoga</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🫧</span>
+        <div class="chart-name">Bubble Chart (Packed Bubbles)</div>
+        <div class="chart-when">Kab Use Karein? → Same as Tree Map, Circle Format</div>
+        <div class="chart-desc">Tree map jaisa hi, par tiles ki jagah circles. Circle ka size value batata hai.<br><br>
+        Color se category dikhao, Size se measure dikhao — multiple dimensions ek saath!</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">💬</span>
+        <div class="chart-name">Word Cloud</div>
+        <div class="chart-when">Kab Use Karein? → Frequency / Text Analysis</div>
+        <div class="chart-desc">Jis word ki frequency zyada hogi, uska size bada dikhega. Text analysis mein popular.<br><br>
+        Marks → Text mein daalo + Size mein Count daalo → Word Cloud ready!</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 16px;">
+      <div class="callout-title">🎨 Charts Customize Kaise Karein?</div>
+      Marks Card mein <strong>Color, Size, Label, Detail, Tooltip</strong> — yahan koi bhi field drop karo aur chart aur informative ban jaata hai. Color mein Segment daalo → bar automatically segment-wise colored ho jaayegi.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 09 — ADVANCED DATA TYPES -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s09">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_09 · Advanced</span>
+      <div class="section-title">ADVANCED DATA TYPES</div>
+      <div class="section-subtitle">Groups · Bins · Sets</div>
+    </div>
+  </div>
+  <div class="content-body">
+
+    <details open>
+      <summary>GROUPS — Data ke Custom Categories Banana</summary>
+      <div class="details-body">
+        <p><strong>Groups</strong> ka use tab karte hain jab aap data ko <em>khud se manually group karna chahte ho</em>. Tableau automatically groups nahi banata — aapko select karke banana padta hai.</p>
+
+        <div class="two-col">
+          <div class="col">
+            <p><strong>Kaise Banate Hain?</strong></p>
+            <ul class="topic-list">
+              <li><span class="li-num">1</span><div><div class="li-head">Scatter plot ya koi bhi chart banao</div><div class="li-desc">Customer IDs ko drop karo</div></div></li>
+              <li><span class="li-num">2</span><div><div class="li-head">Drag karke kuch points select karo</div><div class="li-desc">Jo aap group mein chahte ho</div></div></li>
+              <li><span class="li-num">3</span><div><div class="li-head">Right-click → "Create Group"</div><div class="li-desc">Ek naya colored group ban jaayega</div></div></li>
+              <li><span class="li-num">4</span><div><div class="li-head">Edit Group se rename karo</div><div class="li-desc">e.g., "High Sales", "Low Quantity", "VIP Customers"</div></div></li>
+            </ul>
+          </div>
+          <div class="col">
+            <p><strong>Use Case (Example):</strong></p>
+            <div class="callout green-box">
+              <div class="callout-title">Real Example</div>
+              Sales vs Quantity ka scatter plot banao. Jo customers ne <strong>zyada quantity buy ki par sales kam hai</strong> unko select karo → Group 1 banao "Quantity High".<br><br>
+              Jo customers ne <strong>zyada sales diya hai</strong> unko → Group 2 "Sales High".<br><br>
+              Ab is group ko <strong>kisi bhi chart mein filter ya dimension ki tarah use karo</strong>!
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>BINS — Histogram Banana (Frequency Distribution)</summary>
+      <div class="details-body">
+        <p><strong>Bins</strong> se aap <em>numeric data ko equal ranges mein divide</em> karte ho aur count karte ho — kitne records ek range mein fall karte hain. Isse <strong>Histogram</strong> banta hai.</p>
+
+        <div class="callout">
+          <div class="callout-title">Simple Example</div>
+          Profit ka data hai — kuch -6000, kuch +8400 tak.<br>
+          Bins = 500 set karo → Tableau automatically groups banana: -7000 to -6500, -6500 to -6000 ... 8000 to 8500<br>
+          Phir dekho: <strong>Kitne customers ka profit 0 to 500 ke beech hai? Kitne ka negative mein?</strong>
+        </div>
+
+        <p><strong>Kaise Banate Hain?</strong></p>
+        <ul class="topic-list">
+          <li><span class="li-num">1</span><div><div class="li-head">Profit field par Right-click karein</div></div></li>
+          <li><span class="li-num">2</span><div><div class="li-head">Create → Bins</div></div></li>
+          <li><span class="li-num">3</span><div><div class="li-head">Bin size set karo (e.g., 500 ya 250)</div><div class="li-desc">Bin size chhota = zyada detail, bada = broad picture</div></div></li>
+          <li><span class="li-num">4</span><div><div class="li-head">New "Profit (bin)" column ban jaayega</div></div></li>
+          <li><span class="li-num">5</span><div><div class="li-head">Columns mein Bin daalo, Rows mein Count</div><div class="li-desc">Histogram ready!</div></div></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>SETS — Data ke Inclusion/Exclusion Groups Banana</summary>
+      <div class="details-body">
+        <p><strong>Sets</strong> aapko data ke custom groups banane dete hain aur phir unpar <em>set operations (Union, Intersect, Except)</em> lagane dete hain. Ek ek record ke liye "IN" ya "OUT" status hota hai.</p>
+
+        <div class="two-col">
+          <div class="col">
+            <p><strong>Kaise Banate Hain?</strong></p>
+            <ul class="topic-list">
+              <li><span class="li-num">1</span><div><div class="li-head">Chart mein kuch points select karo</div></div></li>
+              <li><span class="li-num">2</span><div><div class="li-head">Right-click → Create Set</div></div></li>
+              <li><span class="li-num">3</span><div><div class="li-head">Name do (e.g., "Higher Sales")</div></div></li>
+              <li><span class="li-num">4</span><div><div class="li-head">Left panel mein Set ka icon aayega (⋈)</div></div></li>
+              <li><span class="li-num">5</span><div><div class="li-head">Set use karo → IN/OUT dikhega</div></div></li>
+            </ul>
+          </div>
+          <div class="col">
+            <p><strong>Set Operations:</strong></p>
+            <ul class="topic-list">
+              <li><span class="li-num">∩</span><div><div class="li-head">Intersect (AND)</div><div class="li-desc">Jo dono sets mein IN hai — Common data chahiye</div></div></li>
+              <li><span class="li-num">∪</span><div><div class="li-head">Union (OR)</div><div class="li-desc">Dono sets ka poora data</div></div></li>
+              <li><span class="li-num">−</span><div><div class="li-head">Except (NOT)</div><div class="li-desc">Set 1 mein hai par Set 2 mein nahi — unique data</div></div></li>
+            </ul>
+            <div class="callout" style="margin-top: 12px;">
+              <div class="callout-title">Example</div>
+              Set 1: "Higher Sales" customers<br>
+              Set 2: "Negative Profit" customers<br>
+              Intersect → Jo customers dono mein hain (zyada sale diya par loss hua)
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 10 — CALCULATED FIELDS -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_10 · Calculations</span>
+      <div class="section-title">CALCULATED FIELDS</div>
+      <div class="section-subtitle">Naye Columns Banana // Formulas Apply Karna</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Jab aapko <strong>existing columns ke basis par ek naya column banana ho</strong> — ya koi formula apply karni ho — tab <em>Calculated Fields</em> use hote hain. Yahan SQL aur programming jaisi calculations without code possible hai!</p>
+
+    <div class="callout">
+      <div class="callout-title">Kaise Create Karein?</div>
+      Sheet mein kisi bhi field par Right-click → <strong>"Create Calculated Field"</strong> ya ऊपर dropdown mein Analysis → Create Calculated Field
+    </div>
+
+    <div class="two-col" style="margin-top: 16px;">
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">Example 1: Revenue Calculate Karna</p>
+        <div class="code-block">
+          <span class="comment">// Revenue = Sales minus (Sales × Discount)</span><br>
+          [Sales] <span class="kw">-</span> ([Sales] <span class="kw">*</span> [Discount])
+        </div>
+        <p>Yeh calculation ek naya column "Revenue" banayega. Ab ise kisi bhi chart mein use kar sakte ho Sales ki jagah.</p>
+      </div>
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">Example 2: Conditional Column (IF statement)</p>
+        <div class="code-block">
+          <span class="kw">IF</span> [Profit] > 0 <span class="kw">THEN</span> <span class="str">"Profit"</span><br>
+          <span class="kw">ELSEIF</span> [Profit] = 0 <span class="kw">THEN</span> <span class="str">"Break Even"</span><br>
+          <span class="kw">ELSE</span> <span class="str">"Loss"</span><br>
+          <span class="kw">END</span>
+        </div>
+        <p>Naya column "Profit Status" banayega — har order ke liye Profit/Loss/Break Even likhega.</p>
+      </div>
+    </div>
+
+    <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin: 16px 0 12px;">Available Function Categories:</p>
+    <ul class="topic-list">
+      <li><span class="li-num">→</span><div><div class="li-head">String Functions</div><div class="li-desc">UPPER(), LOWER(), LEN(), TRIM(), FIND(), LEFT(), RIGHT(), MID(), REPLACE(), CONTAINS()</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Number Functions</div><div class="li-desc">ABS(), ROUND(), FLOOR(), CEILING(), POWER(), SQRT(), MOD()</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Date Functions</div><div class="li-desc">TODAY(), NOW(), YEAR(), MONTH(), QUARTER(), DATEPART(), DATEDIFF()</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Logical Functions</div><div class="li-desc">IF/THEN/ELSEIF/ELSE, CASE/WHEN, IIF(), AND, OR, NOT</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Table Calculations</div><div class="li-desc">RUNNING_SUM(), RUNNING_AVG(), RANK(), INDEX(), WINDOW_AVG() — ek cell ke value dusri cells se compare karne ke liye</div></div></li>
+    </ul>
+
+    <div class="callout green-box" style="margin-top: 16px;">
+      <div class="callout-title">💡 Quick Shortcut — Quick Table Calculation</div>
+      Kisi bhi measure par Right-click → <strong>"Quick Table Calculation"</strong> → Running Total, % of Total, Difference, % Difference, Moving Average — ek click mein ready!
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 11 — PARAMETERS -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s11">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_11 · Dynamic Control</span>
+      <div class="section-title">PARAMETERS</div>
+      <div class="section-subtitle">User-Controlled Dynamic Values // Slider + Dropdown</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Parameters ek aisi <strong>user-controlled variable</strong> hai jo chart ko dynamic banata hai. Koi user slider drag kare ya dropdown se kuch select kare — chart automatically update ho jaata hai.</p>
+
+    <div class="two-col">
+      <div class="col">
+        <p><strong>Use Case 1 — Top N Filter</strong></p>
+        <p>Top 5 products dikhane ke bajaye, aap ek slider banao jahan user khud decide kare kitne top products dekhne hain (Top 1 se Top 20 tak).</p>
+        <ul class="topic-list">
+          <li><span class="li-num">1</span><div><div class="li-head">Parameter banao "Top N"</div><div class="li-desc">Data Type: Integer, Range: 1–20, Step: 1</div></div></li>
+          <li><span class="li-num">2</span><div><div class="li-head">Product Name field Filter mein daalo</div></div></li>
+          <li><span class="li-num">3</span><div><div class="li-head">Filter → Top → By Field → "Top N" parameter select karo</div></div></li>
+          <li><span class="li-num">4</span><div><div class="li-head">Parameter ko Show karo</div><div class="li-desc">Right-click → Show Parameter → Slider aayega</div></div></li>
+        </ul>
+      </div>
+      <div class="col">
+        <p><strong>Use Case 2 — Dynamic Dimension Selector</strong></p>
+        <p>Ek hi chart mein Category, Sub-Category, City, Country, Segment — user dropdown se choose kare!</p>
+        <ul class="topic-list">
+          <li><span class="li-num">1</span><div><div class="li-head">Parameter banao (String, List type)</div><div class="li-desc">Values: category, sub-category, city, country, segment</div></div></li>
+          <li><span class="li-num">2</span><div><div class="li-head">Calculated Field banao</div><div class="li-desc">IF [Parameter] = "category" THEN [Category] ELSEIF … END</div></div></li>
+          <li><span class="li-num">3</span><div><div class="li-head">Is Calculated Field ko chart mein use karo</div></div></li>
+          <li><span class="li-num">4</span><div><div class="li-head">Parameter show karo → Dropdown aayega</div><div class="li-desc">User select kare → Chart badal jaayega!</div></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 12 — DASHBOARD -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_12 · Presentation</span>
+      <div class="section-title">DASHBOARD BANANA</div>
+      <div class="section-subtitle">Multiple Charts Ek Jagah // Tiled vs Floating</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Dashboard matlab — <strong>multiple charts ko ek single view mein combine karna</strong>. Boss ko ya client ko jab present karna ho toh dashboard hi sabse impactful hota hai.</p>
+
+    <div class="callout">
+      <div class="callout-title">Dashboard Banana — Basic Process</div>
+      1. Pehle saare <strong>individual sheets</strong> (charts) banao<br>
+      2. Bottom mein "New Dashboard" par click karo<br>
+      3. Left panel se sheets drag karke canvas par daalo<br>
+      4. Size, layout, colors customize karo → Done!
+    </div>
+
+    <div class="two-col" style="margin-top: 16px;">
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">TILED Layout</p>
+        <p>Tableau khud hi charts ko arrange karta hai — equal boxes mein. <strong>Beginners ke liye best</strong> — koi overlap nahi, sab clean.</p>
+        <div class="callout green-box">
+          <div class="callout-title">Kab Use Karein?</div>
+          Jab aap chahte ho ki sab charts properly aligned rahein aur aapko manually adjust nahi karna pade.
+        </div>
+      </div>
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">FLOATING Layout</p>
+        <p>Aap manually charts ko kahan bhi rakh sakte ho — koi bhi size, koi bhi position. <strong>Advanced control</strong> milta hai par zyada mehnat lagti hai.</p>
+        <div class="callout">
+          <div class="callout-title">Kab Use Karein?</div>
+          Jab custom sized, overlapping, ya pixel-perfect layouts chahiye hon.
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin: 20px 0 12px;">Dashboard Objects (Extra Elements):</p>
+    <ul class="topic-list">
+      <li><span class="li-num">→</span><div><div class="li-head">Text Object</div><div class="li-desc">Title, description, ya koi bhi text add karo — font size, color set karo</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Image Object</div><div class="li-desc">Company logo ya koi image add karo — URL se ya local file se</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Horizontal/Vertical Containers</div><div class="li-desc">Charts ko organized layout mein rakhne ke liye</div></div></li>
+      <li><span class="li-num">→</span><div><div class="li-head">Blank Objects</div><div class="li-desc">Spacing ke liye empty space daalo</div></div></li>
+    </ul>
+
+    <div class="callout green-box" style="margin-top: 16px;">
+      <div class="callout-title">🎨 Dashboard Design Tips</div>
+      <strong>Simple colors rakho</strong> — neon green ya bright background mat lagao. Data clearly visible hona chahiye, background pe zyada dhyan mat dao.<br><br>
+      <strong>Labels readable rahein</strong> — X axis, Y axis, chart titles properly named hone chahiye. Viewer ko yeh nahi puchna chahiye "yeh kya hai?"
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 13 — ACTIONS -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s13">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_13 · Interactivity</span>
+      <div class="section-title">ACTIONS — DASHBOARD KO INTERACTIVE BANANA</div>
+      <div class="section-subtitle">Filter · Highlight · URL · Navigate · Set Control</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Actions se aap dashboard ko <strong>interactive bana sakte ho</strong> — user click kare ya hover kare, toh baaki charts automatically update ho jayein.</p>
+
+    <p><strong>Kahan milte hain Actions?</strong> → Dashboard menu → Actions → Add Action</p>
+
+    <div class="chart-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 12px;">
+      <div class="chart-card">
+        <span class="chart-icon">🔽</span>
+        <div class="chart-name">Filter Action</div>
+        <div class="chart-when">Click → Dusre Charts Filter Ho</div>
+        <div class="chart-desc">Ek chart mein kuch select karo → baaki saare charts automatically usi ke basis par filter ho jaate hain.<br><br>
+        <strong>Shortcut:</strong> Chart par click karo → Dropdown → "Use as Filter" enable karo</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">✨</span>
+        <div class="chart-name">Highlight Action</div>
+        <div class="chart-when">Click → Related Data Highlight Ho</div>
+        <div class="chart-desc">Ek chart mein Furniture select karo → baaki charts mein bhi Furniture highlight ho jaata hai. Baaki data dim ho jaata hai.<br><br>
+        Comparison ke liye bahut useful hai.</div>
+      </div>
+      <div class="chart-card">
+        <span class="chart-icon">🔗</span>
+        <div class="chart-name">URL Action</div>
+        <div class="chart-when">Click → Website Open Ho</div>
+        <div class="chart-desc">Kisi bhi chart element par click karo → ek specific URL khul jaaye. Source Sheet, hover/select/menu trigger choose karo.<br><br>
+        Example: Product name click → Amazon product page khule</div>
+      </div>
+      <div class="chart-card" style="border-bottom: 0;">
+        <span class="chart-icon">📄</span>
+        <div class="chart-name">Navigate to Sheet</div>
+        <div class="chart-when">Click → Dusri Sheet Par Jaao</div>
+        <div class="chart-desc">Button click karo → automatically dusri sheet ya dashboard par redirect ho jaao. Presentation mein useful.</div>
+      </div>
+      <div class="chart-card" style="border-bottom: 0;">
+        <span class="chart-icon">⚙️</span>
+        <div class="chart-name">Change Parameter</div>
+        <div class="chart-when">Action Se Parameter Change Ho</div>
+        <div class="chart-desc">User action se parameter value change ho → aur uss parameter se linked sab cheezein update ho jayein.</div>
+      </div>
+      <div class="chart-card" style="border-bottom: 0;">
+        <span class="chart-icon">⋈</span>
+        <div class="chart-name">Change Set Values</div>
+        <div class="chart-when">Action Se Set Update Ho</div>
+        <div class="chart-desc">Click karo aur set mein naye members add ho jaayein. Dynamic set bana ke user interaction se IN/OUT change karo.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 14 — DATA STORYTELLING -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s14">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_14 · Narrative</span>
+      <div class="section-title">DATA STORY TELLING</div>
+      <div class="section-subtitle">Tableau Story // Multiple Pages // Presentation Mode</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <p>Dashboard ek picture hai, <strong>Story ek presentation hai</strong>. Multiple charts ya dashboards ko ek flow mein present karo — jaise PowerPoint mein slides hoti hain.</p>
+
+    <div class="callout">
+      <div class="callout-title">Story Kaise Banayein?</div>
+      Bottom mein "New Story" par click karo → Blank pages add karo → Har page par ek chart ya dashboard drag karo → Captions add karo → "Present" karo
+    </div>
+
+    <div class="two-col" style="margin-top: 16px;">
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">Story Structure (Recommended)</p>
+        <ul class="topic-list">
+          <li><span class="li-num">P1</span><div><div class="li-head">Overview Chart</div><div class="li-desc">Pehle ek simple chart — e.g., "Total Sales by Category" — audience ko introduce karo</div></div></li>
+          <li><span class="li-num">P2</span><div><div class="li-head">Drill Down</div><div class="li-desc">Second page mein deeper analysis — e.g., "Sub-category trends over years"</div></div></li>
+          <li><span class="li-num">P3</span><div><div class="li-head">Problem Areas</div><div class="li-desc">Scatter plot ya map — jahan problems hain (negative profit, etc.)</div></div></li>
+          <li><span class="li-num">P4</span><div><div class="li-head">Full Dashboard</div><div class="li-desc">Akhir mein complete dashboard — "Yeh sab ek jagah dekho"</div></div></li>
+        </ul>
+      </div>
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">Story Customization</p>
+        <ul class="topic-list">
+          <li><span class="li-num">→</span><div><div class="li-head">Caption Style</div><div class="li-desc">Numbers ya dots ya arrows — navigation style choose karo</div></div></li>
+          <li><span class="li-num">→</span><div><div class="li-head">Captions Add Karo</div><div class="li-desc">Har page par ek title/description — audience ko context do</div></div></li>
+          <li><span class="li-num">→</span><div><div class="li-head">Present Mode</div><div class="li-desc">"Present" button click karo → fullscreen presentation start</div></div></li>
+          <li><span class="li-num">→</span><div><div class="li-head">Duplicate Pages</div><div class="li-desc">Same page ka duplicate banao aur small change karo — comparison ke liye</div></div></li>
+        </ul>
+        <div class="callout green-box" style="margin-top: 12px;">
+          <div class="callout-title">✓ Best Practice</div>
+          Data zyada important hai, design kam. <strong>Clear titles, readable numbers, logical flow</strong> — yahi achhi story banata hai.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<!-- SECTION 15 — PUBLISHING -->
+<!-- ════════════════════════════════════ -->
+<div class="section" id="s15">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Module_15 · Deployment</span>
+      <div class="section-title">PUBLISH &amp; SAVE</div>
+      <div class="section-subtitle">Local Save · Tableau Public Upload · Portfolio</div>
+    </div>
+  </div>
+  <div class="content-body">
+
+    <div class="two-col">
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">LOCAL SAVE (PC par save karo)</p>
+        <p>File → <strong>Export Packaged Workbook</strong> → .twbx format mein save hoga → Apne PC par kisi bhi folder mein rakh do</p>
+        <div class="callout">
+          <div class="callout-title">Note</div>
+          .twbx file mein data bhi embedded hoti hai — dusro ko share karo, woh bhi open kar sakte hain bina original data file ke.
+        </div>
+      </div>
+      <div class="col">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--rust-light);margin-bottom:12px;">TABLEAU PUBLIC PAR PUBLISH (Portfolio ke liye!)</p>
+        <p>File → <strong>Save to Tableau Public As</strong> → Sign in karo → Name do (e.g., "Sales Dashboard 2024") → Save karo</p>
+        <div class="callout">
+          <div class="callout-title">⚠️ Important Warning</div>
+          Tableau Public par save karne par <strong>aapka data publicly visible hoga</strong>. Sirf portfolio projects ya public datasets hi yahan upload karo. Company ya sensitive data bilkul mat daalo!
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green-box" style="margin-top: 20px;">
+      <div class="callout-title">🚀 Portfolio Tip — Job Interviews ke liye</div>
+      Tableau Public par apna profile banao → apne saare projects wahan publish karo → URL apne resume aur LinkedIn par add karo.<br><br>
+      <strong>Interviewer seedha aapka live, interactive dashboard dekh sakta hai — yeh regular PDF screenshot se bahut zyada impressive hai!</strong>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL SUMMARY / QUICK REFERENCE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">↗</div>
+    <div class="section-title-wrap">
+      <span class="section-label">Quick Reference</span>
+      <div class="section-title">CHEAT SHEET — YAAD RAKHNE WALI BAATEIN</div>
+      <div class="section-subtitle">Saare Key Points Ek Jagah</div>
+    </div>
+  </div>
+  <div class="content-body">
+    <div class="chart-grid" style="grid-template-columns: repeat(3,1fr);">
+      <div class="chart-card">
+        <div class="chart-name">Blue vs Green</div>
+        <div class="chart-desc"><span class="pill dim">BLUE = DIMENSION</span> Category wala data — "Kis cheez ka?"<br><span class="pill green">GREEN = MEASURE</span> Numeric data — "Kitna?"</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-name">Chart Selection</div>
+        <div class="chart-desc">
+          <span class="pill">BAR</span> Categorical compare<br>
+          <span class="pill">LINE</span> Time trend<br>
+          <span class="pill">PIE</span> % Distribution<br>
+          <span class="pill">MAP</span> Geographic<br>
+          <span class="pill">SCATTER</span> Num vs Num
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-name">Join Types</div>
+        <div class="chart-desc">
+          <span class="pill">INNER</span> Common only<br>
+          <span class="pill">LEFT</span> Left all + Right match<br>
+          <span class="pill">RIGHT</span> Right all + Left match<br>
+          <span class="pill">FULL OUTER</span> Both all<br>
+          <span class="pill dim">UNION</span> Stack same-structure tables
+        </div>
+      </div>
+      <div class="chart-card" style="border-bottom:0;">
+        <div class="chart-name">Advanced Types</div>
+        <div class="chart-desc">
+          <span class="pill">GROUPS</span> Manual custom categories<br>
+          <span class="pill">BINS</span> Histogram / Frequency<br>
+          <span class="pill">SETS</span> IN/OUT with operations
+        </div>
+      </div>
+      <div class="chart-card" style="border-bottom:0;">
+        <div class="chart-name">Schema Types</div>
+        <div class="chart-desc">
+          <span class="pill">STAR</span> 1 Fact + Direct Dimensions<br>
+          <span class="pill dim">SNOWFLAKE</span> 1 Fact + Nested Dimensions
+        </div>
+      </div>
+      <div class="chart-card" style="border-bottom:0;">
+        <div class="chart-name">Workflow</div>
+        <div class="chart-desc">Connect Data → Model → Clean → Charts → Dashboard → Story → Publish</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-cell">
+    <strong>TOTAL TOPICS COVERED</strong>
+    15 Modules · Complete Course
+  </div>
+  <div class="footer-cell">
+    <strong>DATA USED IN COURSE</strong>
+    Super Store Sales Dataset · Orders, Returns, Managers
+  </div>
+  <div class="footer-cell">
+    <strong>VERSION</strong>
+    Tableau Public 2024.3+ · Windows & Mac
+  </div>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+});
+
+// Smooth open details on nav click
+document.querySelectorAll('.nav-pill').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const det = target.querySelector('details');
+      if (det) det.open = true;
+    }
+  });
+});
+</script>
+</body>
+</html>
