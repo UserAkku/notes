@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MKT.ARCHIVE // Marketing Management Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1a16;
+    --bg2: #222218;
+    --bg3: #2a2a1e;
+    --red: #9B3A24;
+    --red-bright: #b84530;
+    --sand: #d0c9b0;
+    --sand-dim: #8a8470;
+    --sand-faint: #4a4840;
+    --border: #3a3a2e;
+    --border-bright: #5a5a48;
+    --white: #f0ebe0;
+    --green: #5a8a5a;
+    --yellow: #b8963a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--sand);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-cell {
+    padding: 10px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .header-cell:last-child { border-right: none; }
+  .header-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--sand-dim);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .header-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .header-value.red { color: var(--red-bright); }
+
+  /* ─── HERO ─── */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-geo {
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    background: var(--red);
+  }
+  .hero-geo::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60%;
+    height: 100%;
+    background: var(--bg2);
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+  }
+  .hero-geo::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%; height: 40%;
+    background: var(--sand);
+    border-radius: 0 0 0 100%;
+  }
+  .hero-geo2 {
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .hero-geo2::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px; height: 120px;
+    background: var(--red);
+    border-radius: 50%;
+  }
+  .hero-geo2::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px; height: 50px;
+    background: var(--bg);
+  }
+  .hero-geo3 {
+    position: relative;
+    overflow: hidden;
+    background: var(--red);
+  }
+  .hero-geo3::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%; height: 100%;
+    background: var(--bg2);
+  }
+  .hero-geo3::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 25%;
+    width: 60px; height: 80px;
+    background: var(--sand);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  }
+  .hero-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px;
+    z-index: 2;
+  }
+  .hero-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .hero-sub {
+    font-size: 10px;
+    color: var(--sand-dim);
+    letter-spacing: 0.12em;
+    margin-top: 4px;
+  }
+
+  /* ─── SHIFT BAR ─── */
+  .shift-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .shift-cell {
+    padding: 8px 18px;
+    border-right: 1px solid var(--border);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--sand-dim);
+    text-transform: uppercase;
+  }
+  .shift-cell:last-child { border-right: none; }
+
+  /* ─── NAV ─── */
+  .nav-bar {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--red);
+    background: var(--bg);
+    position: sticky;
+    top: 57px;
+    z-index: 90;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    background: none;
+    border: none;
+    border-right: 1px solid var(--border);
+    color: var(--sand-dim);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { background: var(--bg3); color: var(--white); }
+  .nav-btn.active { background: var(--red); color: var(--white); }
+
+  /* ─── MAIN LAYOUT ─── */
+  .content-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    border-bottom: 1px solid var(--border);
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--sand-faint);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .section-title-group { }
+  .section-module {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .section-tag {
+    background: var(--red);
+    color: var(--white);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  .section-body { padding: 24px; }
+
+  /* ─── CONCEPT BLOCKS ─── */
+  .concept {
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    background: var(--bg2);
+    transition: border-color 0.2s;
+  }
+  .concept:hover { border-color: var(--border-bright); }
+
+  .concept-head {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  .concept-head:hover { background: var(--bg3); }
+  .concept-num {
+    font-size: 11px;
+    color: var(--red-bright);
+    font-weight: 700;
+    text-align: center;
+  }
+  .concept-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .concept-toggle {
+    font-size: 10px;
+    color: var(--sand-dim);
+    margin-left: auto;
+    transition: transform 0.2s;
+  }
+  .concept.open .concept-toggle { transform: rotate(90deg); }
+
+  .concept-body {
+    display: none;
+    padding: 16px 20px 20px;
+  }
+  .concept.open .concept-body { display: block; }
+
+  /* ─── TEXT ELEMENTS ─── */
+  .tagline {
+    font-size: 11px;
+    color: var(--sand-dim);
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+    border-left: 2px solid var(--red);
+    padding-left: 12px;
+    font-style: italic;
+  }
+
+  p { color: var(--sand); font-size: 13px; margin-bottom: 12px; line-height: 1.75; }
+
+  .hl { color: var(--white); font-weight: 600; }
+  .hl-red { color: var(--red-bright); font-weight: 600; }
+  .hl-yellow { color: var(--yellow); font-weight: 600; }
+  .hl-green { color: var(--green); font-weight: 600; }
+
+  /* ─── GRID CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 16px 0;
+  }
+  .card {
+    background: var(--bg);
+    padding: 16px;
+  }
+  .card-num {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .card-body {
+    font-size: 12px;
+    color: var(--sand);
+    line-height: 1.65;
+  }
+  .card.accent { background: var(--red); }
+  .card.accent .card-num { color: rgba(255,255,255,0.6); }
+  .card.accent .card-title { color: var(--white); }
+  .card.accent .card-body { color: rgba(255,255,255,0.85); }
+
+  /* ─── TABLE ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12px;
+  }
+  .data-table th {
+    background: var(--red);
+    color: var(--white);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 10px 14px;
+    text-align: left;
+    text-transform: uppercase;
+    border: 1px solid var(--red-bright);
+  }
+  .data-table td {
+    border: 1px solid var(--border);
+    color: var(--sand);
+    padding: 10px 14px;
+    vertical-align: top;
+  }
+  .data-table tr:nth-child(even) td { background: var(--bg2); }
+  .data-table tr:hover td { background: var(--bg3); }
+
+  /* ─── ALERT / CALLOUT ─── */
+  .callout {
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    margin: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout.info { border-left: 3px solid var(--sand-dim); }
+  .callout.warn { border-left: 3px solid var(--yellow); }
+  .callout.tip { border-left: 3px solid var(--green); }
+  .callout.key { border-left: 3px solid var(--red-bright); }
+  .callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 12px; color: var(--sand); line-height: 1.65; }
+  .callout-text strong { color: var(--white); }
+
+  /* ─── LIST ─── */
+  .mlist {
+    list-style: none;
+    margin: 12px 0;
+    padding: 0;
+  }
+  .mlist li {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--sand);
+    line-height: 1.65;
+  }
+  .mlist li:last-child { border-bottom: none; }
+  .mlist li::before {
+    content: '//';
+    position: absolute;
+    left: 0;
+    color: var(--red-bright);
+    font-weight: 700;
+    font-size: 10px;
+  }
+
+  /* ─── SPLIT GRID ─── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .split-box {
+    border: 1px solid var(--border);
+    padding: 14px;
+    background: var(--bg2);
+  }
+  .split-title {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ─── BIG STAT ─── */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 1px; background: var(--border); margin: 16px 0; }
+  .stat-box {
+    background: var(--bg2);
+    flex: 1;
+    min-width: 120px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--red-bright);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--sand-dim);
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ─── SWOT GRID ─── */
+  .swot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 16px 0;
+  }
+  .swot-q { background: var(--bg2); padding: 16px; }
+  .swot-q.s { border-top: 3px solid var(--green); }
+  .swot-q.w { border-top: 3px solid var(--red-bright); }
+  .swot-q.o { border-top: 3px solid var(--yellow); }
+  .swot-q.t { border-top: 3px solid var(--sand-dim); }
+  .swot-letter {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .swot-q.s .swot-letter { color: var(--green); }
+  .swot-q.w .swot-letter { color: var(--red-bright); }
+  .swot-q.o .swot-letter { color: var(--yellow); }
+  .swot-q.t .swot-letter { color: var(--sand-dim); }
+  .swot-name { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand-dim); margin-bottom: 10px; }
+  .swot-items { font-size: 12px; color: var(--sand); }
+  .swot-item { padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .swot-item:last-child { border-bottom: none; }
+
+  /* ─── TIMELINE ─── */
+  .timeline { margin: 16px 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 20px 1fr;
+    gap: 0 12px;
+    margin-bottom: 0;
+  }
+  .tl-year {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red-bright);
+    text-align: right;
+    padding: 14px 0;
+    letter-spacing: 0.05em;
+  }
+  .tl-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tl-dot {
+    width: 10px; height: 10px;
+    background: var(--red);
+    border: 2px solid var(--red-bright);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 17px;
+  }
+  .tl-connector {
+    width: 1px;
+    flex: 1;
+    background: var(--border);
+  }
+  .tl-last .tl-connector { display: none; }
+  .tl-content {
+    border-left: none;
+    padding: 10px 0 14px 0;
+  }
+  .tl-title { font-size: 12px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; }
+  .tl-desc { font-size: 12px; color: var(--sand); margin-top: 4px; line-height: 1.65; }
+
+  /* ─── FUNNEL ─── */
+  .funnel { margin: 16px 0; }
+  .funnel-step {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .funnel-bar-wrap { flex: 1; }
+  .funnel-bar {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--red);
+    transition: width 0.5s;
+  }
+  .funnel-label {
+    font-size: 11px;
+    color: var(--sand-dim);
+    min-width: 80px;
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    font-size: 10px;
+    color: var(--sand-dim);
+    letter-spacing: 0.1em;
+  }
+  .footer-title { color: var(--sand); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* responsive */
+  @media(max-width: 700px) {
+    .header { grid-template-columns: 1fr 1fr; }
+    .hero { grid-template-columns: 1fr; min-height: 120px; }
+    .hero-geo, .hero-geo3 { display: none; }
+    .split { grid-template-columns: 1fr; }
+    .swot { grid-template-columns: 1fr; }
+    .footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<div class="header">
+  <div class="header-cell">
+    <span class="header-label">System</span>
+    <span class="header-value">MKT.ARCHIVE</span>
+  </div>
+  <div class="header-cell">
+    <span class="header-label">Status</span>
+    <span class="header-value red">Operational</span>
+  </div>
+  <div class="header-cell">
+    <span class="header-label">Course</span>
+    <span class="header-value">Marketing Mgmt</span>
+  </div>
+  <div class="header-cell">
+    <span class="header-label">Language</span>
+    <span class="header-value">Hinglish // Simple</span>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-geo"></div>
+  <div class="hero-geo2">
+    <div class="hero-text">
+      <div class="hero-title">Marketing<br>Management</div>
+      <div class="hero-sub">Complete Notes // Hinglish Mein // Dr. Naren & Dr. Kavita</div>
+    </div>
+  </div>
+  <div class="hero-geo3"></div>
+</div>
+
+<!-- ─── SHIFT BAR ─── -->
+<div class="shift-bar">
+  <div class="shift-cell">Module 01 — Foundations</div>
+  <div class="shift-cell">Module 02 — Strategy & Execution</div>
+  <div class="shift-cell">Module 03 — Digital & Loyalty</div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav class="nav-bar">
+  <button class="nav-btn active" onclick="showSection('intro')">01 — Intro</button>
+  <button class="nav-btn" onclick="showSection('history')">02 — History</button>
+  <button class="nav-btn" onclick="showSection('core')">03 — Core Concepts</button>
+  <button class="nav-btn" onclick="showSection('4ps')">04 — 4Ps</button>
+  <button class="nav-btn" onclick="showSection('stp')">05 — STP</button>
+  <button class="nav-btn" onclick="showSection('research')">06 — Market Research</button>
+  <button class="nav-btn" onclick="showSection('consumer')">07 — Consumer Behavior</button>
+  <button class="nav-btn" onclick="showSection('swot')">08 — SWOT</button>
+  <button class="nav-btn" onclick="showSection('sales')">09 — Sales & Distribution</button>
+  <button class="nav-btn" onclick="showSection('advertising')">10 — Advertising</button>
+  <button class="nav-btn" onclick="showSection('loyalty')">11 — Loyalty</button>
+</nav>
+
+<!-- ─── CONTENT ─── -->
+<div class="content-grid">
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 01 INTRO -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section active" id="intro">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 01 // Foundations</div>
+      <div class="section-title">Marketing Kya Hai?</div>
+    </div>
+    <div class="section-tag">Intro</div>
+  </div>
+  <div class="section-body">
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Marketing — Simple Definition</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">American Marketing Association (AMA) ka definition</div>
+        <p><span class="hl">Marketing</span> woh process hai jisme tum kuch valuable banate ho, communicate karte ho, deliver karte ho, aur exchange karte ho — customers ke liye, society ke liye.</p>
+        <div class="callout key">
+          <span class="callout-icon">🔑</span>
+          <span class="callout-text"><strong>Simple Bhaasha mein:</strong> Marketing matlab hai — <em>sahi product, sahi insaan ko, sahi jagah, sahi time pe, sahi price pe dena</em> — aur unhe batana ki kyun khareedein.</span>
+        </div>
+        <p><span class="hl-red">Marketing sirf advertisement nahi hai!</span> Yeh ek poora system hai — research se lekar product banana, price set karna, distribution aur promotion sab kuch.</p>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Component 01</span>
+            <div class="card-title">Marketing Research</div>
+            <div class="card-body">Market ko samajhna — customer kya chahta hai, competition kya kar raha hai.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Component 02</span>
+            <div class="card-title">Product Development</div>
+            <div class="card-body">Research ke baad ek aisa product banana jo customer ki zaroorat poori kare.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Component 03</span>
+            <div class="card-title">Pricing Strategy</div>
+            <div class="card-body">Product ki sahi price decide karna — na bahut zyada, na bahut kam.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Component 04</span>
+            <div class="card-title">Advertising & Promotion</div>
+            <div class="card-body">Logon ko batana ki product exist karta hai aur kyun khareedein.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Component 05</span>
+            <div class="card-title">Sales & Distribution</div>
+            <div class="card-body">Product ko customer tak pahunchana — store ho, online ho ya seedha ghar pe.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Component 06</span>
+            <div class="card-title">CRM</div>
+            <div class="card-body">Customer Relationship Management — existing customers ko happy rakhna aur retain karna.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">Marketing ka Interdisciplinary Nature</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p>Marketing sirf business subject nahi hai — yeh <span class="hl">Psychology, Sociology, aur Economics</span> teeno ka combination hai.</p>
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Psychology</div>
+            <p>Consumer ke dimaag ko samajhna — woh kyu kuch khareedta hai, emotions kya role play karti hain, kaise usse convince karein.</p>
+            <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Example:</strong> Amul ka tagline "Utterly Butterly Delicious" — nostalgia aur positive emotion trigger karta hai.</span></div>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Sociology</div>
+            <p>Society aur culture ka product pe kya impact padta hai — family, community, trends.</p>
+            <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Example:</strong> Tata Nano fail hua kyunki India mein car status symbol hai — "cheap car" bolne se log door bhage.</span></div>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Economics</div>
+            <p>Pricing, demand-supply, value proposition — kya price pe kya value milti hai yeh important hai.</p>
+            <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Example:</strong> Amul affordable price pe quality dairy product deta hai — economies of scale se rural tak bhi pahuncha.</span></div>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Real Lesson</div>
+            <p>Tata Nano ek affordable car tha — economically sahi, psychologically galat! "Duniya ka sabse sasta car" positioning ne aspirational buyers ko bhaga diya.</p>
+            <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Lesson:</strong> Price aur value sahi ho, but agar psychology aur sociology wrong ho — product fail hoga!</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">03</span>
+        <span class="concept-label">Entrepreneurial Marketing vs Regular Marketing</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="callout info"><span class="callout-icon">📌</span><span class="callout-text"><strong>Regular Marketing:</strong> Badi company karta hai — resources hain, team hai, budget hai.</span></div>
+        <div class="callout key"><span class="callout-icon">🚀</span><span class="callout-text"><strong>Entrepreneurial Marketing:</strong> Limited resources mein innovative, proactive, aur risk-taking approach se marketing karna. Unique value deliver karna focus hai.</span></div>
+        <p>Startup founder ke liye yahi important hai — <span class="hl-red">jugaad marketing!</span> Zero budget mein maximum impact.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 02 HISTORY -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="history">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 01 // Foundations</div>
+      <div class="section-title">Marketing Ka History</div>
+    </div>
+    <div class="section-tag">Timeline</div>
+  </div>
+  <div class="section-body">
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Marketing ka Evolution — Barter se Digital Tak</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year">Barter Era</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Pehle Zamaane — Cheez ke Badle Cheez</div>
+              <div class="tl-desc">Paise nahi the, to log ek dusre ko goods exchange karte the. Kisan apna anaj deta tha, badle mein kapda milta tha. <span style="color:var(--sand-dim)">Yahi original "marketing" tha!</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1800s</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Production Era — "Banao, Bik Jayega"</div>
+              <div class="tl-desc">Industrial revolution ke time manufacturers ka attitude tha — <em>"If we make it, they will buy it."</em> Manufacturing efficiency pe focus tha. Customer ki koi nahi sunta tha.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1920-40s</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Sales Era — "Becho Becho Becho!"</div>
+              <div class="tl-desc">Factories ne itna produce kiya ki surplus ho gaya. Ab aggressive sales tactics shuru hue — door-to-door selling, pushy salesmen. Customer ki zaroorat secondary tha, sales primary.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1950-80s</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Marketing Era — Customer is King!</div>
+              <div class="tl-desc">Pehli baar customer ki zaroorat central bani. <span style="color:var(--red-bright)">4 Ps formally introduce hue (1960, E. Jerome McCarthy).</span> Pehle research karo ki customer kya chahta hai, phir banao.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1990s+</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Digital Era — Personalized Marketing</div>
+              <div class="tl-desc">Internet aaya, social media aaya, data-driven marketing shuru hua. <span style="color:var(--yellow)">Amazon, Google, Facebook</span> — sab customer data use kar ke personalized ads dikhate hain.</div>
+            </div>
+          </div>
+          <div class="tl-item tl-last">
+            <div class="tl-year">Now</div>
+            <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Sustainability Era — Green Marketing</div>
+              <div class="tl-desc">Ab sirf profit nahi, environment aur society bhi important hai. Brands jo genuinely sustainable hain — aur jo sirf "greenwash" karte hain — dono exist karte hain.</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout warn"><span class="callout-icon">🤔</span><span class="callout-text"><strong>Exam Question:</strong> 1960 ka framework (4Ps) aaj 2026 mein bhi kyun relevant hai? Kyunki fundamentals change nahi hote — sirf tools change hote hain!</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 03 CORE CONCEPTS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="core">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 01 // Foundations</div>
+      <div class="section-title">Core Concepts — Need, Want, Demand, Value</div>
+    </div>
+    <div class="section-tag">Basics</div>
+  </div>
+  <div class="section-body">
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Need vs Want vs Demand — Difference Kya Hai?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Concept 01</span>
+            <div class="card-title">Need (Zaroorat)</div>
+            <div class="card-body">Jo bilkul basic hai — bina jis ke jeena mushkil ho. Bhookh lagna, pyaas lagna, kapde chahiye, shelter chahiye. <em>Marketing create nahi karta, yeh pehle se exist karta hai.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Concept 02</span>
+            <div class="card-title">Want (Chahna)</div>
+            <div class="card-body">Need ko specific form dena. Bhookh hai (need) → pizza chahiye (want). Pyaas hai (need) → Coca Cola chahiye (want). Culture aur society wants shape karte hain.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Concept 03</span>
+            <div class="card-title">Demand</div>
+            <div class="card-body">Want + Buying Power = Demand. Bahut logon ko Lamborghini chahiye (want) but afford nahi kar sakte, isliye demand limited hai. Demand = Want + Paisa.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Concept 04</span>
+            <div class="card-title">Value</div>
+            <div class="card-body">Customer ko lagta hai ki jo wo pay kar raha hai, usse milne wali benefit uske worth hai. Value = Benefits ÷ Cost. Agar benefits zyada aur cost kam — high value!</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Concept 05</span>
+            <div class="card-title">Satisfaction</div>
+            <div class="card-body">Product ne jo expect kiya tha, wo mila ya nahi? Expected performance vs Actual performance. Expectation se zyada mila = Delight. Kam mila = Disappointment.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Concept 06</span>
+            <div class="card-title">Exchange</div>
+            <div class="card-body">Marketing ka core — kuch valuable dene ke badle mein kuch valuable lena. Paise ke badle product, ya service ke badle service. Dono parties satisfied honi chahiye.</div>
+          </div>
+        </div>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Trick to Remember:</strong> Pehle Need hoti hai → Marketing usse Want mein convert karta hai → Buying power se Demand banta hai → Sahi product se Value milti hai → Satisfaction ata hai.</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">PESTEL Framework — Macro Environment</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p>Company ke bahar ki forces jo business ko affect karti hain — in pe company ka control nahi hota, but inhe samajhna zaruri hai.</p>
+        <table class="data-table">
+          <tr><th>Letter</th><th>Matlab</th><th>Example (India)</th></tr>
+          <tr><td class="hl-red">P</td><td><span class="hl">Political</span> — Govt policies, regulations</td><td>GST, UPI policies, FDI rules</td></tr>
+          <tr><td class="hl-red">E</td><td><span class="hl">Economic</span> — Inflation, income levels, GDP</td><td>Rising middle class India mein = zyada demand</td></tr>
+          <tr><td class="hl-red">S</td><td><span class="hl">Social</span> — Culture, demographics, trends</td><td>Gen Z ki instant gratification culture = Zepto</td></tr>
+          <tr><td class="hl-red">T</td><td><span class="hl">Technological</span> — New tech, automation</td><td>AI, mobile internet, UPI revolution</td></tr>
+          <tr><td class="hl-red">E</td><td><span class="hl">Environmental</span> — Sustainability, climate</td><td>EV demand badhna = Tata Nexon EV</td></tr>
+          <tr><td class="hl-red">L</td><td><span class="hl">Legal</span> — Laws, consumer protection</td><td>Data privacy laws, FSSAI food regulations</td></tr>
+        </table>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Real Example:</strong> Jab UPI aaya (Political + Technological change), PhonePe aur Paytm ka ek naya market khul gaya!</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 04 4Ps -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="4ps">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 02 // Strategy</div>
+      <div class="section-title">4Ps of Marketing — The Core Framework</div>
+    </div>
+    <div class="section-tag">Key Framework</div>
+  </div>
+  <div class="section-body">
+
+    <div class="callout info"><span class="callout-icon">📌</span><span class="callout-text"><strong>History:</strong> 4Ps formally 1960 mein E. Jerome McCarthy ne diye, aur Neil Borden ke "Marketing Mix" concept se inspire tha (1950s). Aaj 2026 mein bhi yeh relevant hai kyunki fundamentals change nahi hote!</span></div>
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">P1</span>
+        <span class="concept-label">Product — Kya Bechoge?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Product = Jo tum market ko offer karte ho — goods, services, ya experience</div>
+        <p><span class="hl">Product</span> sirf ek physical cheez nahi hai — yeh ek "bundle" hai: quality, design, packaging, brand name, warranty, after-sales service — sab milake product banta hai.</p>
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Product ke Core Questions</div>
+            <ul class="mlist">
+              <li>Mera product kya hai? Kya karta hai?</li>
+              <li>Customer ki kaunsi zaroorat poori karta hai?</li>
+              <li>Competitors se alag kya hai?</li>
+              <li>Kiska liye hai? (Target audience)</li>
+              <li>Koi unfilled need to nahi hai market mein?</li>
+            </ul>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Product Life Cycle (PLC)</div>
+            <ul class="mlist">
+              <li><span class="hl-yellow">Introduction</span> — Naya product launch, slow growth, loss ho sakta hai</li>
+              <li><span class="hl-green">Growth</span> — Sales tezi se badhti hai, competitors aate hain</li>
+              <li><span class="hl">Maturity</span> — Sales peak pe, competition intense</li>
+              <li><span class="hl-red">Decline</span> — Sales girne lagti, ya to reinvent karo ya chhod do</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Taylor Swift Example:</strong> Uska "product" sirf music nahi hai — merch, concerts, films, courses, fashion — yeh ek complete product ecosystem hai! Aur woh har stage pe reinvent karti hai.</span></div>
+        <p><span class="hl-yellow">Services ke liye extra 3Ps bhi add hote hain:</span> People (staff), Process (delivery), Physical Evidence (tangible proof). Isliye total 7Ps bante hain services mein.</p>
+        <div class="callout info"><span class="callout-icon">📌</span><span class="callout-text"><strong>Services ki 4 Khasiyatein (IPIV):</strong> Intangibility (chhu nahi sakte), Inseparability (service aur provider saath hote hain), Perishability (unsold seat expire ho jati hai), Variability (quality vary ho sakti hai).</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">P2</span>
+        <span class="concept-label">Price — Kitna Charge Karoge?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Price = Jo customer pay karta hai + perceived value ka signal</div>
+        <p>Price setting tricky hai — bahut zyada lagao to customer nahi khareeday, bahut kam lagao to "cheap" lag sakta hai aur grow karna impossible ho jayega.</p>
+        <table class="data-table">
+          <tr><th>Strategy</th><th>Matlab</th><th>India Example</th></tr>
+          <tr><td><span class="hl">Cost-Plus</span></td><td>Cost ke upar fixed % profit jodon</td><td>Local manufacturer</td></tr>
+          <tr><td><span class="hl">Penetration</span></td><td>Pehle low price rakho, market share lo</td><td>Jio — Free data se shuru</td></tr>
+          <tr><td><span class="hl">Skimming</span></td><td>Pehle high price, phir gradually kam karo</td><td>iPhone launch pe high price</td></tr>
+          <tr><td><span class="hl">Competitive</span></td><td>Competitors ke hisab se price set karo</td><td>Airtel vs Jio pricing wars</td></tr>
+          <tr><td><span class="hl">Value-Based</span></td><td>Customer kitna value samajhta hai uske hisab se</td><td>Starbucks coffee ₹500 bhi bikti hai</td></tr>
+          <tr><td><span class="hl">Psychological</span></td><td">₹999 vs ₹1000 — fark lagta hai psychologically</td><td>Flipkart, Amazon deals</td></tr>
+        </table>
+        <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Tata Nano Lesson:</strong> Sasta price = low quality signal. "Sabse sasta car" positioning ne aspirational buyers ko repel kar diya. Price sirf number nahi, ek message hai!</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">P3</span>
+        <span class="concept-label">Place — Kahan Milega?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Place = Product kaise aur kahan customer tak pahunche — distribution channels</div>
+        <p><span class="hl">Distribution</span> ka matlab hai — product ko factory se customer ke haath tak pohonchane ka poora system.</p>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Type 01</span>
+            <div class="card-title">Intensive Distribution</div>
+            <div class="card-body">Har jagah available — har dukaan, har store. <em>Lifebuoy soap HUL — har kirana store mein.</em> Mass market products ke liye.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 02</span>
+            <div class="card-title">Selective Distribution</div>
+            <div class="card-body">Sirf kuch selected outlets mein. <em>Samsung premium phones sirf authorized stores pe.</em></div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Type 03</span>
+            <div class="card-title">Exclusive Distribution</div>
+            <div class="card-body">Ek hi outlet ya limited locations. <em>Apple Store, Rolex showroom.</em> Luxury feel ke liye.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 04</span>
+            <div class="card-title">D2C — Direct to Consumer</div>
+            <div class="card-body">Seedha customer tak — beech mein koi middleman nahi. <em>Licious meat directly deliver karta hai.</em> Full control + first-party data.</div>
+          </div>
+        </div>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Channel Conflict:</strong> Jab manufacturer khud online bechne lage to traditional distributors protest karte hain. <em>Udaan aur JioMart ne traditional wholesalers ko bypass kiya — woh angry ho gaye!</em></span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">P4</span>
+        <span class="concept-label">Promotion — Batao, Convince Karo!</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Promotion = Logon ko batana ki product exist karta hai aur kyun khareedein</div>
+        <p>Promotion = <span class="hl">Advertising + PR + Sales Promotion + Personal Selling + Social Media</span> — sab milake Integrated Marketing Communications (IMC) banta hai.</p>
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Advertising ka Role</div>
+            <p>Awareness banata hai, positioning establish karta hai, memory mein brand store karta hai. LIC ke ads isliye chalte rehte hain — jab zaroorat padegi, pehle LIC yaad aayega.</p>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Advertising vs Promotion</div>
+            <p><span class="hl">Advertising</span> = long-term brand building.<br><span class="hl">Promotion</span> = short-term action trigger. "50% off — Aaj Hi!" wala kaam promotion karta hai.</p>
+          </div>
+        </div>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Apple Example:</strong> Marketing ne premium positioning define ki → Advertising ne aspiration build ki → Promotions almost nahi ke barabar hain → Salesperson store experience se close karta hai. Sab aligned!</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 05 STP -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="stp">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 01 // Foundations</div>
+      <div class="section-title">STP — Segmentation, Targeting, Positioning</div>
+    </div>
+    <div class="section-tag">Strategy</div>
+  </div>
+  <div class="section-body">
+
+    <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Golden Rule:</strong> Agar STP galat hai, to 4Ps kabhi bhi product ko save nahi kar sakta. Pehle sahi log find karo, phir unke liye sahi marketing karo.</span></div>
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">S</span>
+        <span class="concept-label">Segmentation — Market Ko Todna</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Segmentation = Bade market ko chote groups mein todna jinka similar needs hain</div>
+        <p>Ek hi product sab ke liye nahi hota. Market ko useful groups mein divide karo.</p>
+        <table class="data-table">
+          <tr><th>Type</th><th>Matlab</th><th>Example</th></tr>
+          <tr><td><span class="hl">Geographic</span></td><td>Location ke basis pe</td><td>North India mein chai, South mein filter coffee</td></tr>
+          <tr><td><span class="hl">Demographic</span></td><td>Age, gender, income, education</td><td>Teenager vs Senior citizen — different products</td></tr>
+          <tr><td><span class="hl">Psychographic</span></td><td">Lifestyle, values, interests</td><td>Gym-goer ke liye protein supplements</td></tr>
+          <tr><td><span class="hl">Behavioral</span></td><td>Usage patterns, loyalty</td><td>Heavy user vs occasional user — different offers</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">T</span>
+        <span class="concept-label">Targeting — Sahi Group Chunna</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Targeting = Sabse attractive segment ko choose karna aur focus karna</div>
+        <p>Har segment pe focus karna possible nahi — resources limited hain. Isliye best segment chunna zaroori hai.</p>
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Achha Target Segment Kaisa Hota Hai?</div>
+            <ul class="mlist">
+              <li>Measurable — Size aur buying power measure ho sake</li>
+              <li>Substantial — Itna bada ho ki profitable ho</li>
+              <li>Accessible — Reach karna possible ho</li>
+              <li>Actionable — Effective programs design ho sakein</li>
+            </ul>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Targeting Strategies</div>
+            <ul class="mlist">
+              <li><span class="hl">Mass Marketing</span> — Sab ke liye ek product (Maggi)</li>
+              <li><span class="hl">Niche Marketing</span> — Bahut specific group (Organic baby food)</li>
+              <li><span class="hl">Segmented</span> — Multiple segments, different offers</li>
+              <li><span class="hl">Micro/1:1</span> — Individual level (Netflix recommendations)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">P</span>
+        <span class="concept-label">Positioning — Dimag Mein Jagah Banana</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Positioning = Customer ke dimaag mein apna unique space banana competitors se alag</div>
+        <p>Positioning matlab hai — jab customer teri category sune, to tere brand ka naam pehle yaad aaye.</p>
+        <div class="card-grid">
+          <div class="card accent">
+            <span class="card-num">Volvo</span>
+            <div class="card-title">Positioned As: Safety</div>
+            <div class="card-body">Volvo = Safe car — yeh dimag mein ghus gaya hai. Har communication mein safety.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Maggi</span>
+            <div class="card-title">Positioned As: 2-Minute Noodles</div>
+            <div class="card-body">Speed aur convenience — "bas 2 minute" yeh line dimag mein baith gayi generations tak.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Amul</span>
+            <div class="card-title">Positioned As: Taste of India</div>
+            <div class="card-body">Desh ki dairy brand — affordable, trustworthy, familiar. Cultural positioning.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Jio</span>
+            <div class="card-title">Positioned As: Affordable Internet</div>
+            <div class="card-body">India ko digital karna — free/cheap data se mass internet adoption. Disruption strategy.</div>
+          </div>
+        </div>
+        <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Wrong Positioning = Fail:</strong> Tata Nano positioned tha "world's cheapest car" — this attracted nobody. Aspirational buyers wanted value, not cheapness. Positioning ne unhe alienate kar diya.</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 06 MARKET RESEARCH -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="research">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 02 // Strategy</div>
+      <div class="section-title">Market Research — Data Se Decisions</div>
+    </div>
+    <div class="section-tag">Research</div>
+  </div>
+  <div class="section-body">
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Market Research Kya Hai aur Kyun Zaruri?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p><span class="hl">Market Research</span> woh process hai jisme tum information gather, analyze aur interpret karte ho — consumer needs, market trends, aur business opportunities samajhne ke liye.</p>
+        <div class="stat-row">
+          <div class="stat-box"><span class="stat-num">↓</span><span class="stat-label">Risk Reduce Karta Hai</span></div>
+          <div class="stat-box"><span class="stat-num">↑</span><span class="stat-label">Better Targeting Enable Karta Hai</span></div>
+          <div class="stat-box"><span class="stat-num">✓</span><span class="stat-label">Market Gaps Identify Karta Hai</span></div>
+          <div class="stat-box"><span class="stat-num">💡</span><span class="stat-label">Pricing Decisions Mein Help Karta Hai</span></div>
+        </div>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Example:</strong> Nestlé ne Maggi Oats Noodles launch karne se pehle consumer taste tests kiye — health-conscious Indians accept karenge ya nahi? Yahi smart research hai!</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">Types of Research — Primary vs Secondary</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Primary Research</div>
+            <p>Khud data collect karna — firsthand, fresh data. Zyada accurate but costly aur time-consuming.</p>
+            <ul class="mlist">
+              <li><span class="hl">Surveys</span> — Questionnaire se data (Google Forms)</li>
+              <li><span class="hl">Focus Groups</span> — Chhota group, deep discussion</li>
+              <li><span class="hl">Interviews</span> — One-on-one conversation</li>
+              <li><span class="hl">Observation</span> — Consumer ko dekhna actually</li>
+            </ul>
+            <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text">Zomato ne 10,000 users survey kiye Zomato Gold launch se pehle — food ya drinks pe discounts zyada pasand hain?</span></div>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Secondary Research</div>
+            <p>Pehle se available data use karna — faster, cheaper but might be outdated ya irrelevant.</p>
+            <ul class="mlist">
+              <li><span class="hl">Government Reports</span> — Census, FSSAI data</li>
+              <li><span class="hl">Industry Reports</span> — McKinsey, Gartner</li>
+              <li><span class="hl">Google Trends</span> — Search trends</li>
+              <li><span class="hl">Competitor Analysis</span> — Unka data study karo</li>
+            </ul>
+            <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text">Swiggy ne FSSAI reports analyze kiye grocery delivery mein enter karne se pehle.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">03</span>
+        <span class="concept-label">Qualitative vs Quantitative Research</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <table class="data-table">
+          <tr><th>Aspect</th><th>Qualitative</th><th>Quantitative</th></tr>
+          <tr><td><span class="hl">Kya dhundhte hain?</span></td><td>Why — Motivations, feelings, beliefs</td><td>How many — Numbers, patterns, statistics</td></tr>
+          <tr><td><span class="hl">Methods</span></td><td>Interviews, Focus Groups, Ethnography</td><td>Surveys, Polls, Usage Data, Experiments</td></tr>
+          <tr><td><span class="hl">Sample Size</span></td><td>Chhota — 10-20 log</td><td>Bada — 100 to thousands</td></tr>
+          <tr><td><span class="hl">Output</span></td><td>Insights, quotes, themes</td><td>Charts, percentages, statistics</td></tr>
+          <tr><td><span class="hl">India Example</span></td><td>Tanishq ne jewellery ki emotional meaning explore ki</td><td>Uber real-time data se surge pricing adjust karta hai</td></tr>
+        </table>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Best Practice:</strong> Pehle Qualitative research karo — "kya problem hai" samajhne ke liye. Phir Quantitative — "kitna bada problem hai" measure karne ke liye.</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">04</span>
+        <span class="concept-label">Survey Design + Sampling Basics</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Achha Survey Kaise Banate Hain?</div>
+            <ul class="mlist">
+              <li>Simple questions rakhna — jargon avoid karo</li>
+              <li>Leading questions avoid karo ("Don't you agree..." type mat pucho)</li>
+              <li>Neutral raho — apna bias mat daalo</li>
+              <li>Likert scale use karo (1-5 rating)</li>
+              <li>Logical sequence rakhna — easy se tough</li>
+            </ul>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Sampling Types</div>
+            <ul class="mlist">
+              <li><span class="hl">Random</span> — Lottery jaisa — har kisi ka equal chance</li>
+              <li><span class="hl">Stratified</span> — Groups banao, phir random — age wise, gender wise</li>
+              <li><span class="hl">Convenience</span> — Jo available hai usse survey karo — fast but biased</li>
+              <li><span class="hl">Cluster</span> — Geography ke hisab se groups</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 07 CONSUMER BEHAVIOR -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="consumer">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 01 // Foundations</div>
+      <div class="section-title">Consumer Behavior — Log Khareedta Kyun Hai?</div>
+    </div>
+    <div class="section-tag">Psychology</div>
+  </div>
+  <div class="section-body">
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Consumer Decision Making Process</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p>Koi bhi purchase ek process ke through hoti hai — instantly nahi hoti (impulse purchases ko chhod ke!)</p>
+        <div class="funnel">
+          <div class="funnel-step">
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%">01 — Problem Recognition</div></div>
+            <div class="funnel-label">Zaroorat feel hui</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:88%">02 — Information Search</div></div>
+            <div class="funnel-label">Options dhundhe</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:74%">03 — Evaluation of Alternatives</div></div>
+            <div class="funnel-label">Compare kiya</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:58%">04 — Purchase Decision</div></div>
+            <div class="funnel-label">Khareed liya</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:42%">05 — Post-Purchase Evaluation</div></div>
+            <div class="funnel-label">Sahi tha ya nahi?</div>
+          </div>
+        </div>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Marketing Ka Role Har Stage Pe:</strong> Awareness → Information Search mein — SEO, Reviews important hain. Purchase Decision mein — Price, Reviews, Trust. Post-Purchase — Customer service, warranty important.</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">Purchase ko Influence Karne Wale Factors</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Factor 01</span>
+            <div class="card-title">Cultural Factors</div>
+            <div class="card-body">Culture, subculture, social class — India mein family ka bahut bada role hai purchase mein. Diwali mein gold khareedna cultural tradition hai.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Factor 02</span>
+            <div class="card-title">Social Factors</div>
+            <div class="card-body">Reference groups (friends, family), opinion leaders (influencers), social status. "Doston mein sab iPhone use karte hain" = peer pressure purchase.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Factor 03</span>
+            <div class="card-title">Personal Factors</div>
+            <div class="card-body">Age, occupation, income, lifestyle, personality. 20 saal ka student aur 40 saal ka professional — same product nahi khareedenge.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Factor 04</span>
+            <div class="card-title">Psychological Factors</div>
+            <div class="card-body">Motivation, perception, learning, beliefs, attitudes. "Only 5 left!" = Scarcity creates urgency. FOMO marketing yahi use karta hai!</div>
+          </div>
+        </div>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Behavioral Economics Trick:</strong> "Only 5 left!" = artificial scarcity → urgency badh jaati hai → impulse purchase hota hai. Amazon, Zomato sab use karte hain yeh tactic.</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 08 SWOT -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="swot">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 03 // Frameworks</div>
+      <div class="section-title">SWOT Analysis — Business Ka X-Ray</div>
+    </div>
+    <div class="section-tag">Framework</div>
+  </div>
+  <div class="section-body">
+
+    <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Important:</strong> SWOT ek "thinking tool" hai, "decision tool" nahi! Yeh diagnose karta hai — decide nahi karta. Doctor ki tarah X-ray lena alag baat hai, treatment decide karna alag.</span></div>
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">SWOT — Char Quadrants Poora Explain</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="swot">
+          <div class="swot-q s">
+            <div class="swot-letter">S</div>
+            <div class="swot-name">Strengths — Internal ✓</div>
+            <div class="swot-items">
+              <div class="swot-item">Tum kya best karte ho?</div>
+              <div class="swot-item">Proprietary technology / algorithm?</div>
+              <div class="swot-item">Strong brand recognition?</div>
+              <div class="swot-item">Low cost of operations?</div>
+              <div class="swot-item">Expert team?</div>
+            </div>
+          </div>
+          <div class="swot-q w">
+            <div class="swot-letter">W</div>
+            <div class="swot-name">Weaknesses — Internal ✗</div>
+            <div class="swot-items">
+              <div class="swot-item">Kahan vulnerable ho?</div>
+              <div class="swot-item">Funding ki kami?</div>
+              <div class="swot-item">No brand recognition?</div>
+              <div class="swot-item">Buggy product / MVP?</div>
+              <div class="swot-item">High burn rate?</div>
+            </div>
+          </div>
+          <div class="swot-q o">
+            <div class="swot-letter">O</div>
+            <div class="swot-name">Opportunities — External ↑</div>
+            <div class="swot-items">
+              <div class="swot-item">Kaunse trends exploit kar sakte ho?</div>
+              <div class="swot-item">New government policies (UPI)?</div>
+              <div class="swot-item">Competitor going bankrupt?</div>
+              <div class="swot-item">Gen Z behavior change?</div>
+              <div class="swot-item">New market opening?</div>
+            </div>
+          </div>
+          <div class="swot-q t">
+            <div class="swot-letter">T</div>
+            <div class="swot-name">Threats — External ⚠</div>
+            <div class="swot-items">
+              <div class="swot-item">Kya business "break" kar sakta hai?</div>
+              <div class="swot-item">Big Tech competitor aaya?</div>
+              <div class="swot-item">High inflation?</div>
+              <div class="swot-item">Data privacy laws?</div>
+              <div class="swot-item">API pricing change?</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout info"><span class="callout-icon">📌</span><span class="callout-text"><strong>Internal vs External:</strong> S aur W = Company ke andar ki cheezein (control mein hain). O aur T = Bahar ki cheezein (control nahi, but monitor karna zaroori).</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">Real Indian Examples — Jio, Zomato, Zepto</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p><span class="hl">Reliance Jio SWOT:</span></p>
+        <table class="data-table">
+          <tr><th>Category</th><th>Jio Example</th></tr>
+          <tr><td><span class="hl-green">✅ Strength</span></td><td>Low-cost pricing, vast network, Reliance brand trust, massive subscriber base</td></tr>
+          <tr><td><span class="hl-red">❌ Weakness</span></td><td>High dependence on data consumption, profitability pressure</td></tr>
+          <tr><td><span class="hl-yellow">📈 Opportunity</span></td><td>5G expansion, digital payments, JioMart, content (JioCinema)</td></tr>
+          <tr><td><span class="hl">⚠ Threat</span></td><td>Airtel competition, government regulations, cybersecurity risks</td></tr>
+        </table>
+        <p style="margin-top:16px"><span class="hl">Zomato SWOT:</span></p>
+        <table class="data-table">
+          <tr><th>Category</th><th>Zomato Example</th></tr>
+          <tr><td><span class="hl-green">✅ Strength</span></td><td>Massive user data — exactly pata hai India 11 PM pe kya khata hai!</td></tr>
+          <tr><td><span class="hl-red">❌ Weakness</span></td><td>Delivery partners pe high dependency — strikes, petrol prices = risk</td></tr>
+          <tr><td><span class="hl-yellow">📈 Opportunity</span></td><td>Quick Commerce boom — Blinkit acquisition brilliant move</td></tr>
+          <tr><td><span class="hl">⚠ Threat</span></td><td>D2C kitchen apps jo Zomato bypass kar sakti hain</td></tr>
+        </table>
+        <p style="margin-top:16px"><span class="hl">Zepto SWOT (Hyper-Growth Startup):</span></p>
+        <table class="data-table">
+          <tr><th>Category</th><th>Zepto Example</th></tr>
+          <tr><td><span class="hl-green">✅ Strength</span></td><td>Extreme speed focus — dark stores optimized for 10-min delivery</td></tr>
+          <tr><td><span class="hl-red">❌ Weakness</span></td><td>High burn rate — har delivery pe paisa loot raha hai market share ke liye</td></tr>
+          <tr><td><span class="hl-yellow">📈 Opportunity</span></td><td>Gen Z instant gratification culture — "abhi chahiye" mentality</td></tr>
+          <tr><td><span class="hl">⚠ Threat</span></td><td>Blinkit (Zomato) ke paas zyada "oxygen" (money) hai — price war mein outlast kar sakte hain</td></tr>
+        </table>
+        <div class="callout warn"><span class="callout-icon">🤔</span><span class="callout-text"><strong>Deep Question:</strong> Zepto ka burn rate weakness hai — but acceptable kyun? Kyunki market share pehle lo, profitability baad mein. Yahi "startup logic" hai — Jio ne bhi pehle sab kuch free diya!</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">03</span>
+        <span class="concept-label">SWOT Use Karne Ka Sahi Tarika</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Strategy 01</span>
+            <div class="card-title">SO Strategy</div>
+            <div class="card-body">Strength use karo → Opportunity grab karo. <em>Jio ki network strength + 5G opportunity = JioAirFiber launch.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Strategy 02</span>
+            <div class="card-title">ST Strategy</div>
+            <div class="card-body">Strength use karo → Threat ko handle karo. <em>Zomato ka data use karke Blinkit ko optimize karo.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Strategy 03</span>
+            <div class="card-title">WO Strategy</div>
+            <div class="card-body">Weakness fix karo → Opportunity use karo. <em>Funding uthao aur delivery infra improve karo quick commerce ke liye.</em></div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Strategy 04</span>
+            <div class="card-title">WT Strategy</div>
+            <div class="card-body">Defensive — Weakness aur Threat dono troublesome. <em>Minimize damage, pivot karo, survival mode.</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 09 SALES -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="sales">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 03 // Execution</div>
+      <div class="section-title">Sales Management & Distribution</div>
+    </div>
+    <div class="section-tag">Execution</div>
+  </div>
+  <div class="section-body">
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Sales vs Marketing — Kya Fark Hai?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Marketing</div>
+            <p>"Pull" strategy — awareness banao, interest create karo, demand generate karo. Customer khud aaye tumhare paas.</p>
+            <p><span class="hl-yellow">Long-term focus</span> — brand building, positioning, relationships.</p>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Sales</div>
+            <p>"Push" strategy — interested prospect ko final purchase tak le jaana. Deal close karna.</p>
+            <p><span class="hl-yellow">Short-term focus</span> — quotas, revenue targets, closing deals.</p>
+          </div>
+        </div>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Best Performance ke liye:</strong> Marketing aur Sales ko aligned hona chahiye — dono ko same target customer, same message. Jab yeh misaligned hote hain — leads waste hote hain!</span></div>
+        <table class="data-table">
+          <tr><th>Marketing Metrics</th><th>Sales Metrics</th></tr>
+          <tr><td>Brand Awareness, Impressions</td><td>Revenue, Deals Closed</td></tr>
+          <tr><td>Website Traffic, Leads Generated</td><td>Conversion Rate, Average Deal Size</td></tr>
+          <tr><td>Customer Acquisition Cost (CAC)</td><td>Quota Attainment %</td></tr>
+          <tr><td>NPS (Net Promoter Score)</td><td>Sales Cycle Length</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">Sales Ke Types — Inside vs Field</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Type 01</span>
+            <div class="card-title">Inside Sales</div>
+            <div class="card-body">Office ya ghar se remotely sell karna — phone, email, Zoom calls. Bangalore SaaS startup globally bechta hai bina client ke paas gaye. Cost effective!</div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Type 02</span>
+            <div class="card-title">Field Sales</div>
+            <div class="card-body">Physical milna — client ke office ya store jaana. High-value B2B deals mein important. Relationship building zyada hoti hai.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 03</span>
+            <div class="card-title">B2B Sales</div>
+            <div class="card-body">Business to Business — ek company doosri company ko bechti hai. Longer sales cycle, bigger deals, multiple decision makers.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 04</span>
+            <div class="card-title">B2C Sales</div>
+            <div class="card-body">Business to Consumer — direct end customer ko bechna. Faster decisions, emotional buying, mass marketing kaam aata hai.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">03</span>
+        <span class="concept-label">Distribution Channels — Product Customer Tak Kaise Pahunche</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p>Distribution channel = Product factory se customer ke haath tak pohonchane ka rasta.</p>
+        <ul class="mlist">
+          <li><span class="hl">Zero Level (D2C)</span> — Manufacturer → Customer (Licious, Tesla). Maximum control, first-party data, but expensive infrastructure.</li>
+          <li><span class="hl">One Level</span> — Manufacturer → Retailer → Customer (Amul → Big Bazaar → Tum). Common in FMCG.</li>
+          <li><span class="hl">Two Level</span> — Manufacturer → Wholesaler → Retailer → Customer. Traditional India distribution model — HUL ka poora network.</li>
+          <li><span class="hl">Online/Marketplace</span> — Amazon, Flipkart via platform. Wide reach but platform takes commission aur data.</li>
+        </ul>
+        <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Channel Conflict Example:</strong> Jab JioMart aur Udaan ne directly retailers ko sell kiya, traditional wholesalers protest karne lage — unka business bypass ho raha tha. Yahi "vertical channel conflict" hai.</span></div>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Strategic Alliance Example:</strong> Toyota aur Suzuki India mein platform share karte hain — Grand Vitara aur Hyryder same platform pe hain. Collaboration instead of competition!</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">04</span>
+        <span class="concept-label">Ethics in Sales — Galat Kya Hai?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <p>Sales mein pressure bahut hota hai quota meet karne ka — yahi kabhi kabhi unethical behavior lead karta hai.</p>
+        <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Real Example:</strong> Insurance agent ne customer ko aisi policy bech di jo uske liye suitable nahi thi — sirf apna monthly quota meet karne ke liye. Yeh <span class="hl-red">Ethics in Selling ka violation</span> hai.</span></div>
+        <ul class="mlist">
+          <li>Misleading information dena — galat claims</li>
+          <li>High pressure tactics — customer ko force karna</li>
+          <li>Unsuitable products push karna (mis-selling)</li>
+          <li>Hidden charges nahi batana</li>
+        </ul>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Long-Term Lesson:</strong> Short-term mein quota meet ho sakta hai unethical se, but long-term mein reputation aur trust khatam ho jaata hai. Ethical selling = sustainable business.</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 10 ADVERTISING -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="advertising">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 03 // Communication</div>
+      <div class="section-title">Advertising, IMC & Media Planning</div>
+    </div>
+    <div class="section-tag">Communication</div>
+  </div>
+  <div class="section-body">
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Advertising Ka Strategic Role</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Advertising = Purchase se pehle dimag mein brand bithana</div>
+        <p>Advertising 4 strategic functions perform karta hai:</p>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Function 01</span>
+            <div class="card-title">Awareness Create Karna</div>
+            <div class="card-body">Sales interaction se pehle hi customer ko brand ke baare mein pata ho. "Oh haan, yeh brand suna hai!"</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Function 02</span>
+            <div class="card-title">Legitimacy Build Karna</div>
+            <div class="card-body">Naye brand ke liye credibility — agar TV pe dikh raha hai, to reliable lagta hai.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Function 03</span>
+            <div class="card-title">Positioning Reinforce Karna</div>
+            <div class="card-body">Baar baar same message sun ke brand ka position dimag mein pakka hota hai.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Function 04</span>
+            <div class="card-title">Memory Shape Karna</div>
+            <div class="card-body">Zaroorat aane se pehle hi memory mein store ho jaata hai. LIC ka yahi kaam hai — abhi zaroorat nahi but yaad hai.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">Advertising Objectives — Inform, Persuade, Remind</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <table class="data-table">
+          <tr><th>Objective</th><th>Matlab</th><th>PLC Stage</th><th>India Example</th></tr>
+          <tr><td><span class="hl-green">Inform</span></td><td>Naya product hai, yeh kya karta hai batao</td><td>Introduction</td><td>Jio ka launch — "Free data milega!"</td></tr>
+          <tr><td><span class="hl-yellow">Persuade</span></td><td>Competitors pe prefer karo mujhe</td><td>Growth</td><td>Airtel vs Jio — "Humare network pe better speed hai"</td></tr>
+          <tr><td><span class="hl">Remind</span></td><td>Bhool mat jana mujhe!</td><td>Maturity</td><td>Coca-Cola ads — already famous hai, but remind karta rehta hai</td></tr>
+          <tr><td><span class="hl-red">Selective</span></td><td>Sirf loyal customers ko support</td><td>Decline</td><td>Sunsilk niche mein still run karta hai</td></tr>
+        </table>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Golden Rule:</strong> Product Life Cycle stage ke hisab se advertising objective change karo. Naya product = Inform. Growing = Persuade. Mature = Remind.</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">03</span>
+        <span class="concept-label">Message Strategy — Kya Bolo aur Kaise Bolo?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">Rational Message Strategy</div>
+            <p>Logic aur facts se convince karo. Features, benefits, performance data dikhao.</p>
+            <div class="callout info"><span class="callout-icon">📌</span><span class="callout-text">Car ads mein mileage figures, washing powder mein whiteness comparison — yahi rational appeal hai.</span></div>
+          </div>
+          <div class="split-box">
+            <div class="split-title">Emotional Message Strategy</div>
+            <p>Feelings se connect karo — love, fear, humor, nostalgia, pride.</p>
+            <div class="callout info"><span class="callout-icon">📌</span><span class="callout-text">Cadbury's ads — relationships aur celebrations ko show karte hain. Tata Tea "Jaago Re" — social awakening emotion use karta hai.</span></div>
+          </div>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Appeal 01</span>
+            <div class="card-title">Fear Appeal</div>
+            <div class="card-body">"Yeh nahi kiya to kya hoga" — Insurance ads, helmet ads. Fear motivate karta hai action ke liye.</div>
+          </div>
+          <div class="card">
+            <span class="card-num">Appeal 02</span>
+            <div class="card-title">Humor Appeal</div>
+            <div class="card-body">Hasao, yaad raho! Fevicol ke ads — memorable humor. Risk = agar humor appropriate nahi to brand suffer kare.</div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Appeal 03</span>
+            <div class="card-title">Aspirational Appeal</div>
+            <div class="card-body">Woh life dikha jo customer banana chahta hai. Luxury brands — Rolex, BMW — dream sell karte hain, product nahi.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">04</span>
+        <span class="concept-label">Brand Advertising vs Performance Advertising</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <table class="data-table">
+          <tr><th>Aspect</th><th>Brand Advertising</th><th>Performance Advertising</th></tr>
+          <tr><td><span class="hl">Goal</span></td><td>Long-term equity build karna</td><td>Immediate measurable action (click, purchase)</td></tr>
+          <tr><td><span class="hl">Focus</span></td><td>Memory building, emotion</td><td>Conversion, CTA (Call to Action)</td></tr>
+          <tr><td><span class="hl">Measurement</span></td><td>Brand recall, NPS — hard to measure</td><td>ROAS, CPC, conversions — easy to measure</td></tr>
+          <tr><td><span class="hl">Example</span></td><td>Amul, Coca-Cola, Tata ads</td><td>Google Ads, Instagram "Shop Now" ads</td></tr>
+        </table>
+        <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Danger of Only Performance Advertising:</strong> Short-term mein sales milti hai, but brand ka koi identity nahi banta. Competitor same price pe aaya to koi loyalty nahi hogi — sab chale jayenge. <em>Brand advertising brand ke liye "moat" banta hai.</em></span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">05</span>
+        <span class="concept-label">IMC — Integrated Marketing Communications</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">IMC = Sab promotional tools ko integrate karna ek consistent message ke liye</div>
+        <p>Alag alag channels pe alag alag message mat do — ek unified brand voice rakhna zaroori hai.</p>
+        <ul class="mlist">
+          <li><span class="hl">Advertising</span> — TV, digital, print, outdoor (paid)</li>
+          <li><span class="hl">Public Relations (PR)</span> — News coverage, press releases, events (earned)</li>
+          <li><span class="hl">Sales Promotion</span> — Discounts, offers, coupons, contests (time-bound)</li>
+          <li><span class="hl">Personal Selling</span> — Direct human interaction</li>
+          <li><span class="hl">Digital Marketing</span> — Social media, SEO, email marketing</li>
+          <li><span class="hl">Influencer Marketing</span> — Creators aur celebrities through social media</li>
+        </ul>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Apple IMC Example:</strong> Store experience + TV ads + Social media + PR launches sab ek consistent "premium, simple, powerful" message dete hain. Koi confusion nahi!</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 11 LOYALTY -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="loyalty">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title-group">
+      <div class="section-module">Module 03 // Retention</div>
+      <div class="section-title">Loyalty Programs & CRM</div>
+    </div>
+    <div class="section-tag">Retention</div>
+  </div>
+  <div class="section-body">
+
+    <div class="stat-row">
+      <div class="stat-box"><span class="stat-num">5x</span><span class="stat-label">Naye customer acquire karna existing se kitna mehenga</span></div>
+      <div class="stat-box"><span class="stat-num">5%</span><span class="stat-label">Retention increase karo</span></div>
+      <div class="stat-box"><span class="stat-num">25-95%</span><span class="stat-label">Profits badh sakte hain</span></div>
+    </div>
+
+    <div class="concept open">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">01</span>
+        <span class="concept-label">Loyalty Program Kya Hota Hai?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">Loyalty Program = Repeat customers ko reward karna so they keep coming back</div>
+        <p>A loyalty program ek <span class="hl">marketing strategy</span> hai jo customers ko bar bar aane ke liye rewards, discounts, ya incentives deti hai.</p>
+        <p><span class="hl-yellow">True loyalty</span> sirf rewards se nahi aati — yeh aati hai <span class="hl">Brand Trust, Habit, Switching Cost, aur Emotional Connection</span> se.</p>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>Loyalty Program ke Goals:</strong> Customer churn reduce karna + Repeat purchases encourage karna + Brand advocates banana (jo doosron ko recommend karein).</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">02</span>
+        <span class="concept-label">6 Types of Loyalty Programs — India Examples</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-num">Type 01</span>
+            <div class="card-title">Points-Based</div>
+            <div class="card-body">Har purchase pe points milte hain, baad mein redeem karo. <em>Shoppers Stop First Citizen Card — ₹100 spend = X points, accumulate karo aur discount lo.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 02</span>
+            <div class="card-title">Tiered Membership</div>
+            <div class="card-body">Zyada spend = zyada benefits. Levels hote hain — Silver, Gold, Platinum. <em>Taj InnerCircle — jitna stay karo, utne better perks. Airlines mein bhi yahi model.</em></div>
+          </div>
+          <div class="card accent">
+            <span class="card-num">Type 03</span>
+            <div class="card-title">Paid Subscription</div>
+            <div class="card-body">Monthly/annual fee pay karo, exclusive benefits lo. <em>Amazon Prime, Swiggy One — pay karo, unlimited free delivery + exclusive deals.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 04</span>
+            <div class="card-title">Cashback</div>
+            <div class="card-body">Purchase pe directly paise wapas milte hain. Simple aur immediate reward. <em>HDFC Cashback Credit Card — har transaction pe % cashback.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 05</span>
+            <div class="card-title">Coalition Program</div>
+            <div class="card-body">Multiple brands milke ek loyalty program. <em>Reliance HappyPoints — Reliance Fresh, Digital, Trends — sab jagah points earn karo, kahi bhi redeem karo.</em></div>
+          </div>
+          <div class="card">
+            <span class="card-num">Type 06</span>
+            <div class="card-title">Gamified Loyalty</div>
+            <div class="card-body">Game jaisi engagement — challenges, quizzes, milestones. <em>Zomato Gold — dining privileges + gamified predictions aur quizzes. Fun + loyalty = powerful combo.</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">03</span>
+        <span class="concept-label">Successful Loyalty Program Kaise Banate Hain?</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <ul class="mlist">
+          <li><span class="hl">Step 1 — Objective Define Karo:</span> Repeat purchase chahiye ya referrals ya engagement? Clear goal set karo pehle.</li>
+          <li><span class="hl">Step 2 — Type Choose Karo:</span> Apne business ke hisab se — FMCG ke liye points, B2C subscription ke liye paid model better hai.</li>
+          <li><span class="hl">Step 3 — Rewards Design Karo:</span> Earning rules clear rakho (₹1 = 1 point?). Redemption easy honi chahiye. Perceived value high hona chahiye!</li>
+          <li><span class="hl">Step 4 — Technology:</span> CRM system, app, data tracking — sab integrate karo. Data se insights lo.</li>
+          <li><span class="hl">Step 5 — Measure Karo:</span> Churn rate, repeat purchase frequency, CLV (Customer Lifetime Value) track karo.</li>
+        </ul>
+        <div class="callout warn"><span class="callout-icon">⚠️</span><span class="callout-text"><strong>Common Mistake:</strong> Rewards ka perceived value low ho — customer ko lagta hai earn karna mushkil hai aur milta kuch nahi. Program flop! Example: Airline miles jo expire ho jaate hain — customers frustrated ho jaate hain.</span></div>
+        <div class="callout tip"><span class="callout-icon">💡</span><span class="callout-text"><strong>Netflix Model (Tiered Subscription):</strong> Different tiers — Basic, Standard, Premium — alag screens, alag quality. Segmented loyalty jo different usage patterns ko address karta hai.</span></div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-head" onclick="toggleConcept(this)">
+        <span class="concept-num">04</span>
+        <span class="concept-label">CRM — Customer Relationship Management</span>
+        <span class="concept-toggle">▶</span>
+      </div>
+      <div class="concept-body">
+        <div class="tagline">CRM = Technology + Strategy to manage all customer interactions aur data</div>
+        <p>CRM sirf ek software nahi hai — yeh ek <span class="hl">philosophy</span> hai jo customer ko business ke center mein rakhti hai.</p>
+        <div class="split">
+          <div class="split-box">
+            <div class="split-title">CRM Kya Karta Hai?</div>
+            <ul class="mlist">
+              <li>Customer data store karna — purchases, preferences, complaints</li>
+              <li>Personalized communication enable karna</li>
+              <li>High-value customers identify karna (VIP treatment)</li>
+              <li>Churn predict karna — kaun jaane wala hai?</li>
+            </ul>
+          </div>
+          <div class="split-box">
+            <div class="split-title">India Examples</div>
+            <ul class="mlist">
+              <li>Zomato — exactly jaanta hai tum 11 PM pe kya order karte ho</li>
+              <li>Amazon — "Customers who bought this also bought..."</li>
+              <li>Netflix — personalized recommendations from watching history</li>
+              <li>Jio — data use patterns se personalized offers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout key"><span class="callout-icon">🔑</span><span class="callout-text"><strong>CLV — Customer Lifetime Value:</strong> Ek customer apni poori zindagi mein kitna paisa tera business ko dega. Isko maximize karna = loyalty programs ka asli goal. Ek loyal customer 10 new customers se zyada valuable ho sakta hai!</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end content-grid -->
+
+<!-- ─── FOOTER ─── -->
+<div class="footer">
+  <div>
+    <div class="footer-title">Source Material</div>
+    NC Marketing Management — Module 1, 2, 3<br>
+    Dr. Naren Chandra & Dr. Kavita Gupta<br>
+    AY 2025-2026, Semester 2
+  </div>
+  <div>
+    <div class="footer-title">Topics Covered</div>
+    4Ps · STP · SWOT · Market Research<br>
+    Consumer Behavior · Sales & Distribution<br>
+    Advertising · Loyalty Programs · IMC
+  </div>
+  <div>
+    <div class="footer-title">Archive Status</div>
+    MKT.ARCHIVE // v1.0<br>
+    Language: Hinglish (Simple)<br>
+    Status: OPERATIONAL
+  </div>
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleConcept(head) {
+  const concept = head.closest('.concept');
+  concept.classList.toggle('open');
+}
+
+// Auto-open first concept in active section
+document.querySelectorAll('.concept-head').forEach(h => {
+  h.addEventListener('click', function() { toggleConcept(this); });
+});
+</script>
+</body>
+</html>
