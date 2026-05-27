@@ -636,6 +636,7 @@
     <button class="toc-btn" onclick="scrollTo('sec14')">👑 Master Thm</button>
     <button class="toc-btn" onclick="scrollTo('sec15')">📊 Gen Functions</button>
     <button class="toc-btn" onclick="scrollTo('sec16')">🌐 Graphs</button>
+    <button class="toc-btn" style="background:#c0392b;color:white;border-color:#c0392b;" onclick="scrollTo('sec18')">🔥 Tricky Qs</button>
     <button class="toc-btn" onclick="scrollTo('sec17')">🏆 Quick Cheat</button>
   </div>
 </div>
@@ -2132,8 +2133,1066 @@
   </div>
 </div>
 
+</div><!-- END MAIN -->
+
+
+<div class="footer">
+  Made with ❤️ for Akhilesh's exam prep | Newton School of Technology — M4 Discrete Maths
+  <br>Saari DPPs aur Worksheets padh ke banaya gaya hai 📚
+</div>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top pe jao">⬆</button>
+
+<script>
+  // Toggle answer visibility
+  function toggleAns(btn) {
+    const ans = btn.nextElementSibling;
+    if (ans.classList.contains('visible')) {
+      ans.classList.remove('visible');
+      btn.textContent = 'Answer Dekho 👀';
+    } else {
+      ans.classList.add('visible');
+      btn.textContent = 'Answer Chhupao 🙈';
+    }
+  }
+
+  // Smooth scroll to section
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Update active nav button
+    document.querySelectorAll('.toc-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Update active nav on scroll
+  const sections = ['sec1','sec2','sec3','sec4','sec5','sec6','sec7','sec8','sec9','sec10','sec11','sec12','sec13','sec14','sec15','sec16','sec18','sec17'];
+  const buttons = document.querySelectorAll('.toc-btn');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target.id);
+        if (idx !== -1) {
+          buttons.forEach(b => b.classList.remove('active'));
+          buttons[idx].classList.add('active');
+          buttons[idx].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+        }
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // Show/hide back-to-top
+  window.addEventListener('scroll', () => {
+    const btn = document.querySelector('.back-top');
+    btn.style.opacity = window.scrollY > 500 ? '1' : '0';
+    btn.style.pointerEvents = window.scrollY > 500 ? 'all' : 'none';
+  });
+</script>
+
+<!-- ======================================================== -->
+<!-- SECTION 18: TRICKY QUESTIONS — Jo Rah Gayi Thi DPPs Mein -->
+<!-- ======================================================== -->
+
+<style>
+  /* Extra styles for tricky section */
+  .tricky-cover {
+    background: linear-gradient(135deg, #1a0a0a 0%, #3d0c0c 50%, #1a0a0a 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 24px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(192,57,43,0.4);
+  }
+  .tricky-cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 11px);
+  }
+  .tricky-cover h1 {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(2rem,5vw,3rem);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 20px rgba(255,100,100,0.5);
+  }
+  .tricky-cover p {
+    color: rgba(255,255,255,0.8);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .topic-divider {
+    background: linear-gradient(to right, #c0392b, #922b21);
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin: 30px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+  }
+
+  .tricky-q {
+    background: white;
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .tricky-q:hover { box-shadow: 4px 4px 16px rgba(192,57,43,0.2); }
+  .tricky-q .tq-label {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 0.85rem;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .tricky-q .tq-label.medium { background: #e67e22; }
+  .tricky-q .tq-label.hard { background: #8e44ad; }
+  .tricky-q .tq-stem {
+    font-family: 'Kalam', cursive;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #2c1810;
+    margin-bottom: 10px;
+  }
+  .tricky-q .tq-hint {
+    background: #fff9e6;
+    border-left: 4px solid #f39c12;
+    border-radius: 0 6px 6px 0;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.95rem;
+    color: #7d6608;
+    display: none;
+  }
+  .tq-hint.vis { display: block; }
+  .tricky-q .tq-sol {
+    background: #eafaf1;
+    border: 1px solid #a9dfbf;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-family: 'Kalam', cursive;
+    font-size: 1rem;
+    line-height: 1.85;
+    display: none;
+    color: #1a3a2a;
+  }
+  .tq-sol.vis { display: block; animation: fadeIn 0.3s ease; }
+  .tq-sol b { color: #1a6033; }
+  .tq-sol .step {
+    background: white;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 6px 0;
+    border-left: 3px solid #27ae60;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1rem;
+  }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .btn-hint {
+    background: #f39c12;
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .btn-hint:hover { transform: scale(1.05); }
+  .btn-sol {
+    background: #8e44ad;
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .btn-sol:hover { transform: scale(1.05); }
+
+  .tricky-page {
+    background: var(--paper);
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.1), 8px 8px 0 rgba(0,0,0,0.05), 0 20px 60px rgba(0,0,0,0.25);
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tricky-page::before {
+    content: '';
+    position: absolute; top: 0; left: 72px;
+    width: 2px; height: 100%;
+    background: var(--margin-line); opacity: 0.6;
+  }
+  .tricky-page::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(transparent, transparent 31px, var(--rule-line) 31px, var(--rule-line) 32px);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .tricky-page .page-content {
+    padding: 32px 32px 40px 90px;
+    position: relative;
+    z-index: 5;
+  }
+</style>
+
+<div class="main" id="sec18" style="padding-top:0;">
+
+  <!-- Red Cover for Tricky Section -->
+  <div class="tricky-cover">
+    <h1>🔥 Tricky Questions<br><span style="font-size:0.7em">Jo aksar miss ho jaate hain</span></h1>
+    <p>Ye sab DPP ke woh patterns hain jo exam mein aate hain par seedhe nahi hote<br>
+    Pehle khud try karo — hint lo — phir solution dekho 💪</p>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- LOGIC & BOOLEAN — TRICKY           -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">📝 Logic, Boolean Algebra & Satisfiability</div>
+
+      <!-- Q1 -->
+      <div class="tricky-q">
+        <span class="tq-label">DPP 4 — Medium</span>
+        <div class="tq-stem">
+          <b>Q1.</b> Superman argument valid hai ya nahi? Decide karo:<br>
+          "Agar Superman evil rok sakta aur chahta bhi, toh rokta. Agar nahi rok sakta toh impotent hai; agar nahi chahta toh malevolent hai. Superman evil nahi rokta. Superman exists toh na impotent hai na malevolent. <b>∴ Superman exist nahi karta.</b>"
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Variables lo: A = able, W = willing, E = prevents evil, I = impotent, M = malevolent, X = exists. Premises ko propositional form mein likho phir chain chalao!</div>
+        <div class="tq-sol">
+          <div class="step">Let: A = able, W = willing, E = prevents evil, I = impotent, M = malevolent, X = exists</div>
+          <div class="step">P1: (A ∧ W) → E</div>
+          <div class="step">P2: ¬A → I</div>
+          <div class="step">P3: ¬W → M</div>
+          <div class="step">P4: ¬E (Superman prevents evil NAHI karta)</div>
+          <div class="step">P5: X → (¬I ∧ ¬M)</div>
+          <div class="step">From P1 + P4 (Modus Tollens): ¬(A ∧ W) = ¬A ∨ ¬W</div>
+          <div class="step">So either ¬A or ¬W (ya dono)</div>
+          <div class="step">Case 1: ¬A → from P2 → I</div>
+          <div class="step">Case 2: ¬W → from P3 → M</div>
+          <div class="step">In both cases: I ∨ M (at least one true)</div>
+          <div class="step">From P5 (contrapositive): (I ∨ M) → ¬X</div>
+          <b>∴ Superman exist nahi karta ✅ — Argument VALID hai!</b>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 4 — Medium</span>
+        <div class="tq-stem">
+          <b>Q2.</b> Boolean variables x aur y ke woh values dhundho jo satisfy karein: <b>x · y = x + y</b>
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Boolean mein x,y ∈ {0,1} — sirf 4 combinations possible hain. Saare try karo!</div>
+        <div class="tq-sol">
+          <div class="step">Try x=0, y=0: LHS = 0·0 = 0, RHS = 0+0 = 0 ✅</div>
+          <div class="step">Try x=0, y=1: LHS = 0·1 = 0, RHS = 0+1 = 1 ❌</div>
+          <div class="step">Try x=1, y=0: LHS = 1·0 = 0, RHS = 1+0 = 1 ❌</div>
+          <div class="step">Try x=1, y=1: LHS = 1·1 = 1, RHS = 1+1 = 1 ✅</div>
+          <b>Answer: x = y = 0 aur x = y = 1 — yaani jab dono same ho!</b><br>
+          (In propositional logic: x · y = x + y ↔ x ↔ y — biconditional!)
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">Revision DPP — Hard</span>
+        <div class="tq-stem">
+          <b>Q3. Sum-of-Products Expansion</b> nikalo Boolean function F(w,x,y,z) ka jo 1 hai iff odd number of variables 1 hain.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">"Odd number of 1s" wali rows = XOR of all variables. 4 variables mein 2⁴=16 rows — jinmein exactly 1,3 wale variables 1 hain!</div>
+        <div class="tq-sol">
+          Odd number of 1s matlab: exactly 1 variable = 1 (C(4,1)=4 rows) OR exactly 3 variables = 1 (C(4,3)=4 rows) = 8 rows total<br><br>
+          <div class="step">Exactly one = 1: w'x'y'z + w'x'yz' + w'xy'z' + wx'y'z' (last variable ya ek ek karo)</div>
+          <div class="step">Exactly three = 1: wxyz' + wxy'z + wx'yz + w'xyz (teeno on, ek off)</div>
+          <b>SOP = w'x'y'z + w'x'yz' + w'xy'z' + wx'y'z' + wxyz' + wxy'z + wx'yz + w'xyz</b><br>
+          Note: Yeh aslmein w ⊕ x ⊕ y ⊕ z ke barabar hai!
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">Revision DPP — Hard</span>
+        <div class="tq-stem">
+          <b>Q4. Sudoku as SAT problem kaise model karo?</b> (Explain logically)
+        </div>
+        <div class="btn-row">
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-sol">
+          <b>Variables:</b> p(i,j,n) = "cell (i,j) mein n hai" — 9×9×9 = 729 Boolean variables<br><br>
+          <b>Constraints (CNF clauses):</b>
+          <div class="step">1. <b>Cell Constraint:</b> Har cell mein exactly ek number — ∀i,j: exactly one of p(i,j,1)...p(i,j,9) true</div>
+          <div class="step">2. <b>Row Constraint:</b> Har row mein 1-9 sab aayein — ∀i,n: exactly one j where p(i,j,n) true</div>
+          <div class="step">3. <b>Column Constraint:</b> Har column mein 1-9 — ∀j,n: exactly one i where p(i,j,n) true</div>
+          <div class="step">4. <b>Box Constraint:</b> Har 3×3 box mein 1-9 — ∀ box, ∀n: exactly one cell where p(i,j,n) true</div>
+          <div class="step">5. <b>Given Clues:</b> Pre-filled cells = unit clauses directly</div>
+          <b>∴ Sudoku ek SAT problem hai — DPLL ya similar solver se solve ho sakta hai!</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SETS & CARDINALITY — TRICKY        -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">🗂️ Sets & Cardinality</div>
+
+      <!-- Q5 -->
+      <div class="tricky-q">
+        <span class="tq-label">Revision DPP — Medium</span>
+        <div class="tq-stem">
+          <b>Q5.</b> Prove karo ki set of all <b>infinite binary strings uncountable</b> hai.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Cantor's Diagonalization use karo! Assume countable, list banao, diagonal se different string banao.</div>
+        <div class="tq-sol">
+          <b>Proof by contradiction:</b><br>
+          <div class="step">Assume S (infinite binary strings ka set) countable hai → list bana sakte hain: s₁, s₂, s₃, ...</div>
+          <div class="step">s₁ = b₁₁ b₁₂ b₁₃ b₁₄ ...<br>s₂ = b₂₁ b₂₂ b₂₃ b₂₄ ...<br>s₃ = b₃₁ b₃₂ b₃₃ b₃₄ ...<br>...</div>
+          <div class="step">Construct string d: dᵢ = 1 − bᵢᵢ (diagonal element flip karo)</div>
+          <div class="step">d ≠ s₁ (position 1 mein differ), d ≠ s₂ (position 2 mein differ), d ≠ sₙ (position n mein differ)</div>
+          <div class="step">But d ∈ S (ye ek valid infinite binary string hai) → CONTRADICTION!</div>
+          <b>∴ S is uncountable ✅</b>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="tricky-q">
+        <span class="tq-label">Revision DPP — Medium</span>
+        <div class="tq-stem">
+          <b>Q6.</b> Show karo ki set of all rational numbers ℚ <b>countable</b> hai.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Rationals ko ek 2D grid mein rakhke diagonal traversal se list banao!</div>
+        <div class="tq-sol">
+          <div class="step">ℚ = {p/q : p ∈ ℤ, q ∈ ℕ, gcd(p,q)=1}</div>
+          <div class="step">Arrange all p/q in an infinite 2D grid: rows = numerators, columns = denominators</div>
+          <div class="step">Diagonally traverse: 1/1, 1/2, 2/1, 1/3, 2/2 (skip if not reduced), 3/1, ...</div>
+          <div class="step">This gives a bijection f: ℕ → ℚ⁺ (positive rationals)</div>
+          <div class="step">Include negatives: pair each positive with its negative → still countable</div>
+          <div class="step">Include 0 → add it at start</div>
+          <b>∴ ℚ is countably infinite ✅</b><br>
+          Key: ℕ × ℕ countable hai → ℚ countable hai!
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 8 — Medium</span>
+        <div class="tq-stem">
+          <b>Q7.</b> Characteristic function: A ∩ B ke liye show karo ki f_{A∩B}(x) = f_A(x) · f_B(x)
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">f_S(x) = 1 if x ∈ S, else 0. Cases: x ∈ A∩B, x ∈ A only, x ∈ B only, x ∉ either.</div>
+        <div class="tq-sol">
+          <div class="step">f_{A∩B}(x) = 1 iff x ∈ A ∩ B iff x ∈ A AND x ∈ B</div>
+          <div class="step">Case 1: x ∈ A∩B → f_A=1, f_B=1 → f_A·f_B = 1·1 = 1 = f_{A∩B} ✅</div>
+          <div class="step">Case 2: x ∈ A, x ∉ B → f_A=1, f_B=0 → f_A·f_B = 0 = f_{A∩B} ✅</div>
+          <div class="step">Case 3: x ∉ A, x ∈ B → f_A=0, f_B=1 → f_A·f_B = 0 = f_{A∩B} ✅</div>
+          <div class="step">Case 4: x ∉ A, x ∉ B → f_A=0, f_B=0 → f_A·f_B = 0 = f_{A∩B} ✅</div>
+          <b>In all cases: f_{A∩B}(x) = f_A(x) · f_B(x) ✅</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- GROUP THEORY — TRICKY              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">🔵 Group Theory — Hard Questions</div>
+
+      <!-- Q8 -->
+      <div class="tricky-q">
+        <span class="tq-label">DPP 9 — Medium</span>
+        <div class="tq-stem">
+          <b>Q8.</b> Z₆ = {0,1,2,3,4,5} ke non-zero elements {1,2,3,4,5} ×₆ ke under group form karte hain? Prove ya disprove karo.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Group nahi hai prove karna hai — sirf ek axiom fail dikhao! Zero divisors check karo.</div>
+        <div class="tq-sol">
+          <b>NOT a group — Closure axiom fail karta hai!</b>
+          <div class="step">2 ∈ {1,2,3,4,5} aur 3 ∈ {1,2,3,4,5}</div>
+          <div class="step">2 ×₆ 3 = 6 mod 6 = 0</div>
+          <div class="step">But 0 ∉ {1,2,3,4,5} → Closure violated!</div>
+          <b>∴ {1,2,3,4,5} under ×₆ is NOT a group ❌</b><br>
+          Note: Z₆ not a field kyunki 6 composite hai → zero divisors exist karte hain (2×3=0)
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 10 — Medium</span>
+        <div class="tq-stem">
+          <b>Q9.</b> G ek group hai jiska order 33 hai. x ∈ G aur x ≠ e aur x¹¹ ≠ e. x ka possible order kya hai?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Lagrange's Theorem: ord(x) must divide |G| = 33. Divisors of 33 = {1, 3, 11, 33}. Conditions use karo to eliminate!</div>
+        <div class="tq-sol">
+          <div class="step">|G| = 33 = 3 × 11 → divisors = {1, 3, 11, 33}</div>
+          <div class="step">Lagrange: ord(x) ∈ {1, 3, 11, 33}</div>
+          <div class="step">x ≠ e → ord(x) ≠ 1</div>
+          <div class="step">x¹¹ ≠ e → ord(x) does NOT divide 11 → ord(x) ≠ 1 and ord(x) ≠ 11</div>
+          <div class="step">Remaining: ord(x) ∈ {3, 33}</div>
+          <b>Answer: ord(x) = 3 ya 33 ✅</b><br>
+          Theorem used: <b>Lagrange's Theorem</b>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 10 — Medium</span>
+        <div class="tq-stem">
+          <b>Q10.</b> Prove karo ki <b>every cyclic group is abelian</b>.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Cyclic group mein har element kisi generator g ki power hoti hai. g^m * g^n kya hoga?</div>
+        <div class="tq-sol">
+          <div class="step">Let G = ⟨g⟩ be cyclic with generator g</div>
+          <div class="step">Let a, b ∈ G. Then a = gᵐ and b = gⁿ for some integers m, n</div>
+          <div class="step">a * b = gᵐ * gⁿ = g^(m+n) [exponent rules for groups]</div>
+          <div class="step">b * a = gⁿ * gᵐ = g^(n+m) [same by commutativity of integer addition!]</div>
+          <div class="step">g^(m+n) = g^(n+m) since m+n = n+m in integers</div>
+          <b>∴ a * b = b * a for all a,b ∈ G → G is abelian ✅</b>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 9 — Hard</span>
+        <div class="tq-stem">
+          <b>Q11.</b> ℚ* (non-zero rationals under multiplication) ek group hai. Prove karo.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Charo axioms verify karo: Closure, Associativity, Identity, Inverses. Rationals ka product rational hoga?</div>
+        <div class="tq-sol">
+          <div class="step"><b>G1 Closure:</b> a/b, c/d ∈ ℚ* → (a/b)×(c/d) = ac/bd ∈ ℚ*. (ac≠0, bd≠0 kyunki a,b,c,d≠0) ✅</div>
+          <div class="step"><b>G2 Associativity:</b> Multiplication of rationals associative hai (inherited from ℝ) ✅</div>
+          <div class="step"><b>G3 Identity:</b> e = 1 ∈ ℚ*, 1×(a/b) = a/b ✅</div>
+          <div class="step"><b>G4 Inverses:</b> For a/b ∈ ℚ*, inverse = b/a ∈ ℚ* (since a,b≠0). (a/b)×(b/a) = ab/ab = 1 ✅</div>
+          <b>∴ (ℚ*, ×) is a group ✅</b><br>
+          Also abelian: (a/b)×(c/d) = ac/bd = ca/db = (c/d)×(a/b)
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 10 — Hard</span>
+        <div class="tq-stem">
+          <b>Q12. Permutations:</b> σ₁(♠)=♢, σ₁(♡)=♡, σ₁(♢)=♠ aur σ₂(♠)=♡, σ₂(♡)=♠, σ₂(♢)=♢<br>
+          σ₂ ∘ σ₁ aur σ₁ ∘ σ₂ nikalo. Kya equal hain?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">σ₂∘σ₁ matlab: pehle σ₁ apply karo, phir σ₂. Right-to-left compose karte hain!</div>
+        <div class="tq-sol">
+          <b>σ₂ ∘ σ₁ (pehle σ₁ phir σ₂):</b>
+          <div class="step">♠ →[σ₁]→ ♢ →[σ₂]→ ♢ — so (σ₂∘σ₁)(♠) = ♢</div>
+          <div class="step">♡ →[σ₁]→ ♡ →[σ₂]→ ♠ — so (σ₂∘σ₁)(♡) = ♠</div>
+          <div class="step">♢ →[σ₁]→ ♠ →[σ₂]→ ♡ — so (σ₂∘σ₁)(♢) = ♡</div>
+          <b>σ₁ ∘ σ₂ (pehle σ₂ phir σ₁):</b>
+          <div class="step">♠ →[σ₂]→ ♡ →[σ₁]→ ♡ — so (σ₁∘σ₂)(♠) = ♡</div>
+          <div class="step">♡ →[σ₂]→ ♠ →[σ₁]→ ♢ — so (σ₁∘σ₂)(♡) = ♢</div>
+          <div class="step">♢ →[σ₂]→ ♢ →[σ₁]→ ♠ — so (σ₁∘σ₂)(♢) = ♠</div>
+          <b>σ₂∘σ₁ ≠ σ₁∘σ₂ → NOT EQUAL → Permutations commutative nahi hote!</b><br>
+          Yahi prove karta hai ki S₃ (aur Sₙ for n≥3) non-abelian group hai.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- RINGS & FIELDS — TRICKY            -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">💍 Rings, Fields & Polynomial Rings</div>
+
+      <!-- Q13 -->
+      <div class="tricky-q">
+        <span class="tq-label">DPP 11 — Medium</span>
+        <div class="tq-stem">
+          <b>Q13.</b> Prove karo: Ring R mein kisi bhi element a ke liye, <b>(-1)·a = -a</b>
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">(-1)·a + a = ? Use distributivity! (-1 + 1)·a = ?</div>
+        <div class="tq-sol">
+          <div class="step">Consider: (-1)·a + a = (-1)·a + 1·a [Since 1·a = a in ring with unity]</div>
+          <div class="step">= (-1 + 1)·a [Distributive law: (b+c)·a = b·a + c·a]</div>
+          <div class="step">= 0·a [Since -1 + 1 = 0]</div>
+          <div class="step">= 0 [0·a = 0 in any ring]</div>
+          <div class="step">So (-1)·a + a = 0 → (-1)·a is the additive inverse of a</div>
+          <b>∴ (-1)·a = -a ✅</b>
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 11 — Medium</span>
+        <div class="tq-stem">
+          <b>Q14. Boolean Ring:</b> Agar har element mein a² = a ho, prove karo ki ring commutative hai.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">(a+b)² = a+b use karo. Expand karo aur simplify karo!</div>
+        <div class="tq-sol">
+          <div class="step">First show: a + a = 0 for all a (i.e., char = 2)</div>
+          <div class="step">a² = a → (a+a)² = a+a → a²+a²+a²+a² = a+a (expand) → 4a = 2a → 2a = 0 → a+a = 0</div>
+          <div class="step">Now for commutativity: use (a+b)² = a+b</div>
+          <div class="step">Expand: a² + ab + ba + b² = a + b</div>
+          <div class="step">Since a²=a and b²=b: a + ab + ba + b = a + b</div>
+          <div class="step">→ ab + ba = 0 → ab = -ba</div>
+          <div class="step">But -ba = ba (since char=2, every element is its own inverse!)</div>
+          <b>∴ ab = ba → Ring is commutative ✅</b>
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 12 — Hard</span>
+        <div class="tq-stem">
+          <b>Q15. GL₂(F₃)</b> mein kitne elements hain? (F₃ = 3 elements wala field)
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">GL₂(F₃) = 2×2 matrices over F₃ with non-zero determinant. Count करो kitni valid matrices hain row-by-row.</div>
+        <div class="tq-sol">
+          <b>GL₂(Fₚ) ke elements count karne ka formula:</b>
+          <div class="step">First row: F₃² - {(0,0)} = 9-1 = 8 choices (non-zero vector)</div>
+          <div class="step">Second row: F₃² - {multiples of first row} = 9-3 = 6 choices (linearly independent honi chahiye)</div>
+          <div class="step">Why 3? Because multiples of a non-zero vector over F₃: 0×v, 1×v, 2×v = 3 vectors</div>
+          <div class="step">Total = 8 × 6 = <b>48</b></div>
+          <b>|GL₂(F₃)| = 48 ✅</b><br>
+          General formula: |GL₂(Fₚ)| = (p²-1)(p²-p) = p(p²-1)(p-1)
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 12 — Hard</span>
+        <div class="tq-stem">
+          <b>Q16.</b> Prove karo ki Z[i] (Gaussian integers a+bi, a,b ∈ ℤ) ek ring hai lekin field nahi.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Ring: show closure under +, ×. Not a field: koi ek element dhundho jiska multiplicative inverse Z[i] mein nahi.</div>
+        <div class="tq-sol">
+          <b>It's a Ring:</b>
+          <div class="step">(a+bi) + (c+di) = (a+c)+(b+d)i ∈ Z[i] [closed under +]</div>
+          <div class="step">(a+bi)×(c+di) = (ac-bd)+(ad+bc)i ∈ Z[i] [closed under ×]</div>
+          <div class="step">Associativity, commutativity, distributivity inherited from ℂ ✅</div>
+          <b>NOT a Field:</b>
+          <div class="step">Consider 2 ∈ Z[i]. Its inverse in ℂ is 1/2 = 0.5 + 0i</div>
+          <div class="step">But 1/2 ∉ Z[i] (not an integer!)</div>
+          <b>∴ Z[i] is a ring but NOT a field ✅</b>
+        </div>
+      </div>
+
+      <!-- Q17 Diffie Hellman -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 13 — Medium</span>
+        <div class="tq-stem">
+          <b>Q17. Diffie-Hellman:</b> p=13, g=2. Alice's private key a=4, Bob's private key b=3.<br>
+          (a) Alice's public key A = ? (b) Bob's public key B = ?<br>
+          (c) Shared key K (Alice computes) = ? (d) Shared key K (Bob computes) = ?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">A = g^a mod p, B = g^b mod p. Alice computes K = B^a mod p, Bob computes K = A^b mod p. Both should match!</div>
+        <div class="tq-sol">
+          <div class="step">(a) Alice's public key: A = 2⁴ mod 13 = 16 mod 13 = <b>3</b></div>
+          <div class="step">(b) Bob's public key: B = 2³ mod 13 = 8 mod 13 = <b>8</b></div>
+          <div class="step">(c) Alice computes: K = B^a mod 13 = 8⁴ mod 13<br>8² = 64 ≡ 64-4×13 = 64-52 = 12 (mod 13)<br>8⁴ = 12² = 144 ≡ 144-11×13 = 144-143 = <b>1</b> (mod 13)</div>
+          <div class="step">(d) Bob computes: K = A^b mod 13 = 3³ mod 13 = 27 mod 13 = <b>1</b> (mod 13)</div>
+          <b>Both get K = 1 ✅ — Shared secret established!</b>
+        </div>
+      </div>
+
+      <!-- Q18 Primitive element -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 13 — Medium</span>
+        <div class="tq-stem">
+          <b>Q18.</b> g=2 ke liye, 2ⁿ (mod 13) compute karo n=1 se 12 tak. Kya g=2 ek primitive root hai ℤ*₁₃ mein?
+        </div>
+        <div class="btn-row">
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-sol">
+          <div class="step">2¹ mod 13 = 2</div>
+          <div class="step">2² mod 13 = 4</div>
+          <div class="step">2³ mod 13 = 8</div>
+          <div class="step">2⁴ mod 13 = 16 mod 13 = 3</div>
+          <div class="step">2⁵ mod 13 = 6</div>
+          <div class="step">2⁶ mod 13 = 12</div>
+          <div class="step">2⁷ mod 13 = 24 mod 13 = 11</div>
+          <div class="step">2⁸ mod 13 = 22 mod 13 = 9</div>
+          <div class="step">2⁹ mod 13 = 18 mod 13 = 5</div>
+          <div class="step">2¹⁰ mod 13 = 10</div>
+          <div class="step">2¹¹ mod 13 = 20 mod 13 = 7</div>
+          <div class="step">2¹² mod 13 = 14 mod 13 = 1</div>
+          Generated set: {2,4,8,3,6,12,11,9,5,10,7,1} = {1,2,...,12} = ℤ*₁₃<br>
+          <b>ord(2) = 12 = |ℤ*₁₃| → g=2 IS a primitive root! ✅</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- RECURRENCES — TRICKY               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">🔄 Recurrences — Tricky Patterns</div>
+
+      <!-- Q19 -->
+      <div class="tricky-q">
+        <span class="tq-label">DPP 14 — Medium</span>
+        <div class="tq-stem">
+          <b>Q19.</b> Bit string of length n mein pair of consecutive 0s hone ka recurrence relation kya hai?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">aₙ = valid strings of length n WITH consecutive 0s. Complement socho: bₙ = strings WITHOUT consecutive 0s, phir aₙ = 2ⁿ - bₙ.</div>
+        <div class="tq-sol">
+          Let <b>bₙ</b> = strings of length n with NO consecutive 0s.<br>
+          <div class="step">If last bit = 1: any valid string of n-1 → bₙ₋₁ ways</div>
+          <div class="step">If last bit = 0: second-last must be 1, then any valid n-2 string → bₙ₋₂ ways</div>
+          <div class="step">bₙ = bₙ₋₁ + bₙ₋₂ (Fibonacci-like!)</div>
+          <div class="step">b₁ = 2 (strings: "0","1"), b₂ = 3 (strings: "01","10","11")</div>
+          <div class="step">aₙ = 2ⁿ - bₙ (total minus no-consecutive-00s)</div>
+          <b>Recurrence for aₙ:</b><br>
+          <div class="step">aₙ = 2ⁿ - bₙ = 2ⁿ - (bₙ₋₁ + bₙ₋₂)</div>
+          <div class="step">= 2ⁿ - (2ⁿ⁻¹ - aₙ₋₁) - (2ⁿ⁻² - aₙ₋₂)</div>
+          <b>aₙ = aₙ₋₁ + aₙ₋₂ + 2ⁿ⁻² with a₁=0, a₂=1</b>
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 14 — Medium</span>
+        <div class="tq-stem">
+          <b>Q20. Salary Problem:</b> Employee ki salary: 1st year = $50,000. Har saal = 2× previous + $10,000 × years completed. Recurrence relation?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Sₙ = nth year salary. "Double previous + 10000 × years completed" matlab double previous + 10000×n</div>
+        <div class="tq-sol">
+          <div class="step">Let Sₙ = salary in year n</div>
+          <div class="step">S₁ = 50,000 (given)</div>
+          <div class="step">"double of previous year" → 2·Sₙ₋₁</div>
+          <div class="step">"extra $10,000 for each year with company" → after n-th year, she has completed n years → +$10,000 × n</div>
+          <b>Recurrence: Sₙ = 2·Sₙ₋₁ + 10000·n, S₁ = 50000</b><br>
+          <div class="step">Verify: S₂ = 2×50000 + 10000×2 = 100000+20000 = $120,000 ✅</div>
+        </div>
+      </div>
+
+      <!-- Q21 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 15 — Medium</span>
+        <div class="tq-stem">
+          <b>Q21.</b> Classify karo — ye Linear Homogeneous hai ya nahi? Degree kya hai?<br>
+          (a) aₙ = 2n·aₙ₋₁ + aₙ₋₂ &nbsp;&nbsp; (b) aₙ = aₙ₋₁ + 2 &nbsp;&nbsp; (c) aₙ = aₙ₋₁² + aₙ₋₂
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Linear = no powers of aₙ, no products of aₙs. Homogeneous = no extra f(n) term added. Constant coefficients = no variable coefficients like 2n.</div>
+        <div class="tq-sol">
+          <div class="step">(a) aₙ = 2n·aₙ₋₁ + aₙ₋₂ → Linear hai lekin coefficient 2n constant nahi → <b>Linear but NOT constant coefficients → NOT LHRCC</b></div>
+          <div class="step">(b) aₙ = aₙ₋₁ + 2 → Linear hai, constant coefficients hain, lekin "+2" hai (non-zero f(n)) → <b>Non-Homogeneous (Linear Non-Homogeneous with constant coeffs)</b></div>
+          <div class="step">(c) aₙ = aₙ₋₁² + aₙ₋₂ → aₙ₋₁² = square term → <b>NOT Linear at all!</b></div>
+          <b>Sirf (a) se (g) mein: (a) degree-2 LHRCC, (c) degree-2 LHRCC, (f) degree-2 LHRCC hain</b>
+        </div>
+      </div>
+
+      <!-- Q22 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 15 — Hard</span>
+        <div class="tq-stem">
+          <b>Q22.</b> Solve: aₙ = 5aₙ₋₁ − 6aₙ₋₂ + 2ⁿ + 3ⁿ, with some initial conditions.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Homogeneous: aₙ = 5aₙ₋₁ − 6aₙ₋₂. Characteristic roots = 2 aur 3. Both 2ⁿ aur 3ⁿ are roots! So particular solution guess mein nᵐ multiply karna padega!</div>
+        <div class="tq-sol">
+          <b>Step 1: Homogeneous solution</b>
+          <div class="step">Char. eq: r² - 5r + 6 = 0 → (r-2)(r-3) = 0 → r = 2, r = 3</div>
+          <div class="step">aₙ(h) = α₁·2ⁿ + α₂·3ⁿ</div>
+          <b>Step 2: Particular solution for 2ⁿ</b>
+          <div class="step">2 is a root (multiplicity 1) → guess: q·n·2ⁿ</div>
+          <div class="step">Substitute: q·n·2ⁿ = 5·q·(n-1)·2ⁿ⁻¹ - 6·q·(n-2)·2ⁿ⁻² + 2ⁿ</div>
+          <div class="step">Divide by 2ⁿ⁻²: 4qn = 10q(n-1) - 6q(n-2) + 4</div>
+          <div class="step">4qn = 10qn-10q-6qn+12q+4 = 4qn+2q+4 → 2q = -4 → q = -2</div>
+          <div class="step">Particular for 2ⁿ: <b>-2n·2ⁿ</b></div>
+          <b>Step 3: Particular solution for 3ⁿ</b>
+          <div class="step">3 is a root (multiplicity 1) → guess: p·n·3ⁿ</div>
+          <div class="step">Similarly substitute and solve → p = 3</div>
+          <div class="step">Particular for 3ⁿ: <b>3n·3ⁿ</b></div>
+          <b>General solution: aₙ = α₁·2ⁿ + α₂·3ⁿ - 2n·2ⁿ + 3n·3ⁿ</b><br>
+          Apply initial conditions to find α₁, α₂.
+        </div>
+      </div>
+
+      <!-- Q23 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 16 — Hard</span>
+        <div class="tq-stem">
+          <b>Q23.</b> f(n) = 5f(n/2) + 3, f(1) = 7. Find f(2ᵏ). Big-O estimate kya hai agar f increasing hai?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">n = 2ᵏ rakho, aur iteration se solve karo. f(2ᵏ) = 5f(2ᵏ⁻¹) + 3. Pattern dhundho!</div>
+        <div class="tq-sol">
+          <div class="step">Let n = 2ᵏ. Then f(2ᵏ) = 5f(2ᵏ⁻¹) + 3</div>
+          <div class="step">= 5[5f(2ᵏ⁻²) + 3] + 3 = 5²f(2ᵏ⁻²) + 5·3 + 3</div>
+          <div class="step">= 5²[5f(2ᵏ⁻³)+3] + 5·3 + 3 = 5³f(2ᵏ⁻³) + 5²·3 + 5·3 + 3</div>
+          <div class="step">Pattern: f(2ᵏ) = 5ᵏ·f(1) + 3·(5ᵏ⁻¹ + 5ᵏ⁻² + ... + 1)</div>
+          <div class="step">= 5ᵏ·7 + 3·(5ᵏ-1)/(5-1) = 7·5ᵏ + (3/4)·(5ᵏ-1)</div>
+          <div class="step">= 7·5ᵏ + (3·5ᵏ)/4 - 3/4 = (28·5ᵏ + 3·5ᵏ)/4 - 3/4</div>
+          <b>f(2ᵏ) = (31·5ᵏ - 3)/4</b><br>
+          <div class="step">Now k = log₂n, so 5ᵏ = 5^(log₂n) = n^(log₂5) ≈ n^2.32</div>
+          <b>Big-O estimate: f(n) = O(n^(log₂5)) ≈ O(n^2.32)</b>
+        </div>
+      </div>
+
+      <!-- Q24 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 16 — Hard</span>
+        <div class="tq-stem">
+          <b>Q24.</b> T(n+1) = 2n + T(n), T(1) = 10. Order of growth kya hai?
+          (A) O(n) (B) O(n log n) (C) O(n²) (D) O(n³)
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Iteration se solve karo: T(n) = T(1) + 2·1 + 2·2 + 2·3 + ... Yeh arithmetic series hai!</div>
+        <div class="tq-sol">
+          <div class="step">T(n+1) = T(n) + 2n</div>
+          <div class="step">T(n) = T(n-1) + 2(n-1)</div>
+          <div class="step">T(n-1) = T(n-2) + 2(n-2)</div>
+          <div class="step">...</div>
+          <div class="step">T(2) = T(1) + 2·1</div>
+          <div class="step">Sum: T(n) = T(1) + 2(1 + 2 + 3 + ... + (n-1))</div>
+          <div class="step">= 10 + 2 · n(n-1)/2 = 10 + n(n-1) = n² - n + 10</div>
+          <b>T(n) = n² - n + 10 → Order of growth = O(n²) → Answer: (C) ✅</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- GENERATING FUNCTIONS — TRICKY      -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">📊 Generating Functions — Tricky Patterns</div>
+
+      <!-- Q25 -->
+      <div class="tricky-q">
+        <span class="tq-label">DPP 17 — Medium</span>
+        <div class="tq-stem">
+          <b>Q25.</b> Agar G(x) sequence {aₖ} ka GF hai, toh {a₁, 2a₂, 3a₃, 4a₄, ...} ka GF kya hoga?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Yeh sequence {n·aₙ} hai (n=1 se start). Differentiation trick use karo! d/dx of G(x) kya deta hai?</div>
+        <div class="tq-sol">
+          <div class="step">G(x) = a₀ + a₁x + a₂x² + a₃x³ + ...</div>
+          <div class="step">G'(x) = a₁ + 2a₂x + 3a₃x² + 4a₄x³ + ...</div>
+          <div class="step">= Σ (n+1)·aₙ₊₁·xⁿ (index shift)</div>
+          <div class="step">But we want {a₁, 2a₂, 3a₃, ...} = {1·a₁, 2·a₂, 3·a₃, ...}</div>
+          <div class="step">This is G'(x) exactly! (coefficients are n·aₙ starting from n=1)</div>
+          <b>Answer: G'(x) — yaani G(x) ka derivative! ✅</b>
+        </div>
+      </div>
+
+      <!-- Q26 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 17 — Medium</span>
+        <div class="tq-stem">
+          <b>Q26.</b> Find closed form for GF of: (a) 0,2,2,2,2,2,0,0,...  (b) 0,0,0,1,1,1,1,...  (c) 2,-2,2,-2,2,...
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Geometric series ka use karo. Finite series = (1 - xⁿ)/(1-x). Shift karne ke liye xᵏ multiply karo.</div>
+        <div class="tq-sol">
+          <b>(a) 0,2,2,2,2,2,0,0,... (five 2s starting at index 1):</b>
+          <div class="step">GF = 2x + 2x² + 2x³ + 2x⁴ + 2x⁵</div>
+          <div class="step">= 2x(1 + x + x² + x³ + x⁴) = 2x · (1-x⁵)/(1-x)</div>
+          <b>GF = 2x(1-x⁵)/(1-x)</b><br><br>
+          <b>(b) 0,0,0,1,1,1,1,... (1s starting at index 3):</b>
+          <div class="step">GF = x³ + x⁴ + x⁵ + ... = x³·(1 + x + x² + ...) = x³/(1-x)</div>
+          <b>GF = x³/(1-x)</b><br><br>
+          <b>(c) 2,-2,2,-2,2,... (alternating, aₙ = 2·(-1)ⁿ):</b>
+          <div class="step">GF = Σ 2·(-1)ⁿ·xⁿ = 2·Σ(-x)ⁿ = 2/(1+x)</div>
+          <b>GF = 2/(1+x)</b>
+        </div>
+      </div>
+
+      <!-- Q27 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 17 — Medium</span>
+        <div class="tq-stem">
+          <b>Q27.</b> 10 identical balloons, 4 children, each gets at least 2 balloons. Kitne ways?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Har child ke liye GF = x² + x³ + x⁴ + ... = x²/(1-x). 4 children ke liye product nikalo. x¹⁰ ka coefficient!</div>
+        <div class="tq-sol">
+          <div class="step">Each child gets ≥ 2 balloons → GF per child = x² + x³ + ... = x²/(1-x)</div>
+          <div class="step">4 children → total GF = (x²/(1-x))⁴ = x⁸/(1-x)⁴</div>
+          <div class="step">Need coefficient of x¹⁰ in x⁸/(1-x)⁴ = coefficient of x² in 1/(1-x)⁴</div>
+          <div class="step">1/(1-x)⁴ = Σ C(n+3, 3) xⁿ</div>
+          <div class="step">Coefficient of x² = C(2+3, 3) = C(5,3) = 10</div>
+          <b>Answer: 10 ways ✅</b>
+        </div>
+      </div>
+
+      <!-- Q28 -->
+      <div class="tricky-q">
+        <span class="tq-label hard">DPP 17 — Hard</span>
+        <div class="tq-stem">
+          <b>Q28.</b> GF se solve karo: aₖ = 3aₖ₋₁, a₀ = 2.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Let A(x) = Σ aₙxⁿ. Multiply recurrence by xⁿ and sum. Express A(x) in closed form phir 1/(1-3x) se coefficient nikalo.</div>
+        <div class="tq-sol">
+          <div class="step">Let A(x) = Σ_{n≥0} aₙxⁿ</div>
+          <div class="step">For n≥1: aₙ = 3aₙ₋₁</div>
+          <div class="step">Multiply by xⁿ and sum: Σ_{n≥1} aₙxⁿ = 3x · Σ_{n≥1} aₙ₋₁xⁿ⁻¹</div>
+          <div class="step">A(x) - a₀ = 3x · A(x)</div>
+          <div class="step">A(x) - 2 = 3x·A(x)</div>
+          <div class="step">A(x)(1 - 3x) = 2</div>
+          <div class="step">A(x) = 2/(1-3x) = 2·Σ(3x)ⁿ = Σ 2·3ⁿ·xⁿ</div>
+          <b>∴ aₙ = 2·3ⁿ ✅</b> (Jo seedha iteration se bhi milta hai!)
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- GRAPH THEORY — TRICKY              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="tricky-page">
+    <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+    <div class="page-content">
+      <div class="topic-divider">🌐 Graph Theory — Tricky Problems</div>
+
+      <!-- Q29 -->
+      <div class="tricky-q">
+        <span class="tq-label">DPP 18 — Medium</span>
+        <div class="tq-stem">
+          <b>Q29.</b> Ek graph mein degree sequence (4,3,3,2,2) hai. Kitne edges hain? Kya aisa graph exist karta hai?
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Handshaking Lemma: Σ deg = 2|E|. Odd degree vertices count karo.</div>
+        <div class="tq-sol">
+          <div class="step">Σ deg = 4+3+3+2+2 = 14 = 2|E| → |E| = 7</div>
+          <div class="step">Odd-degree vertices: 3, 3 → exactly 2 odd-degree vertices ✅ (Handshaking satisfied)</div>
+          <div class="step">Does such a graph exist? Yes! (Erdős-Gallai theorem se verify ho sakta hai)</div>
+          <div class="step">One possible construction: draw step by step connecting highest degree first</div>
+          <b>Answer: 7 edges, aur aise graph exist karta hai ✅</b>
+        </div>
+      </div>
+
+      <!-- Q30 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 18 — Medium</span>
+        <div class="tq-stem">
+          <b>Q30.</b> Prove karo: G bipartite simple graph hai with v vertices aur e edges, toh e ≤ v²/4.
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Bipartite mein do sets X aur Y hain (|X|=m, |Y|=n, m+n=v). Maximum edges = m×n. AM-GM inequality use karo!</div>
+        <div class="tq-sol">
+          <div class="step">Let G = bipartite graph with parts X (size m) and Y (size n) where m+n = v</div>
+          <div class="step">Maximum edges = m × n (every vertex in X connected to every in Y = Kₘ,ₙ)</div>
+          <div class="step">So e ≤ m × n</div>
+          <div class="step">By AM-GM inequality: m × n ≤ ((m+n)/2)² = (v/2)² = v²/4</div>
+          <div class="step">Equality holds when m = n = v/2 (equal partition)</div>
+          <b>∴ e ≤ v²/4 ✅</b>
+        </div>
+      </div>
+
+      <!-- Q31 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 18 — Medium</span>
+        <div class="tq-stem">
+          <b>Q31.</b> Regular graphs: Kₙ, Cₙ, Wₙ, Qₙ mein se kaun-se regular hain? Degree kya hai?
+        </div>
+        <div class="btn-row">
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-sol">
+          <div class="step"><b>Kₙ:</b> Har vertex ki degree = n-1 → (n-1)-regular ✅ (always regular!)</div>
+          <div class="step"><b>Cₙ:</b> Har vertex ki degree = 2 → 2-regular ✅ (always regular!)</div>
+          <div class="step"><b>Wₙ:</b> Hub vertex degree = n (connected to all rim), rim vertices degree = 3 → NOT regular (degrees differ) ❌</div>
+          <div class="step"><b>Qₙ:</b> n-dimensional hypercube → every vertex degree = n → n-regular ✅ (always regular!)</div>
+          <b>Kₘ,ₙ regular hai ↔ m = n (tab m-regular hota hai)</b>
+        </div>
+      </div>
+
+      <!-- Q32 -->
+      <div class="tricky-q">
+        <span class="tq-label medium">DPP 18 — Medium</span>
+        <div class="tq-stem">
+          <b>Q32.</b> Graph G mein v vertices aur e edges hain. Maximum degree M, minimum degree m. Prove karo:<br>
+          (a) 2e/v ≥ m &nbsp;&nbsp;&nbsp; (b) 2e/v ≤ M
+        </div>
+        <div class="btn-row">
+          <button class="btn-hint" onclick="toggleTrickEl(this,'hint')">💡 Hint</button>
+          <button class="btn-sol" onclick="toggleTrickEl(this,'sol')">✅ Full Solution</button>
+        </div>
+        <div class="tq-hint">Handshaking Lemma: Σ deg = 2e. Aur m ≤ deg(v) ≤ M for all vertices.</div>
+        <div class="tq-sol">
+          <div class="step">By Handshaking Lemma: Σ_{v∈V} deg(v) = 2e</div>
+          <div class="step"><b>Part (a) — prove 2e/v ≥ m:</b></div>
+          <div class="step">m ≤ deg(v) for all v → Σ deg(v) ≥ m·v → 2e ≥ m·v → 2e/v ≥ m ✅</div>
+          <div class="step"><b>Part (b) — prove 2e/v ≤ M:</b></div>
+          <div class="step">deg(v) ≤ M for all v → Σ deg(v) ≤ M·v → 2e ≤ M·v → 2e/v ≤ M ✅</div>
+          <b>Matlab: 2e/v = "average degree" jo hamesha min aur max ke beech hota hai!</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FINAL MOTIVATION CARD -->
+  <div style="background: linear-gradient(135deg,#1a3a4a,#0e2030); border-radius:12px; padding:30px; text-align:center; color:white; margin-bottom:40px; box-shadow: 0 10px 40px rgba(0,0,0,0.4);">
+    <div style="font-family:'Caveat',cursive; font-size:2.5rem; font-weight:700; margin-bottom:12px;">
+      🎓 Tu Ready Hai Bhai!
+    </div>
+    <p style="font-family:'Patrick Hand',cursive; font-size:1.1rem; color:rgba(255,255,255,0.85); line-height:1.8;">
+      Concepts ✅ | DPP Questions ✅ | Tricky Patterns ✅<br>
+      Kal exam mein: <strong style="color:#ffd60a">pura paper scan karo → easy questions pehle → time manage karo → tricky mein concept apply karo</strong><br><br>
+      All the best! 🔥💪 You've got this!
+    </p>
+  </div>
+
+</div><!-- END MAIN TRICKY SECTION -->
+
 <!-- ======================================== -->
-<!-- SECTION 17: QUICK CHEAT SHEET -->
+<!-- SECTION 17: QUICK CHEAT SHEET (MOVED TO END) -->
 <!-- ======================================== -->
 <div class="notebook-page" id="sec17">
   <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
@@ -2227,60 +3286,23 @@
   </div>
 </div>
 
-</div><!-- END MAIN -->
 
-<div class="footer">
-  Made with ❤️ for Akhilesh's exam prep | Newton School of Technology — M4 Discrete Maths
-  <br>Saari DPPs aur Worksheets padh ke banaya gaya hai 📚
-</div>
 
-<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top pe jao">⬆</button>
 
 <script>
-  // Toggle answer visibility
-  function toggleAns(btn) {
-    const ans = btn.nextElementSibling;
-    if (ans.classList.contains('visible')) {
-      ans.classList.remove('visible');
-      btn.textContent = 'Answer Dekho 👀';
+  function toggleTrickEl(btn, type) {
+    const q = btn.closest('.tricky-q');
+    const el = q.querySelector('.tq-' + type);
+    if (!el) return;
+    const isVis = el.classList.contains('vis');
+    el.classList.toggle('vis', !isVis);
+    if (type === 'hint') {
+      btn.textContent = isVis ? '💡 Hint' : '💡 Hint Chhupao';
     } else {
-      ans.classList.add('visible');
-      btn.textContent = 'Answer Chhupao 🙈';
+      btn.textContent = isVis ? '✅ Full Solution' : '🙈 Solution Chhupao';
     }
   }
-
-  // Smooth scroll to section
-  function scrollTo(id) {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    // Update active nav button
-    document.querySelectorAll('.toc-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-  }
-
-  // Update active nav on scroll
-  const sections = ['sec1','sec2','sec3','sec4','sec5','sec6','sec7','sec8','sec9','sec10','sec11','sec12','sec13','sec14','sec15','sec16','sec17'];
-  const buttons = document.querySelectorAll('.toc-btn');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const idx = sections.indexOf(entry.target.id);
-        if (idx !== -1) {
-          buttons.forEach(b => b.classList.remove('active'));
-          buttons[idx].classList.add('active');
-          buttons[idx].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
-        }
-      }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
+</script>
 
   // Show/hide back-to-top
   window.addEventListener('scroll', () => {
