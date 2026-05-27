@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discrete Maths Exam Prep 📚 | Newton School</title>
+<meta name="description" content="Akhilesh ke liye complete exam preparation guide - Discrete Mathematics M4 - Logic, Proofs, Sets, Groups, Rings, Recurrences, Graphs">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fdf6e3;
+    --paper-dark: #f5edcd;
+    --ink: #2c1810;
+    --ink-light: #4a3020;
+    --red-pen: #c0392b;
+    --blue-pen: #1a5276;
+    --green-pen: #1a6033;
+    --purple-pen: #6c3483;
+    --orange-pen: #d35400;
+    --yellow-hl: #ffd60a;
+    --pink-hl: #ffb3c6;
+    --green-hl: #b7e4c7;
+    --blue-hl: #bde0fe;
+    --rule-line: #c4a882;
+    --margin-line: #e8a0a0;
+    --shadow: rgba(44,24,16,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d4c5a0;
+    background-image: 
+      radial-gradient(ellipse at 20% 20%, #c8b896 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, #bca87a 0%, transparent 50%);
+    min-height: 100vh;
+    font-family: 'Kalam', cursive;
+    color: var(--ink);
+  }
+
+  /* ====== TOP COVER ====== */
+  .cover {
+    background: var(--blue-pen);
+    color: white;
+    text-align: center;
+    padding: 40px 20px 50px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 8px solid #0e2d4a;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 28px, rgba(255,255,255,0.05) 28px, rgba(255,255,255,0.05) 29px
+    );
+  }
+  .cover h1 {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+  }
+  .cover .subtitle {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.2rem;
+    margin-top: 12px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .exam-badge {
+    display: inline-block;
+    background: var(--red-pen);
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    padding: 8px 24px;
+    border-radius: 50px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite;
+    position: relative;
+    z-index: 1;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* ====== NAV ====== */
+  .toc-wrapper {
+    background: var(--ink);
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .toc-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .toc-scroll::-webkit-scrollbar { display: none; }
+  .toc-btn {
+    flex-shrink: 0;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .toc-btn:hover, .toc-btn.active {
+    background: var(--yellow-hl);
+    color: var(--ink);
+    border-color: var(--yellow-hl);
+    font-weight: 700;
+  }
+
+  /* ====== MAIN CONTAINER ====== */
+  .main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 16px 60px;
+  }
+
+  /* ====== NOTEBOOK PAGE ====== */
+  .notebook-page {
+    background: var(--paper);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 
+      4px 4px 0 rgba(0,0,0,0.1),
+      8px 8px 0 rgba(0,0,0,0.05),
+      0 20px 60px rgba(0,0,0,0.25);
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .notebook-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 72px;
+    width: 2px;
+    height: 100%;
+    background: var(--margin-line);
+    opacity: 0.6;
+  }
+  .notebook-page::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      transparent, transparent 31px, var(--rule-line) 31px, var(--rule-line) 32px
+    );
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .page-holes {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 10;
+  }
+  .hole {
+    width: 18px;
+    height: 18px;
+    background: #d4c5a0;
+    border: 2px solid #b8a880;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .page-content {
+    padding: 32px 32px 40px 90px;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* ====== SECTION HEADER ====== */
+  .section-header {
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--blue-pen);
+    position: relative;
+  }
+  .section-num {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--red-pen);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    color: var(--blue-pen);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .section-emoji {
+    font-size: 1.5em;
+    margin-right: 8px;
+  }
+  .section-tag {
+    display: inline-block;
+    background: var(--yellow-hl);
+    color: var(--ink);
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-weight: 700;
+    transform: rotate(-1deg);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+  }
+
+  /* ====== CONTENT ELEMENTS ====== */
+  h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.7rem;
+    color: var(--red-pen);
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h2::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--red-pen), transparent);
+    opacity: 0.4;
+  }
+  h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.35rem;
+    color: var(--purple-pen);
+    margin: 20px 0 8px;
+  }
+  h4 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.1rem;
+    color: var(--green-pen);
+    margin: 14px 0 6px;
+  }
+
+  p {
+    font-family: 'Kalam', cursive;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  /* ====== HIGHLIGHT BOX ====== */
+  .hl-box {
+    border-left: 5px solid;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+    position: relative;
+  }
+  .hl-box.blue { border-color: var(--blue-pen); background: #e8f4fd; }
+  .hl-box.red { border-color: var(--red-pen); background: #fdf0ef; }
+  .hl-box.green { border-color: var(--green-pen); background: #eafaf1; }
+  .hl-box.purple { border-color: var(--purple-pen); background: #f4eafb; }
+  .hl-box.orange { border-color: var(--orange-pen); background: #fef5e7; }
+  .hl-box .box-title {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hl-box.blue .box-title { color: var(--blue-pen); }
+  .hl-box.red .box-title { color: var(--red-pen); }
+  .hl-box.green .box-title { color: var(--green-pen); }
+  .hl-box.purple .box-title { color: var(--purple-pen); }
+  .hl-box.orange .box-title { color: var(--orange-pen); }
+
+  /* ====== DEFINITION CARD ====== */
+  .def-card {
+    background: white;
+    border: 2px solid var(--rule-line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    box-shadow: 2px 2px 0 var(--rule-line);
+    position: relative;
+  }
+  .def-card .def-term {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blue-pen);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ====== FORMULA BOX ====== */
+  .formula {
+    background: #fff9e6;
+    border: 2px dashed var(--orange-pen);
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 14px 0;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-align: center;
+    position: relative;
+  }
+  .formula::before {
+    content: '✏️';
+    position: absolute;
+    top: -12px;
+    left: 16px;
+    font-size: 1.2rem;
+  }
+
+  /* ====== TRUTH TABLE / TABLE ====== */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1rem;
+  }
+  th {
+    background: var(--blue-pen);
+    color: white;
+    padding: 8px 12px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  td {
+    padding: 7px 12px;
+    border: 1px solid var(--rule-line);
+    text-align: center;
+  }
+  tr:nth-child(even) td { background: var(--paper-dark); }
+  tr:hover td { background: var(--blue-hl); }
+
+  /* ====== LIST STYLES ====== */
+  ul, ol {
+    padding-left: 28px;
+    margin: 10px 0;
+  }
+  li {
+    font-family: 'Kalam', cursive;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  ul li::marker { color: var(--red-pen); }
+
+  /* ====== HIGHLIGHT MARKS ====== */
+  .hl { background: var(--yellow-hl); padding: 0 4px; border-radius: 3px; font-weight: 600; }
+  .hl-pink { background: var(--pink-hl); padding: 0 4px; border-radius: 3px; }
+  .hl-green { background: var(--green-hl); padding: 0 4px; border-radius: 3px; }
+  .hl-blue { background: var(--blue-hl); padding: 0 4px; border-radius: 3px; }
+
+  /* ====== STICKY NOTE ====== */
+  .sticky {
+    background: #fef9c3;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    box-shadow: 3px 4px 10px rgba(0,0,0,0.15), inset 0 -4px 0 rgba(0,0,0,0.05);
+    transform: rotate(-0.8deg);
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    position: relative;
+    max-width: 380px;
+  }
+  .sticky::before {
+    content: '📌';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+  }
+  .sticky.right { transform: rotate(0.8deg); margin-left: auto; background: #fce4d6; }
+  .sticky.green-s { background: #d4f1de; transform: rotate(-0.3deg); }
+
+  /* ====== DPP QUESTION ====== */
+  .dpp-q {
+    background: white;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .dpp-q:hover { box-shadow: 3px 3px 12px rgba(0,0,0,0.12); }
+  .dpp-q .q-num {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--red-pen);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .dpp-q .answer {
+    background: var(--green-hl);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-family: 'Kalam', cursive;
+    font-size: 1rem;
+    display: none;
+  }
+  .dpp-q .show-ans-btn {
+    background: var(--green-pen);
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.15s;
+  }
+  .dpp-q .show-ans-btn:hover { transform: scale(1.05); }
+  .answer.visible { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ====== STEPS ====== */
+  .steps {
+    counter-reset: step;
+    padding: 0;
+    list-style: none;
+  }
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .steps li::before {
+    content: counter(step);
+    background: var(--blue-pen);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ====== CHEAT BOX ====== */
+  .cheat-box {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 20px 0;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .cheat-box h3 {
+    color: var(--yellow-hl);
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+  .cheat-box p, .cheat-box li {
+    color: rgba(255,255,255,0.9);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1rem;
+  }
+  .cheat-box ul li::marker { color: var(--yellow-hl); }
+  .cheat-box .formula-white {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin: 8px 0;
+    font-family: 'Patrick Hand', cursive;
+    color: #a8d8ea;
+    font-size: 1rem;
+  }
+
+  /* ====== IMPORTANT TAG ====== */
+  .imp {
+    display: inline-block;
+    background: var(--red-pen);
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+    font-weight: 700;
+  }
+  .exam {
+    display: inline-block;
+    background: var(--orange-pen);
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ====== TWO COL ====== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ====== CALLOUT / CAUTION ====== */
+  .warn {
+    background: #fff3cd;
+    border: 2px solid #f0ad4e;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 14px 0;
+    font-family: 'Kalam', cursive;
+    font-size: 1rem;
+  }
+  .warn::before { content: '⚠️ '; font-size: 1.1rem; }
+
+  /* ====== PROGRESS SIDEBAR ====== */
+  .progress-bar-wrap { margin: 20px 0; }
+  .progress-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .progress-item span { font-family: 'Caveat', cursive; font-size: 1rem; min-width: 120px; }
+  .progress-bar { flex: 1; height: 10px; background: var(--paper-dark); border-radius: 5px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 5px; background: linear-gradient(to right, var(--green-pen), #2ecc71); }
+
+  /* ====== FOOTER ====== */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: var(--ink-light);
+    opacity: 0.7;
+  }
+
+  /* ====== BACK TO TOP ====== */
+  .back-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--blue-pen);
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+    z-index: 999;
+  }
+  .back-top:hover { transform: scale(1.15); background: var(--red-pen); }
+
+  /* ====== CODE STYLE ====== */
+  code {
+    font-family: 'Patrick Hand', cursive;
+    background: rgba(0,0,0,0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: var(--purple-pen);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rule-line); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>📚 Discrete Maths - M4<br>Complete Revision Guide</h1>
+  <p class="subtitle">Written Exam ke liye — Newton School of Technology</p>
+  <div class="exam-badge">🔥 Kal Exam Hai! Padh le bhai!</div>
+</div>
+
+<!-- STICKY NAV -->
+<div class="toc-wrapper">
+  <div class="toc-scroll">
+    <button class="toc-btn active" onclick="scrollTo('sec1')">📝 Logic</button>
+    <button class="toc-btn" onclick="scrollTo('sec2')">🔢 Quantifiers</button>
+    <button class="toc-btn" onclick="scrollTo('sec3')">✅ Boolean</button>
+    <button class="toc-btn" onclick="scrollTo('sec4')">🔎 SAT & CNF</button>
+    <button class="toc-btn" onclick="scrollTo('sec5')">⚡ Rules of Inference</button>
+    <button class="toc-btn" onclick="scrollTo('sec6')">📜 Proofs</button>
+    <button class="toc-btn" onclick="scrollTo('sec7')">🗂️ Sets</button>
+    <button class="toc-btn" onclick="scrollTo('sec8')">♾️ Cardinality</button>
+    <button class="toc-btn" onclick="scrollTo('sec9')">🔵 Groups</button>
+    <button class="toc-btn" onclick="scrollTo('sec10')">💍 Rings</button>
+    <button class="toc-btn" onclick="scrollTo('sec11')">🌾 Fields</button>
+    <button class="toc-btn" onclick="scrollTo('sec12')">🔐 Crypto</button>
+    <button class="toc-btn" onclick="scrollTo('sec13')">🔄 Recurrences</button>
+    <button class="toc-btn" onclick="scrollTo('sec14')">👑 Master Thm</button>
+    <button class="toc-btn" onclick="scrollTo('sec15')">📊 Gen Functions</button>
+    <button class="toc-btn" onclick="scrollTo('sec16')">🌐 Graphs</button>
+    <button class="toc-btn" onclick="scrollTo('sec17')">🏆 Quick Cheat</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ======================================== -->
+<!-- SECTION 1: PROPOSITIONAL LOGIC -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec1">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 1.1</span>
+      <div class="section-title"><span class="section-emoji">📝</span>Propositional Logic<span class="section-tag">DPP 1</span></div>
+    </div>
+
+    <div class="sticky">
+      Bhai, Logic = Mathematics ka foundation hai! Ye padhe bina aage kuch nahi samjhega 😤
+    </div>
+
+    <h2>Proposition Kya Hoti Hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 Definition</div>
+      <p><span class="hl">Proposition</span> = ek aisi statement jo ya toh TRUE hogi ya FALSE hogi. Dono nahi ho sakti ek saath!</p>
+      <ul>
+        <li>✅ "2 + 3 = 5" → Proposition hai (TRUE)</li>
+        <li>✅ "7 ek even number hai" → Proposition hai (FALSE)</li>
+        <li>❌ "x + 1 = 3" → Proposition NAHI (x ka value nahi pata)</li>
+        <li>❌ "Close the window!" → Command hai, proposition nahi</li>
+        <li>❌ "What time is it?" → Question hai, proposition nahi</li>
+      </ul>
+    </div>
+
+    <h2>Logical Connectives (Jodne Wale Operations)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Symbol</th><th>Naam</th><th>Matlab</th><th>Yaad Karo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>¬p</td><td>NOT (Negation)</td><td>p ka ulta</td><td>Seedha opposite</td></tr>
+          <tr><td>p ∧ q</td><td>AND (Conjunction)</td><td>DONO true ho tab true</td><td>"Dono chahiye"</td></tr>
+          <tr><td>p ∨ q</td><td>OR (Disjunction)</td><td>Koi bhi ek true ho tab true</td><td>"Ek bhi chalega"</td></tr>
+          <tr><td>p ⊕ q</td><td>XOR (Exclusive Or)</td><td>Exactly ek hi true ho tab true</td><td>"Sirf ek"</td></tr>
+          <tr><td>p → q</td><td>IMPLIES (If...Then)</td><td>p=T, q=F tab hi FALSE</td><td>Tricky hai!</td></tr>
+          <tr><td>p ↔ q</td><td>IFF (Biconditional)</td><td>Dono same value tab true</td><td>"Same hone chahiye"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hl-box red">
+      <div class="box-title">🔥 IMPLICATION (p → q) — Sabse Tricky!</div>
+      <p>Rule yaad rakh: <span class="hl">SIRF TAB FALSE hota hai jab p = TRUE aur q = FALSE</span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>p</th><th>q</th><th>p→q</th><th>Kyun?</th></tr></thead>
+          <tbody>
+            <tr><td>T</td><td>T</td><td style="color:green;font-weight:bold">T</td><td>Agar baarish hai aur main bheeega hoon — sahi!</td></tr>
+            <tr><td>T</td><td>F</td><td style="color:red;font-weight:bold">F</td><td>Baarish hai par bheeega nahi — jhuth!</td></tr>
+            <tr><td>F</td><td>T</td><td style="color:green;font-weight:bold">T</td><td>Baarish nahi per bheeg gaya — koi problem nahi</td></tr>
+            <tr><td>F</td><td>F</td><td style="color:green;font-weight:bold">T</td><td>Na baarish, na bheega — sab theek</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2>Implication ke Variants <span class="imp">Exam!</span></h2>
+    <p>Agar main implication <code>p → q</code> ("Agar baarish hai toh main bheegunga") loon:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Naam</th><th>Form</th><th>Example</th><th>Original se Equal?</th></tr></thead>
+        <tbody>
+          <tr><td>Original</td><td>p → q</td><td>Baarish → Bheegunga</td><td>—</td></tr>
+          <tr><td>Converse</td><td>q → p</td><td>Bheegunga → Baarish</td><td>❌ NAHI</td></tr>
+          <tr><td>Inverse</td><td>¬p → ¬q</td><td>Na Baarish → Na Bheegunga</td><td>❌ NAHI</td></tr>
+          <tr><td><span class="hl">Contrapositive</span></td><td>¬q → ¬p</td><td>Na Bheegunga → Na Baarish</td><td style="color:green">✅ HAAN!</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hl-box green">
+      <div class="box-title">✅ Golden Rule</div>
+      <p><span class="hl">p → q ≡ ¬q → ¬p</span> (Contrapositive aur original SAME hote hain!)<br>
+      Aur ek important: <span class="hl">p → q ≡ ¬p ∨ q</span> (bahut kaam aata hai!)</p>
+    </div>
+
+    <h2>Tautology, Contradiction, Contingency</h2>
+    <div class="two-col">
+      <div class="def-card">
+        <span class="def-term">🟢 Tautology</span>
+        Hamesha TRUE hoti hai, koi bhi value daalo<br>
+        Example: <code>p ∨ ¬p</code> (ya toh baarish hai ya nahi)
+      </div>
+      <div class="def-card">
+        <span class="def-term">🔴 Contradiction</span>
+        Hamesha FALSE hoti hai, koi bhi value daalo<br>
+        Example: <code>p ∧ ¬p</code> (baarish bhi hai aur nahi bhi — impossible!)
+      </div>
+    </div>
+
+    <h2>Operator Precedence (Priority)</h2>
+    <div class="formula">
+      ¬ (Highest) → ∧ → ∨ → → → ↔ (Lowest)
+    </div>
+    <p>Matlab pehle NOT calculate karo, phir AND, phir OR, phir IMPLIES, phir IFF</p>
+
+    <h2>DPP ke Important Questions 📋</h2>
+
+    <div class="dpp-q">
+      <span class="q-num">Q1. Yeh proposition hai ya nahi?</span>
+      <p>"Every even integer greater than 2 can be expressed as sum of two primes" (Goldbach's Conjecture)</p>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Answer Dekho 👀</button>
+      <div class="answer">✅ <strong>Haan, proposition hai!</strong> Chahe prove na hua ho, but iska ek definite truth value hai (T ya F). Proposition ke liye prove hona zaruri nahi, sirf TRUE ya FALSE hona chahiye.</div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Q2. p: Flu hai, q: Exam miss hua, r: Course pass. Express karo: p → ¬r</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Answer Dekho 👀</button>
+      <div class="answer">✅ "Agar flu hai, toh course pass nahi karoge" — seedha implication hai!</div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Q3. Truth table banao: (p→q) ∧ (¬q→¬p)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Answer Dekho 👀</button>
+      <div class="answer">
+        Yeh TAUTOLOGY hai kyunki p→q ≡ ¬q→¬p (contrapositive), isliye unka AND hamesha original se same hi hoga.<br>
+        <strong>Shortcut:</strong> (p→q) ∧ (¬q→¬p) ≡ (p→q) ∧ (p→q) ≡ (p→q) — toh truth table same hi hogi!
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Q4. "You can borrow the rare book ONLY IF you are faculty AND have valid ID" — Propositional form?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Answer Dekho 👀</button>
+      <div class="answer">✅ <strong>B → (F ∧ I)</strong><br>"Only if" matlab implication hai. B = borrow, F = faculty, I = valid ID</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 2: QUANTIFIERS -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec2">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 1.2</span>
+      <div class="section-title"><span class="section-emoji">🔢</span>Predicate Logic & Quantifiers<span class="section-tag">DPP 2</span></div>
+    </div>
+
+    <div class="sticky right">
+      Yaad rakh: Universal mein → use karo, Existential mein ∧ use karo! Ghalti mat karna! ✏️
+    </div>
+
+    <h2>Predicate Kya Hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 Predicate = Function jo Proposition Banata Hai</div>
+      <p><code>P(x)</code> = "x is even" — ye abhi proposition nahi jab tak x assign na ho</p>
+      <p>P(4) = TRUE, P(7) = FALSE — ab ye propositions ban gayi!</p>
+    </div>
+
+    <h2>Quantifiers — Do Hote Hain</h2>
+    <div class="two-col">
+      <div class="hl-box blue">
+        <div class="box-title">∀ — For ALL (Universal)</div>
+        <p>"Har ek ke liye sach hai"</p>
+        <p>∀x P(x) = P(x) sabke liye true hai</p>
+        <p><span class="hl">Disprove kaise?</span> Ek bhi counterexample dhundho!</p>
+        <p>Example: ∀x (x² ≥ 0) over ℝ → TRUE ✅</p>
+      </div>
+      <div class="hl-box purple">
+        <div class="box-title">∃ — There EXISTS (Existential)</div>
+        <p>"Kam se kam ek ke liye sach hai"</p>
+        <p>∃x P(x) = Koi ek x hai jiske liye P(x) true hai</p>
+        <p><span class="hl">Disprove kaise?</span> Sabke liye false dikho!</p>
+        <p>Example: ∃x (x² = -1) over ℝ → FALSE ❌</p>
+      </div>
+    </div>
+
+    <h2>English to Logic — Important Rules <span class="imp">Exam!</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>English</th><th>Logic</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>ALL A are B</td><td>∀x (A(x) → B(x))</td><td>Universal = <strong>IMPLIES</strong> use karo!</td></tr>
+          <tr><td>SOME A are B</td><td>∃x (A(x) ∧ B(x))</td><td>Existential = <strong>AND</strong> use karo!</td></tr>
+          <tr><td>NO A are B</td><td>∀x (A(x) → ¬B(x))</td><td>Negation ke saath universal</td></tr>
+          <tr><td>NOT ALL A are B</td><td>∃x (A(x) ∧ ¬B(x))</td><td>Negation ke saath existential</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">
+      <strong>Common Mistake!</strong> "All students are smart" = ∀x (S(x) → Smart(x)) — NOT ∀x (S(x) ∧ Smart(x))! Universal ke saath HAMESHA → use karo!
+    </div>
+
+    <h2>Quantifiers ka Negation <span class="imp">Very Important!</span></h2>
+    <div class="hl-box red">
+      <div class="box-title">🔥 De Morgan's for Quantifiers</div>
+      <div class="formula">¬∀x P(x) ≡ ∃x ¬P(x)</div>
+      <div class="formula">¬∃x P(x) ≡ ∀x ¬P(x)</div>
+      <p><strong>Rule:</strong> Negation andar push karo, quantifier flip karo (∀↔∃)</p>
+      <p>Example: ¬"All dogs are friendly" = ∃x (Dog(x) ∧ ¬Friendly(x)) = "Koi dog hai jo friendly nahi"</p>
+    </div>
+
+    <h2>Nested Quantifiers — Order MATTERS!</h2>
+    <div class="hl-box orange">
+      <div class="box-title">⚠️ Yaad Rakh!</div>
+      <p>∀x ∃y P(x,y) ≠ ∃y ∀x P(x,y)</p>
+      <ul>
+        <li><strong>∀x ∃y (x+y=0):</strong> Har x ke liye koi y hai (y = -x) → TRUE ✅</li>
+        <li><strong>∃y ∀x (x+y=0):</strong> Ek hi y sabke liye kaam kare → FALSE ❌ (impossible!)</li>
+      </ul>
+    </div>
+
+    <h2>Nested Negation</h2>
+    <div class="formula">¬∀x ∃y P(x,y) ≡ ∃x ∀y ¬P(x,y)</div>
+    <p>Bas andar push karte jao, har quantifier flip karte jao!</p>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: Kya ∀x ∃y (x+y=0) over integers sach hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Answer Dekho 👀</button>
+      <div class="answer">✅ TRUE! Har integer x ke liye, y = -x le sakte hain. Ye ek y provide karta hai har x ke liye.</div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: Negation karo "Every IITM student studies hard"</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Answer Dekho 👀</button>
+      <div class="answer">Original: ∀x (IITM(x) → Hard(x))<br>Negation: ∃x (IITM(x) ∧ ¬Hard(x))<br>= "Koi ek IITM student hai jo hard nahi padhta"</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 3: BOOLEAN ALGEBRA -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec3">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 1.3</span>
+      <div class="section-title"><span class="section-emoji">✅</span>Boolean Algebra<span class="section-tag">DPP 4</span></div>
+    </div>
+
+    <h2>Boolean Algebra ke Laws — Yaad Karo! <span class="imp">Exam!</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Law</th><th>OR Form (Sum)</th><th>AND Form (Product)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Identity</strong></td><td>A + 0 = A</td><td>A · 1 = A</td></tr>
+          <tr><td><strong>Domination/Null</strong></td><td>A + 1 = 1</td><td>A · 0 = 0</td></tr>
+          <tr><td><strong>Idempotent</strong></td><td>A + A = A</td><td>A · A = A</td></tr>
+          <tr><td><strong>Complement</strong></td><td>A + A' = 1</td><td>A · A' = 0</td></tr>
+          <tr><td><strong>Double Complement</strong></td><td colspan="2">(A')' = A</td></tr>
+          <tr><td><strong>Commutative</strong></td><td>A + B = B + A</td><td>A · B = B · A</td></tr>
+          <tr><td><strong>Associative</strong></td><td>(A+B)+C = A+(B+C)</td><td>(AB)C = A(BC)</td></tr>
+          <tr><td><strong>Distributive</strong></td><td>A+(B·C) = (A+B)·(A+C)</td><td>A·(B+C) = AB+AC</td></tr>
+          <tr><td style="color:var(--red-pen);font-weight:bold"><strong>Absorption</strong></td><td>A + AB = A</td><td>A·(A+B) = A</td></tr>
+          <tr><td style="color:var(--red-pen);font-weight:bold"><strong>De Morgan's</strong></td><td>(AB)' = A' + B'</td><td>(A+B)' = A'·B'</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hl-box red">
+      <div class="box-title">🔥 De Morgan's — Mnemonic!</div>
+      <p><span class="hl">"Break the bar, flip the sign (AND ↔ OR)"</span></p>
+      <p>(A·B)' → A'<strong>+</strong>B' (AND → OR mein badla)<br>(A+B)' → A'<strong>·</strong>B' (OR → AND mein badla)</p>
+    </div>
+
+    <h2>Duality Principle</h2>
+    <div class="hl-box green">
+      <div class="box-title">✅ Shortcut!</div>
+      <p>Kisi bhi valid identity mein <strong>+ ↔ ·</strong> aur <strong>0 ↔ 1</strong> swap karo → naya valid identity milega!</p>
+      <p>Example: A + 0 = A → Dual: A · 1 = A ✅</p>
+    </div>
+
+    <h2>Simplification Examples</h2>
+    <div class="dpp-q">
+      <span class="q-num">Simplify: A·(A+B)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        A·(A+B) = AA + AB = A + AB (Idempotent: AA=A) = <strong>A</strong> (Absorption!) ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Simplify: AB + A(B+C) + B(B+C)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        = AB + AB + AC + B + BC<br>
+        = AB + AC + B + BC (Idempotent: AB+AB=AB)<br>
+        = AB + AC + B (Absorption: B+BC=B)<br>
+        = AC + B (Absorption: B+AB=B)<br>
+        <strong>Answer: B + AC</strong>
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Prove: A + A'B = A + B</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        A + A'B<br>
+        = (A + A')(A + B) [Distributive]<br>
+        = 1·(A + B) [Complement: A+A'=1]<br>
+        = <strong>A + B</strong> ✅
+      </div>
+    </div>
+
+    <h2>Minterms aur Maxterms</h2>
+    <div class="hl-box purple">
+      <div class="box-title">📌 Definition</div>
+      <p><strong>Minterm (m_i):</strong> AND form — exactly ek row pe TRUE, baaki sab FALSE<br>
+      <strong>Maxterm (M_i):</strong> OR form — exactly ek row pe FALSE, baaki sab TRUE</p>
+      <p><strong>SOM (Sum of Minterms):</strong> Un rows ko AND karo jahan output = 1, phir sab ko OR karo<br>
+      <strong>POM (Product of Maxterms):</strong> Un rows ko OR karo jahan output = 0, phir sab ko AND karo</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 4: SAT & CNF/DNF -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec4">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 1.3 cont.</span>
+      <div class="section-title"><span class="section-emoji">🔎</span>Satisfiability, CNF & DPLL<span class="section-tag">DPP 3</span></div>
+    </div>
+
+    <h2>Satisfiability Kya Hai?</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Matlab</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Satisfiable</strong></td><td>Koi ek assignment hai jo TRUE banata hai</td><td>p ∧ q (p=T,q=T → T)</td></tr>
+          <tr><td><strong>Unsatisfiable</strong></td><td>Koi bhi assignment TRUE nahi banata</td><td>p ∧ ¬p (hamesha F)</td></tr>
+          <tr><td><strong>Valid/Tautology</strong></td><td>Har assignment TRUE banata hai</td><td>p ∨ ¬p (hamesha T)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">F is Tautology ↔ ¬F is Unsatisfiable</div>
+
+    <h2>CNF aur DNF</h2>
+    <div class="two-col">
+      <div class="hl-box blue">
+        <div class="box-title">CNF (Conjunctive Normal Form)</div>
+        <p><strong>AND of ORs</strong></p>
+        <p>Har clause mein literals OR hote hain, phir sab clauses AND hote hain</p>
+        <p>Example: (p∨q) ∧ (¬p∨r) ∧ (q∨¬r)</p>
+        <p>Isko "<strong>Product of Sums</strong>" bhi kehte hain</p>
+      </div>
+      <div class="hl-box purple">
+        <div class="box-title">DNF (Disjunctive Normal Form)</div>
+        <p><strong>OR of ANDs</strong></p>
+        <p>Har term mein literals AND hote hain, phir sab terms OR hote hain</p>
+        <p>Example: (p∧¬q) ∨ (¬p∧r)</p>
+        <p>Isko "<strong>Sum of Products</strong>" bhi kehte hain</p>
+      </div>
+    </div>
+
+    <h2>CNF Convert Karne ke Steps <span class="imp">Exam!</span></h2>
+    <ol class="steps">
+      <li><strong>→ hatao:</strong> p → q ko ¬p ∨ q se replace karo</li>
+      <li><strong>↔ hatao:</strong> p ↔ q ko (¬p∨q) ∧ (¬q∨p) se replace karo</li>
+      <li><strong>Negation andar push karo:</strong> De Morgan's use karo</li>
+      <li><strong>Distribute ∨ over ∧:</strong> (A ∨ (B ∧ C)) = (A ∨ B) ∧ (A ∨ C)</li>
+    </ol>
+
+    <div class="dpp-q">
+      <span class="q-num">Convert to CNF: p → (q ∧ r)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Step 1: ¬p ∨ (q ∧ r) [eliminate →]<br>
+        Step 2: (¬p ∨ q) ∧ (¬p ∨ r) [Distribute ∨ over ∧]<br>
+        <strong>CNF: (¬p ∨ q) ∧ (¬p ∨ r)</strong> ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Convert to CNF: (p∧q) → r</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Step 1: ¬(p∧q) ∨ r [eliminate →]<br>
+        Step 2: (¬p∨¬q) ∨ r [De Morgan]<br>
+        Step 3: ¬p∨¬q∨r [Associativity — already CNF!]<br>
+        <strong>CNF: (¬p ∨ ¬q ∨ r)</strong> ✅ [Single clause!]
+      </div>
+    </div>
+
+    <h2>DPLL Algorithm <span class="imp">Important!</span></h2>
+    <p>SAT problem solve karne ka efficient algorithm:</p>
+    <ol class="steps">
+      <li><strong>Unit Propagation:</strong> Agar kisi clause mein sirf ek literal hai (unit clause), use TRUE set karo</li>
+      <li><strong>Pure Literal Elimination:</strong> Agar koi literal sirf positive ya sirf negative form mein aata hai poore formula mein, use satisfy karo</li>
+      <li><strong>Branch/Split:</strong> Ek variable choose karo, pehle TRUE try karo, conflict pe backtrack karke FALSE try karo</li>
+      <li><strong>Base Cases:</strong> Empty clause set = SATISFIABLE | Empty clause (□) = CONFLICT, backtrack</li>
+    </ol>
+
+    <div class="dpp-q">
+      <span class="q-num">DPLL: (p∨q) ∧ (¬p∨q) ∧ (¬p∨¬q) satisfiable hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Try p = T:<br>
+        - (q) ∧ (¬T∨¬q) → (q) ∧ (¬q) — CONFLICT!<br>
+        Backtrack. Try p = F:<br>
+        - (F∨q) = (q) — Unit! q = T<br>
+        - (¬F∨T) = T ✅<br>
+        - (¬F∨¬T) = (T∨F) = T ✅<br>
+        <strong>SATISFIABLE with p=F, q=T!</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 5: RULES OF INFERENCE -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec5">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 2.2</span>
+      <div class="section-title"><span class="section-emoji">⚡</span>Rules of Inference<span class="section-tag">DPP 5</span></div>
+    </div>
+
+    <div class="sticky green-s">
+      Bhai inhe rote karo! Exam mein seedha use karna padega — naam aur form dono!
+    </div>
+
+    <h2>All Rules — Ek Jagah! <span class="imp">Must Memorize!</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Rule ka Naam</th><th>Premises</th><th>Conclusion</th><th>Yaad Karo</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:var(--blue-pen)">Modus Ponens (MP)</strong></td><td>p→q, p</td><td>∴ q</td><td>"Agar sach aur sach, toh result sach"</td></tr>
+          <tr><td><strong style="color:var(--blue-pen)">Modus Tollens (MT)</strong></td><td>p→q, ¬q</td><td>∴ ¬p</td><td>"Agar result galat, toh condition bhi galat"</td></tr>
+          <tr><td><strong style="color:var(--green-pen)">Hypothetical Syllogism (HS)</strong></td><td>p→q, q→r</td><td>∴ p→r</td><td>"Chain: p→q→r matlab p→r"</td></tr>
+          <tr><td><strong style="color:var(--green-pen)">Disjunctive Syllogism (DS)</strong></td><td>p∨q, ¬p</td><td>∴ q</td><td>"A ya B mein se A galat, toh B sahi"</td></tr>
+          <tr><td><strong>Addition</strong></td><td>p</td><td>∴ p∨q</td><td>"Kuch bhi OR kar sakte ho true mein"</td></tr>
+          <tr><td><strong>Simplification</strong></td><td>p∧q</td><td>∴ p</td><td>"AND se koi bhi ek nikalo"</td></tr>
+          <tr><td><strong>Conjunction</strong></td><td>p, q</td><td>∴ p∧q</td><td>"Do true cheezein AND karo"</td></tr>
+          <tr><td><strong>Resolution</strong></td><td>p∨q, ¬p∨r</td><td>∴ q∨r</td><td>"p cancel, baaki bache"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hl-box red">
+      <div class="box-title">⛔ INVALID Fallacies — Ye mat karna!</div>
+      <p><strong>Affirming the Consequent (INVALID):</strong> p→q, q ∴ p — GALAT!</p>
+      <p>Example: "Agar baarish hai toh road wet hai. Road wet hai. Isliye baarish hai." → NO! Road wet hone ke aur bhi kaaranain ho sakte hain!</p>
+      <p><strong>Denying the Antecedent (INVALID):</strong> p→q, ¬p ∴ ¬q — GALAT!</p>
+    </div>
+
+    <h2>Formal Proof Example <span class="exam">Exam Type!</span></h2>
+    <p><strong>Premises:</strong> p→q, q→r, p | <strong>Prove:</strong> r</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Step</th><th>Statement</th><th>Justification</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>p → q</td><td>Premise</td></tr>
+          <tr><td>2</td><td>q → r</td><td>Premise</td></tr>
+          <tr><td>3</td><td>p</td><td>Premise</td></tr>
+          <tr><td>4</td><td>p → r</td><td>HS (steps 1, 2)</td></tr>
+          <tr><td>5</td><td><strong>r</strong></td><td>MP (steps 4, 3)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Prove: "If I study (s), I pass (p). If I pass, I graduate (g). I studied." → I graduate.</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        1. s → p [Premise]<br>
+        2. p → g [Premise]<br>
+        3. s [Premise]<br>
+        4. s → g [HS: 1,2]<br>
+        5. <strong>g</strong> [MP: 4,3] ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Premises: p∨q, ¬p∨r, ¬r. Prove: q</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        1. ¬p∨r [Premise]<br>
+        2. ¬r [Premise]<br>
+        3. ¬p [DS: 1,2]<br>
+        4. p∨q [Premise]<br>
+        5. <strong>q</strong> [DS: 4,3] ✅
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 6: PROOFS -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec6">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 2.3</span>
+      <div class="section-title"><span class="section-emoji">📜</span>Proof Strategies<span class="section-tag">DPP 6</span></div>
+    </div>
+
+    <h2>Proof ke Types — Sab Yaad Karo!</h2>
+    <div class="hl-box blue">
+      <div class="box-title">1. Direct Proof (Seedha Proof)</div>
+      <p>p → q prove karna hai, toh <strong>p assume karo</strong> aur q directly derive karo</p>
+      <p>Example: "If n is odd, then n² is odd"<br>n = 2k+1 (odd) → n² = 4k²+4k+1 = 2(2k²+2k)+1 → odd ✅</p>
+    </div>
+
+    <div class="hl-box purple">
+      <div class="box-title">2. Contrapositive Proof</div>
+      <p>p → q prove karna hai → <strong>¬q assume karo</strong> aur ¬p derive karo</p>
+      <p>Use karo jab seedha proof mushkil lage!<br>Example: "If n² is odd, then n is odd" → Prove: "If n is even, then n² is even"<br>n=2k → n²=4k²=2(2k²) → even ✅</p>
+    </div>
+
+    <div class="hl-box red">
+      <div class="box-title">3. Proof by Contradiction (Mathaparast Proof! 😄)</div>
+      <p>Prove P karna hai → <strong>¬P assume karo</strong> → dono assumptions se contradiction nikalo</p>
+      <p>Classic example: √2 irrational prove karo<br>
+      Assume √2 = a/b (lowest terms)<br>
+      → a² = 2b² → a even → a = 2k<br>
+      → 4k² = 2b² → b² = 2k² → b even<br>
+      → Contradiction! (a aur b dono even → lowest terms nahi tha)</p>
+    </div>
+
+    <div class="hl-box green">
+      <div class="box-title">4. Mathematical Induction (Seedhi Chain)</div>
+      <p><strong>Step 1 (Base Case):</strong> P(1) ya P(0) true hai dikhao<br>
+      <strong>Step 2 (Inductive Step):</strong> Assume P(k) true hai (Inductive Hypothesis), then prove P(k+1) is true<br>
+      <strong>Conclusion:</strong> P(n) sabke liye true!</p>
+    </div>
+
+    <div class="hl-box orange">
+      <div class="box-title">5. Proof by Cases</div>
+      <p>Saare possible cases alag-alag prove karo<br>
+      Example: "n(n+1) always even" → Case 1: n even, Case 2: n odd — dono mein product even nikalta hai</p>
+    </div>
+
+    <h2>Axiomatic System</h2>
+    <div class="def-card">
+      <span class="def-term">Mathematics ka Game Analogy</span>
+      <p><strong>Definitions</strong> = Game ke pieces<br>
+      <strong>Axioms/Rules</strong> = Game ke rules<br>
+      <strong>Proofs/Strategies</strong> = Game mein jeetnay ki strategy</p>
+      <p>Sirf definitions aur rules jaanna kaafi nahi — strategy chahiye!</p>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Prove by contradiction: No largest prime number exists</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Assume karo ek largest prime p₁, p₂, ..., pₙ hain.<br>
+        Let N = (p₁ × p₂ × ... × pₙ) + 1<br>
+        N in kisi bhi prime se divisible nahi (remainder 1 aata hai)<br>
+        Toh ya toh N prime hai (larger than pₙ), ya koi aur prime factor hai — CONTRADICTION!<br>
+        ∴ Infinite primes hain ✅
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 7: SET THEORY -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec7">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 3</span>
+      <div class="section-title"><span class="section-emoji">🗂️</span>Set Theory<span class="section-tag">DPP 7</span></div>
+    </div>
+
+    <h2>Russell's Paradox <span class="imp">Exam!</span></h2>
+    <div class="hl-box red">
+      <div class="box-title">🤯 Russell's Paradox</div>
+      <p>Socho: Set S = {x | x ∉ x} (un sab sets ka set jo khud mein nahi hain)</p>
+      <p>Question: S ∈ S?<br>
+      - Agar S ∈ S: toh definition ke by S ∉ S → Contradiction!<br>
+      - Agar S ∉ S: toh definition ke by S ∈ S → Contradiction!</p>
+      <p>Yahi Russell's Paradox hai! Isliye "set of all sets" nahi ban sakta!</p>
+    </div>
+
+    <h2>Set Operations</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Operation</th><th>Symbol</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Union</td><td>A ∪ B</td><td>A ya B mein jo bhi hai</td></tr>
+          <tr><td>Intersection</td><td>A ∩ B</td><td>A aur B dono mein jo hai</td></tr>
+          <tr><td>Difference</td><td>A − B</td><td>A mein hai par B mein nahi</td></tr>
+          <tr><td>Complement</td><td>Ā (A')</td><td>Universe mein jo A mein nahi</td></tr>
+          <tr><td>Symmetric Diff</td><td>A ⊕ B</td><td>Exactly ek mein jo hai (A∪B − A∩B)</td></tr>
+          <tr><td>Power Set</td><td>P(A)</td><td>A ke saare subsets ka set</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Inclusion-Exclusion Principle <span class="exam">Exam Type!</span></h2>
+    <div class="formula">|A ∪ B| = |A| + |B| − |A ∩ B|</div>
+    <div class="formula">|A ∪ B ∪ C| = |A|+|B|+|C| − |A∩B| − |B∩C| − |A∩C| + |A∩B∩C|</div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q3: 100 students, 73 study PSP, 80 study Maths, 52 study SnW. Find min and max of all-three students.</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        <strong>Maximum:</strong> min(73, 80, 52) = 52 (can't exceed smallest set)<br>
+        <strong>Minimum:</strong> 73+80+52−100−100 = 205−200 = 5 (use inclusion-exclusion, assuming at most 100 in any two)<br>
+        Actually: min = max(0, |A|+|B|+|C| - 2×|U|) = max(0, 205-200) = 5<br>
+        <strong>Difference = 52 − 5 = 47</strong>
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q4: |A|=10, |B|=12, |C|=14, |A∩B|=5, |B∩C|=6, |C∩A|=4, |A∩B∩C|=2. Find |U|.</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        |A ∪ B ∪ C| = 10+12+14 − 5−6−4 + 2 = 36−15+2 = <strong>23</strong><br>
+        Exactly two sets mein: (|A∩B|+|B∩C|+|A∩C|) − 3|A∩B∩C| = 15−6 = <strong>9</strong><br>
+        Exactly one set mein: |U| − exactly-two − exactly-three = 23−9−2 = <strong>12</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 8: CARDINALITY -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec8">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 3.2–3.4</span>
+      <div class="section-title"><span class="section-emoji">♾️</span>Cardinality, Diagonalization & Computability<span class="section-tag">DPP 8</span></div>
+    </div>
+
+    <h2>Countable vs Uncountable</h2>
+    <div class="two-col">
+      <div class="hl-box green">
+        <div class="box-title">Countably Infinite</div>
+        <p>ℕ ke saath bijection (one-to-one correspondence) ho sakti hai</p>
+        <ul>
+          <li>ℤ (integers) — countable!</li>
+          <li>ℚ (rationals) — countable!</li>
+          <li>Even numbers — countable!</li>
+          <li>Multiples of 7 — countable!</li>
+        </ul>
+      </div>
+      <div class="hl-box red">
+        <div class="box-title">Uncountable</div>
+        <p>ℕ se bijection NAHI ho sakti</p>
+        <ul>
+          <li>ℝ (reals) — uncountable!</li>
+          <li>(0,1) interval — uncountable!</li>
+          <li>Power set of ℕ — uncountable!</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Cantor's Diagonalization — Brilliant Proof! <span class="imp">Exam!</span></h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 ℝ uncountable hai — Proof</div>
+      <p>Assume karo (0,1) countable hai. Toh ek list ban sakti hai:<br>
+      r₁ = 0.d₁₁ d₁₂ d₁₃ d₁₄ ...<br>
+      r₂ = 0.d₂₁ d₂₂ d₂₃ d₂₄ ...<br>
+      r₃ = 0.d₃₁ d₃₂ d₃₃ d₃₄ ...<br>
+      ...</p>
+      <p>Ab ek naya number r banao jisme:<br>
+      r = 0.e₁ e₂ e₃ ... jahan eₙ ≠ dₙₙ (diagonal element se alag!)</p>
+      <p>Yeh r har rᵢ se alag hai (ith position pe different)!<br>
+      Par r (0,1) mein hai — CONTRADICTION!<br>
+      ∴ (0,1) uncountable hai! ✅</p>
+    </div>
+
+    <h2>Computability</h2>
+    <div class="hl-box orange">
+      <div class="box-title">Application in CS!</div>
+      <p><strong>Key Insight:</strong> Computer programs countable hain (finite strings), lekin real-valued functions uncountable hain → Kuch problems computationally unsolvable hain!</p>
+      <p><strong>Halting Problem:</strong> Koi bhi program ye nahi decide kar sakta ki dusra program halt hoga ya nahi — ye undecidable hai (diagonalization se prove hota hai)</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 9: GROUP THEORY -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec9">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 4.1–4.7</span>
+      <div class="section-title"><span class="section-emoji">🔵</span>Group Theory<span class="section-tag">DPP 9 & 10</span></div>
+    </div>
+
+    <div class="sticky">
+      Groups samajhna = equilateral triangle ke symmetries se start karo! Rotate karo, flip karo — sab group operations hain!
+    </div>
+
+    <h2>Group ke 4 Axioms — ROTE KARO! <span class="imp">Must!</span></h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 (G, *) ek Group hai agar...</div>
+      <ol>
+        <li><strong>Closure (G1):</strong> a, b ∈ G → a*b ∈ G (result andar rahe)</li>
+        <li><strong>Associativity (G2):</strong> (a*b)*c = a*(b*c) (brackets kahi bhi lao)</li>
+        <li><strong>Identity (G3):</strong> ∃ e ∈ G such that e*a = a*e = a (koi neutral element)</li>
+        <li><strong>Inverses (G4):</strong> Har a ke liye ∃ a⁻¹ ∈ G such that a*a⁻¹ = e (undo karo)</li>
+      </ol>
+      <p>+ Abelian group = ye sab PLUS commutativity (a*b = b*a)</p>
+    </div>
+
+    <h2>Structure Hierarchy</h2>
+    <div class="formula">
+      Field ⊂ Integral Domain ⊂ Ring | Group ⊂ Abelian Group<br>
+      Semigroup → Monoid → Group → Abelian Group
+    </div>
+
+    <h2>Common Groups — Examples</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Group</th><th>Operation</th><th>Identity</th><th>Inverse of a</th><th>Abelian?</th></tr></thead>
+        <tbody>
+          <tr><td>(ℤ, +)</td><td>Addition</td><td>0</td><td>−a</td><td>✅</td></tr>
+          <tr><td>(ℝ\{0}, ×)</td><td>Multiplication</td><td>1</td><td>1/a</td><td>✅</td></tr>
+          <tr><td>(ℤₙ, +ₙ)</td><td>Addition mod n</td><td>0</td><td>n−a</td><td>✅</td></tr>
+          <tr><td>GL₂(ℝ)</td><td>Matrix ×</td><td>Identity matrix I</td><td>A⁻¹</td><td>❌</td></tr>
+          <tr><td>Sₙ (Permutations)</td><td>Composition</td><td>Identity perm.</td><td>σ⁻¹</td><td>❌ (n≥3)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Order — Two Meanings!</h2>
+    <div class="two-col">
+      <div class="def-card">
+        <span class="def-term">Order of Group |G|</span>
+        Group mein kitne elements hain (size)
+      </div>
+      <div class="def-card">
+        <span class="def-term">Order of Element ord(a)</span>
+        Smallest n > 0 such that aⁿ = e<br>
+        ℤₙ mein: ord(a) = n/gcd(a,n)
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: ℤ₂₄ ke generators kaun kaun se hain?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Generators = elements coprime to 24: gcd(a, 24) = 1<br>
+        24 = 2³ × 3, so avoid multiples of 2 and 3<br>
+        Generators: {1, 5, 7, 11, 13, 17, 19, 23}<br>
+        φ(24) = 24×(1-1/2)×(1-1/3) = 8 generators ✅
+      </div>
+    </div>
+
+    <h2>LAGRANGE'S THEOREM <span class="imp">Most Important!</span></h2>
+    <div class="hl-box red">
+      <div class="box-title">🔥 Theorem of KINGS!</div>
+      <div class="formula">Agar G finite group hai aur H ≤ G (subgroup), toh |H| divides |G|</div>
+      <p><strong>Corollaries (ye bhi exam mein aate hain):</strong></p>
+      <ul>
+        <li>Har element ka order |G| ko divide karta hai: ord(a) | |G|</li>
+        <li>Prime order wala group hamesha cyclic hota hai!</li>
+        <li>a^|G| = e for all a ∈ G (Fermat's little theorem ka group version!)</li>
+        <li>Possible subgroup orders = divisors of |G|</li>
+      </ul>
+      <p>Example: |G| = 21, possible subgroup sizes = {1, 3, 7, 21}</p>
+    </div>
+
+    <h2>Cyclic Groups</h2>
+    <div class="hl-box green">
+      <div class="box-title">📌 Cyclic Group ⟨g⟩</div>
+      <p>G = ⟨g⟩ = {gⁿ : n ∈ ℤ} — ek single element se puri group generate ho</p>
+      <ul>
+        <li>Har cyclic group Abelian hota hai</li>
+        <li>ℤₙ ke generators = elements coprime to n → φ(n) generators</li>
+        <li>gᵏ generator hai ↔ gcd(k, n) = 1</li>
+        <li>Finite cyclic group of order n ≅ ℤₙ</li>
+      </ul>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: G has order 30. Koi element of order 8 ho sakta hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Lagrange's Theorem: ord(a) must divide |G| = 30<br>
+        8 does NOT divide 30 → <strong>NO! Order 8 element exist nahi kar sakta!</strong><br>
+        Possible orders: divisors of 30 = {1, 2, 3, 5, 6, 10, 15, 30}
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: ℤ₁₂ ke element 4 ka order kya hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        ord(4) = 12/gcd(4,12) = 12/4 = <strong>3</strong><br>
+        Check: 4+4+4 = 12 ≡ 0 (mod 12) ✅
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 10: RINGS -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec10">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 4.8–4.9</span>
+      <div class="section-title"><span class="section-emoji">💍</span>Ring Theory<span class="section-tag">DPP 11</span></div>
+    </div>
+
+    <h2>Ring kya hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 (R, +, ·) ek Ring hai agar...</div>
+      <ol>
+        <li>(R, +) Abelian group hai (identity = 0, inverses = -a)</li>
+        <li>Multiplication associative hai: (a·b)·c = a·(b·c)</li>
+        <li>Distributive laws: a·(b+c) = ab+ac AND (a+b)·c = ac+bc</li>
+      </ol>
+      <p><strong>Additional properties:</strong><br>
+      Commutative Ring = ab = ba bhi<br>
+      Ring with Unity = 1 element hai (1·a = a·1 = a)</p>
+    </div>
+
+    <h2>Structure Hierarchy <span class="imp">Exam!</span></h2>
+    <div class="formula">
+      Field ⊂ Integral Domain ⊂ Commutative Ring with Unity ⊂ Commutative Ring ⊂ Ring
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Structure</th><th>Ring?</th><th>Commutative?</th><th>Unity?</th><th>No Zero Divs?</th><th>Field?</th></tr></thead>
+        <tbody>
+          <tr><td>(ℤ, +, ×)</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+          <tr><td>(ℚ, +, ×)</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+          <tr><td>(ℤₙ, +, ×) n prime</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+          <tr><td>(ℤₙ, +, ×) n composite</td><td>✅</td><td>✅</td><td>✅</td><td>❌ (has zero divisors)</td><td>❌</td></tr>
+          <tr><td>Matrix ring Mₙ(ℝ)</td><td>✅</td><td>❌ (n≥2)</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Zero Divisors vs Units</h2>
+    <div class="two-col">
+      <div class="def-card">
+        <span class="def-term">Zero Divisors</span>
+        Non-zero a ∈ R jiske liye koi non-zero b hai aur ab = 0<br>
+        ℤ₆ mein: 2·3 = 6 ≡ 0 → 2 aur 3 zero divisors hain!<br>
+        ℤₙ mein zero divisors = {a : gcd(a,n) > 1}
+      </div>
+      <div class="def-card">
+        <span class="def-term">Units</span>
+        Element a jiske paas multiplicative inverse hai<br>
+        ℤₙ mein units = {a : gcd(a,n) = 1}<br>
+        ℤ₁₂ mein units = {1, 5, 7, 11} — φ(12) = 4 units
+      </div>
+    </div>
+
+    <h2>Characteristic of a Ring</h2>
+    <div class="hl-box purple">
+      <div class="box-title">📌 Characteristic</div>
+      <p>char(R) = smallest positive integer n such that n·1 = 0 (ya 0 if no such n)</p>
+      <ul>
+        <li>char(ℤₙ) = n</li>
+        <li>char(ℚ) = char(ℝ) = char(ℂ) = 0</li>
+        <li><strong>Key Theorem:</strong> Integral domain ka characteristic 0 ya prime hota hai!</li>
+      </ul>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: ℤ₁₀ ke zero divisors kaun hain?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Zero divisors = elements not coprime to 10<br>
+        gcd(2,10)=2, gcd(4,10)=2, gcd(5,10)=5, gcd(6,10)=2, gcd(8,10)=2<br>
+        <strong>Zero divisors = {2, 4, 5, 6, 8}</strong><br>
+        Check: 2×5=10≡0, 4×5=20≡0 ✅
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 11: FIELDS -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec11">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 4.10–4.11</span>
+      <div class="section-title"><span class="section-emoji">🌾</span>Fields & Polynomial Rings<span class="section-tag">DPP 12</span></div>
+    </div>
+
+    <h2>Field kya hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 Field (F, +, ×)</div>
+      <p>(F, +) Abelian group AND (F\{0}, ×) Abelian group AND distributive laws</p>
+      <p>Simple terms mein: <span class="hl">jab division by any non-zero element possible ho!</span></p>
+      <p>ℤₙ field hai ↔ n is prime! (ℤ₄ nahi, ℤ₅ haan!)</p>
+    </div>
+
+    <h2>Finite Fields (Galois Fields)</h2>
+    <div class="hl-box green">
+      <div class="box-title">📌 GF(pⁿ)</div>
+      <p>Har prime p aur positive integer n ke liye exactly ek field exist karta hai jisme pⁿ elements hain: GF(pⁿ)</p>
+      <p><strong>Construction:</strong> GF(pⁿ) = ℤₚ[x] / ⟨irreducible polynomial of degree n over ℤₚ⟩</p>
+    </div>
+
+    <h2>Polynomial Rings F[x]</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Field F</th><th>F[x] Properties</th></tr></thead>
+        <tbody>
+          <tr><td>ℝ, ℚ, ℤₚ</td><td>Integral domain, Division algorithm works, Every ideal is principal</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Irreducible Polynomials <span class="imp">Important!</span></h2>
+    <div class="hl-box purple">
+      <div class="box-title">📌 f(x) irreducible hai over F agar...</div>
+      <ul>
+        <li>Degree 1: hamesha irreducible!</li>
+        <li>Degree 2 ya 3: <span class="hl">F mein koi root (zero) nahi hona chahiye</span></li>
+        <li>Higher degree: difficult — Eisenstein's Criterion use karo</li>
+      </ul>
+      <p><strong>Key Fact:</strong> F[x]/⟨p(x)⟩ ek field hai ↔ p(x) irreducible hai over F!</p>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">x² + x + 1 over ℤ₂ mein irreducible hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Check roots in ℤ₂ = {0, 1}:<br>
+        f(0) = 0+0+1 = 1 ≠ 0 ✅<br>
+        f(1) = 1+1+1 = 3 ≡ 1 (mod 2) ≠ 0 ✅<br>
+        <strong>Koi root nahi → Irreducible! ✅</strong><br>
+        ℤ₂[x]/⟨x²+x+1⟩ = GF(4) — 4 element field!
+      </div>
+    </div>
+
+    <h2>Field Extension — ℂ Banana!</h2>
+    <div class="hl-box orange">
+      <div class="box-title">🤯 x²+1 ℝ mein irreducible hai</div>
+      <p>ℝ[x]/⟨x²+1⟩ ≅ ℂ!</p>
+      <p>α = x + ⟨x²+1⟩ ke liye, α² = -1 (kyunki x²+1=0 in quotient ring)</p>
+      <p>Isliye α = i behave karta hai! ℂ = {a + bi : a,b ∈ ℝ} ✅</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 12: CRYPTOGRAPHY -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec12">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 4.12</span>
+      <div class="section-title"><span class="section-emoji">🔐</span>Cryptography — RSA & Discrete Log<span class="section-tag">DPP 13</span></div>
+    </div>
+
+    <h2>Fermat's Little Theorem <span class="imp">Exam!</span></h2>
+    <div class="formula">Agar p prime hai aur gcd(a,p) = 1, toh: aᵖ⁻¹ ≡ 1 (mod p)</div>
+    <div class="formula">Euler's: aᵠ⁽ⁿ⁾ ≡ 1 (mod n) — jab gcd(a,n) = 1</div>
+
+    <div class="dpp-q">
+      <span class="q-num">7¹⁰⁰ mod 13 = ?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        FLT: 7¹² ≡ 1 (mod 13) [12 = 13-1]<br>
+        100 = 12×8 + 4, so 7¹⁰⁰ = (7¹²)⁸ × 7⁴ ≡ 1 × 7⁴ (mod 13)<br>
+        7² = 49 ≡ 10 (mod 13)<br>
+        7⁴ = 10² = 100 ≡ 9 (mod 13)<br>
+        <strong>Answer: 9</strong>
+      </div>
+    </div>
+
+    <h2>RSA Algorithm — Step by Step <span class="exam">Exam Type!</span></h2>
+    <ol class="steps">
+      <li><strong>Choose primes:</strong> p aur q choose karo (large primes)</li>
+      <li><strong>n = p × q</strong></li>
+      <li><strong>φ(n) = (p−1)(q−1)</strong></li>
+      <li><strong>e choose karo:</strong> 1 < e < φ(n), gcd(e, φ(n)) = 1</li>
+      <li><strong>d find karo:</strong> ed ≡ 1 (mod φ(n)) — Extended Euclidean se</li>
+      <li><strong>Public key:</strong> (e, n) | <strong>Private key:</strong> (d, n)</li>
+    </ol>
+    <div class="formula">Encrypt: C = Mᵉ mod n | Decrypt: M = Cᵈ mod n</div>
+
+    <div class="dpp-q">
+      <span class="q-num">RSA: p=3, q=11, e=7. Encrypt M=4.</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        n = 3×11 = 33<br>
+        φ(33) = (3-1)(11-1) = 20<br>
+        Find d: 7d ≡ 1 (mod 20) → d = 3 (kyunki 7×3=21≡1)<br>
+        Encrypt M=4: C = 4⁷ mod 33<br>
+        4² = 16, 4⁴ = 256 mod 33 = 256-7×33 = 25, 4⁷ = 4⁴×4²×4 = 25×16×4 = 1600<br>
+        1600 mod 33 = 1600-48×33 = 1600-1584 = <strong>C = 16</strong>
+      </div>
+    </div>
+
+    <h2>Discrete Logarithm Problem</h2>
+    <div class="hl-box red">
+      <div class="box-title">🔐 Diffie-Hellman Key Exchange</div>
+      <p>Alice aur Bob publicly agree on prime p aur generator g<br>
+      Alice: secret a, sends gᵃ mod p<br>
+      Bob: secret b, sends gᵇ mod p<br>
+      Shared secret: (gᵃ)ᵇ = gᵃᵇ mod p</p>
+      <p><strong>Security:</strong> gᵃᵇ mod p se a ya b reverse calculate karna computationally infeasible = Discrete Log Problem!</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 13: RECURRENCES -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec13">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 5.1–5.2</span>
+      <div class="section-title"><span class="section-emoji">🔄</span>Recurrence Relations<span class="section-tag">DPP 14 & 15</span></div>
+    </div>
+
+    <h2>Recurrence Kya Hoti Hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 Definition</div>
+      <p>Ek equation jo n-th term ko pichle terms ke through define kare: aₙ = f(aₙ₋₁, aₙ₋₂, ...)</p>
+      <p><strong>Order</strong> = highest aur lowest subscript ka difference<br>
+      <strong>Linear</strong> = sirf first power terms (aₙ² allowed nahi)<br>
+      <strong>Homogeneous</strong> = koi extra f(n) nahi<br>
+      <strong>Initial Conditions</strong> = starting values</p>
+    </div>
+
+    <h2>Classic Examples — Rote Karo!</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>Recurrence</th><th>Initial Conds</th><th>Closed Form</th></tr></thead>
+        <tbody>
+          <tr><td>Fibonacci</td><td>Fₙ = Fₙ₋₁ + Fₙ₋₂</td><td>F₀=0, F₁=1</td><td>(φⁿ−ψⁿ)/√5</td></tr>
+          <tr><td>Tower of Hanoi</td><td>T(n) = 2T(n-1) + 1</td><td>T(1) = 1</td><td>2ⁿ − 1</td></tr>
+          <tr><td>n Lines in Plane</td><td>Rₙ = Rₙ₋₁ + n</td><td>R₀ = 1</td><td>1 + n(n+1)/2</td></tr>
+          <tr><td>Bit strings no 00</td><td>aₙ = aₙ₋₁ + aₙ₋₂</td><td>a₁=2, a₂=3</td><td>Like Fibonacci</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Method 1: Iteration (Solve by Hand)</h2>
+    <div class="dpp-q">
+      <span class="q-num">Tower of Hanoi T(n) = 2T(n-1) + 1 solve karo</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        T(n) = 2T(n-1) + 1<br>
+        = 2[2T(n-2)+1] + 1 = 2²T(n-2) + 2 + 1<br>
+        = 2²[2T(n-3)+1] + 2 + 1 = 2³T(n-3) + 2² + 2 + 1<br>
+        ...<br>
+        = 2^k T(n-k) + 2^(k-1) + ... + 2 + 1<br>
+        Set k = n-1: = 2^(n-1)·T(1) + (2^(n-1)-1) = 2^(n-1) + 2^(n-1) - 1<br>
+        <strong>T(n) = 2ⁿ − 1</strong> ✅
+      </div>
+    </div>
+
+    <h2>Method 2: Characteristic Equation (Linear Homogeneous)</h2>
+    <ol class="steps">
+      <li>Characteristic equation likhо: rᵏ − c₁rᵏ⁻¹ − ... − cₖ = 0</li>
+      <li>Roots r₁, r₂, ... dhundho</li>
+      <li>General solution: aₙ = α₁r₁ⁿ + α₂r₂ⁿ + ... (distinct roots ke liye) ya (α₀ + α₁n + ...)r₀ⁿ (repeated root ke liye)</li>
+      <li>Initial conditions se constants dhundho</li>
+    </ol>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: aₙ = 5aₙ₋₁ − 6aₙ₋₂, a₀=1, a₁=0</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Char. eq: r² − 5r + 6 = 0 → (r-2)(r-3) = 0<br>
+        Roots: r₁ = 2, r₂ = 3<br>
+        General: aₙ = α₁(2ⁿ) + α₂(3ⁿ)<br>
+        n=0: α₁ + α₂ = 1<br>
+        n=1: 2α₁ + 3α₂ = 0 → α₁ = 3, α₂ = -2<br>
+        <strong>aₙ = 3·2ⁿ − 2·3ⁿ</strong>
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: aₙ = 4aₙ₋₁ − 4aₙ₋₂, a₀=6, a₁=8 (Repeated Root!)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Char. eq: r² − 4r + 4 = 0 → (r-2)² = 0<br>
+        Root: r₀ = 2 (multiplicity 2!)<br>
+        General: aₙ = α₁·2ⁿ + α₂·n·2ⁿ<br>
+        n=0: α₁ = 6<br>
+        n=1: 2α₁ + 2α₂ = 8 → α₂ = -2<br>
+        <strong>aₙ = 6·2ⁿ − 2n·2ⁿ = (6−2n)·2ⁿ</strong>
+      </div>
+    </div>
+
+    <h2>Method 3: Non-Homogeneous</h2>
+    <div class="hl-box orange">
+      <div class="box-title">Formula: aₙ = homogeneous solution + particular solution</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>f(n) ka form</th><th>Particular solution guess</th></tr></thead>
+          <tbody>
+            <tr><td>Constant C</td><td>A</td></tr>
+            <tr><td>Polynomial degree d</td><td>A_d·nᵈ + ... + A₀</td></tr>
+            <tr><td>sⁿ (s not a root)</td><td>A·sⁿ</td></tr>
+            <tr><td>sⁿ (s is root, mult. m)</td><td>nᵐ·A·sⁿ</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: aₙ = 2aₙ₋₁ + 3n, a₁=5</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Homogeneous: aₙ = 2aₙ₋₁ → aₙ⁽ʰ⁾ = α·2ⁿ<br>
+        Particular: f(n)=3n → guess Aₙ = A·n + B<br>
+        Substitute: An+B = 2(A(n-1)+B) + 3n<br>
+        An+B = 2An - 2A + 2B + 3n<br>
+        Comparing: A = 2A+3 → A = -3, B = 2B-2A → B = -6<br>
+        aₙ⁽ᵖ⁾ = -3n - 6<br>
+        General: aₙ = α·2ⁿ - 3n - 6<br>
+        n=1: 2α - 3 - 6 = 5 → α = 7<br>
+        <strong>aₙ = 7·2ⁿ - 3n - 6</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 14: MASTER THEOREM -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec14">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 5.3</span>
+      <div class="section-title"><span class="section-emoji">👑</span>Master Theorem<span class="section-tag">DPP 16</span></div>
+    </div>
+
+    <div class="sticky">
+      Bhai ek kaam karo — sirf ek comparison yaad karo: f(n) vs n^(log_b a). Teen cases!
+    </div>
+
+    <h2>Master Theorem — Kab Use Karo?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 Form: T(n) = a·T(n/b) + f(n)</div>
+      <p><strong>a</strong> ≥ 1 = subproblems ki count<br>
+      <strong>b</strong> > 1 = kitna chota hota hai problem<br>
+      <strong>f(n)</strong> = divide aur combine karne ki cost<br>
+      <strong>Key Value:</strong> <span class="hl">n^(log_b a)</span> — isko compare karo f(n) se!</p>
+    </div>
+
+    <h2>Teen Cases — Seedhi Baat! <span class="imp">Must Know!</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Case</th><th>Condition</th><th>Answer</th><th>Yaad Karo</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:var(--blue-pen)">Case 1</strong></td><td>f(n) = O(n^(log_b a − ε)) — f(n) polynomially SMALLER hai</td><td><strong>Θ(n^(log_b a))</strong></td><td>"Tree ka bottom heavy" → tree wins</td></tr>
+          <tr><td><strong style="color:var(--green-pen)">Case 2</strong></td><td>f(n) = Θ(n^(log_b a)) — SAME order hai</td><td><strong>Θ(n^(log_b a) · log n)</strong></td><td>"Draw → log factor aata hai"</td></tr>
+          <tr><td><strong style="color:var(--red-pen)">Case 3</strong></td><td>f(n) = Ω(n^(log_b a + ε)) — f(n) polynomially LARGER hai + regularity</td><td><strong>Θ(f(n))</strong></td><td>"Root heavy" → f(n) wins</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn">
+      <strong>Case 3 Regularity Condition:</strong> a·f(n/b) ≤ c·f(n) for some c < 1 — ye bhi check karna padta hai!
+    </div>
+
+    <h2>Solved Examples — Practice! <span class="exam">Exam Type!</span></h2>
+
+    <div class="dpp-q">
+      <span class="q-num">Merge Sort: T(n) = 2T(n/2) + n</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        a=2, b=2, f(n)=n<br>
+        n^(log₂2) = n¹ = n<br>
+        f(n) = n = Θ(n) → <strong>Case 2!</strong><br>
+        <strong>T(n) = Θ(n log n)</strong> ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">Binary Search: T(n) = T(n/2) + 1</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        a=1, b=2, f(n)=1<br>
+        n^(log₂1) = n⁰ = 1<br>
+        f(n) = 1 = Θ(1) → <strong>Case 2!</strong><br>
+        <strong>T(n) = Θ(log n)</strong> ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">T(n) = 4T(n/2) + n</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        a=4, b=2, f(n)=n<br>
+        n^(log₂4) = n²<br>
+        f(n) = n = O(n^(2-1)) → polynomially smaller → <strong>Case 1!</strong><br>
+        <strong>T(n) = Θ(n²)</strong> ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">T(n) = 8T(n/2) + n² (DPP Revision Q5)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        a=8, b=2, f(n)=n²<br>
+        n^(log₂8) = n³<br>
+        f(n) = n² = O(n^(3-1)) → polynomially smaller → <strong>Case 1!</strong><br>
+        <strong>T(n) = Θ(n³)</strong> ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">T(n) = 2T(n/2) + n log n (DPP Q6)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        a=2, b=2, f(n) = n log n<br>
+        n^(log₂2) = n<br>
+        f(n) = n log n = Θ(n · log n) = Case 2 with k=1!<br>
+        <strong>T(n) = Θ(n log² n)</strong> ✅
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q5: T(0)=1, T(1)=2, T(n) = 5T(n-1) − 6T(n-2)</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Characteristic equation: r² − 5r + 6 = 0 → (r-2)(r-3) = 0<br>
+        Roots: 2, 3 → T(n) = α₁·2ⁿ + α₂·3ⁿ<br>
+        n=0: α₁+α₂=1, n=1: 2α₁+3α₂=2 → α₁=1, α₂=0<br>
+        T(n) = 2ⁿ → <strong>T(n) = Θ(2ⁿ) → Answer: (A)</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 15: GENERATING FUNCTIONS -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec15">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 5.3–5.5</span>
+      <div class="section-title"><span class="section-emoji">📊</span>Generating Functions<span class="section-tag">DPP 17</span></div>
+    </div>
+
+    <h2>Generating Function Kya Hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 OGF — Ordinary Generating Function</div>
+      <div class="formula">A(x) = a₀ + a₁x + a₂x² + a₃x³ + ... = Σ aₙxⁿ</div>
+      <p>x ek formal variable hai — isme actually koi value substitute nahi karte (mostly)!<br>
+      Yeh ek "wrapper" hai sequence ke liye, jisme algebra kar sakte hain.</p>
+    </div>
+
+    <h2>Important GF Table — YAAD KARO! <span class="imp">Must!</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Sequence {aₙ}</th><th>GF A(x)</th><th>Shortcut</th></tr></thead>
+        <tbody>
+          <tr><td>1, 1, 1, 1, ...</td><td>1/(1−x)</td><td>Sabse important!</td></tr>
+          <tr><td>1, a, a², a³, ...</td><td>1/(1−ax)</td><td>a laga do</td></tr>
+          <tr><td>1, 2, 3, 4, ... (n+1)</td><td>1/(1−x)²</td><td>Differentiate!</td></tr>
+          <tr><td>0, 1, 2, 3, ... (n)</td><td>x/(1−x)²</td><td>x multiply karo</td></tr>
+          <tr><td>C(n+k, k)</td><td>1/(1−x)^(k+1)</td><td>Generalized</td></tr>
+          <tr><td>1, 0, 1, 0, ... (alternating)</td><td>1/(1−x²)</td><td>x² version</td></tr>
+          <tr><td>1, a, a², ... (finite, n terms)</td><td>(1−aⁿ⁺¹)/(1−a)</td><td>Geometric sum</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>GF Operations — Kaise Manipulate Karein</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Sequence Operation</th><th>GF Operation</th></tr></thead>
+        <tbody>
+          <tr><td>aₙ + bₙ</td><td>A(x) + B(x)</td></tr>
+          <tr><td>c·aₙ</td><td>c·A(x)</td></tr>
+          <tr><td>Right shift: (0, a₀, a₁, ...)</td><td>x·A(x)</td></tr>
+          <tr><td>Left shift: (a₁, a₂, ...)</td><td>(A(x) − a₀)/x</td></tr>
+          <tr><td>n·aₙ (multiply by index)</td><td>x·A'(x)</td></tr>
+          <tr><td>Convolution: Σ aₖ·bₙ₋ₖ</td><td>A(x)·B(x)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hl-box green">
+      <div class="box-title">✅ Differentiation Trick!</div>
+      <p>1/(1-x) = Σxⁿ → Differentiate: 1/(1-x)² = Σn·xⁿ⁻¹<br>
+      Multiply by x: x/(1-x)² = Σn·xⁿ (GF for 0,1,2,3,...)</p>
+    </div>
+
+    <h2>GF se Recurrence Solve Karo <span class="exam">Exam Type!</span></h2>
+    <div class="dpp-q">
+      <span class="q-num">Fibonacci GF nikalo: Fₙ = Fₙ₋₁ + Fₙ₋₂, F₀=0, F₁=1</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Let F(x) = Σ Fₙxⁿ<br>
+        F(x) = F₀ + F₁x + Σₙ≥₂ (Fₙ₋₁+Fₙ₋₂)xⁿ<br>
+        = 0 + x + x·(F(x)−F₀) + x²·F(x)<br>
+        = x + x·F(x) + x²·F(x)<br>
+        F(x)(1 − x − x²) = x<br>
+        <strong>F(x) = x / (1 − x − x²)</strong> ✅
+      </div>
+    </div>
+
+    <h2>Counting with GF <span class="exam">Exam Type!</span></h2>
+    <div class="hl-box purple">
+      <div class="box-title">📌 Coin Change Problem</div>
+      <p>n rupaye banane ke kitne ways: 1₹, 5₹, 10₹ coins se<br>
+      GF = 1/(1-x) · 1/(1-x⁵) · 1/(1-x¹⁰)<br>
+      Coefficient of xⁿ = number of ways ✅</p>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q4: e₁+e₂+e₃=17 where 2<e₁<5, 3<e₂<6, 4<e₃<7. Solutions?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        e₁ ∈ {3,4}: GF = x³+x⁴<br>
+        e₂ ∈ {4,5}: GF = x⁴+x⁵<br>
+        e₃ ∈ {5,6}: GF = x⁵+x⁶<br>
+        Total GF = (x³+x⁴)(x⁴+x⁵)(x⁵+x⁶) = x¹²(1+x)(1+x)(1+x)<br>
+        = x¹²(1+x)³ = x¹²(1 + 3x + 3x² + x³)<br>
+        Coefficient of x¹⁷ = coefficient of x⁵ in (1+x)³ = 3x²... wait<br>
+        x¹² times x⁵ = x¹⁷ → need coeff of x⁵ in (1+3x+3x²+x³) = 0<br>
+        Need x¹⁷-¹² = x⁵ → but max power in (1+x)³ is x³ → <strong>0 solutions!</strong>
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q5: 8 cookies, 3 children, each gets 2-4 cookies. Ways?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Each child can get 2,3, or 4 cookies: GF per child = x²+x³+x⁴<br>
+        Total GF = (x²+x³+x⁴)³ = x⁶(1+x+x²)³<br>
+        Need coeff of x⁸ = coeff of x² in (1+x+x²)³<br>
+        (1+x+x²)³: expand → coeff of x² = C(3,2)·1² + C(3,1)·1 = 3+3 = <strong>6 ways!</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 16: GRAPH THEORY -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec16">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">Chapter 6</span>
+      <div class="section-title"><span class="section-emoji">🌐</span>Graph Theory<span class="section-tag">DPP 18</span></div>
+    </div>
+
+    <h2>Graph kya hota hai?</h2>
+    <div class="hl-box blue">
+      <div class="box-title">📌 G = (V, E)</div>
+      <p><strong>V</strong> = Vertices (nodes, dots) — non-empty set<br>
+      <strong>E</strong> = Edges (lines connecting vertices)</p>
+    </div>
+
+    <h2>Graph Types</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Loops?</th><th>Multiple Edges?</th><th>Direction?</th></tr></thead>
+        <tbody>
+          <tr><td>Simple Graph</td><td>❌</td><td>❌</td><td>No</td></tr>
+          <tr><td>Multigraph</td><td>❌</td><td>✅</td><td>No</td></tr>
+          <tr><td>Pseudograph</td><td>✅</td><td>✅</td><td>No</td></tr>
+          <tr><td>Digraph (Directed)</td><td>Depends</td><td>Depends</td><td>✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Important Graph Families — Formulas! <span class="imp">Exam!</span></h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Graph</th><th>|V|</th><th>|E|</th><th>Degree of each vertex</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Kₙ (Complete)</strong></td><td>n</td><td>n(n-1)/2</td><td>n-1</td></tr>
+          <tr><td><strong>Cₙ (Cycle)</strong></td><td>n</td><td>n</td><td>2</td></tr>
+          <tr><td><strong>Wₙ (Wheel)</strong></td><td>n+1</td><td>2n</td><td>Hub=n, outer=3</td></tr>
+          <tr><td><strong>Kₘ,ₙ (Complete Bipartite)</strong></td><td>m+n</td><td>m·n</td><td>n (in set A), m (in set B)</td></tr>
+          <tr><td><strong>Qₙ (Hypercube)</strong></td><td>2ⁿ</td><td>n·2ⁿ⁻¹</td><td>n</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Handshaking Lemma <span class="imp">Most Important!</span></h2>
+    <div class="formula">Σ deg(v) = 2|E|</div>
+    <div class="hl-box red">
+      <div class="box-title">🔥 Consequences</div>
+      <ul>
+        <li>Sum of all degrees hamesha EVEN hoti hai</li>
+        <li>Odd degree vertices ki count hamesha EVEN hoti hai</li>
+        <li>Digraph mein: Σ indeg = Σ outdeg = |E|</li>
+      </ul>
+    </div>
+
+    <h2>Bipartite Graphs</h2>
+    <div class="hl-box green">
+      <div class="box-title">📌 Bipartite Graph</div>
+      <p>Vertices ko 2 sets mein baanto, edges sirf sets ke beech (andar nahi)</p>
+      <p><strong>Test:</strong> G bipartite hai ↔ G mein koi ODD-length cycle nahi!</p>
+      <p>Kₙ bipartite hai ↔ n ≤ 2<br>
+      Cₙ bipartite hai ↔ n even<br>
+      Wₙ bipartite hai → NEVER (odd cycle always hota hai)<br>
+      Qₙ bipartite hai → ALWAYS!</p>
+    </div>
+
+    <h2>Euler Paths & Circuits <span class="imp">Exam!</span></h2>
+    <div class="two-col">
+      <div class="hl-box blue">
+        <div class="box-title">Euler Circuit (Closed)</div>
+        <p>Har EDGE exactly once use karo, same vertex pe return karo</p>
+        <p><strong>Condition:</strong> Connected + Har vertex ki degree EVEN hai!</p>
+      </div>
+      <div class="hl-box purple">
+        <div class="box-title">Euler Path (Open)</div>
+        <p>Har EDGE exactly once use karo</p>
+        <p><strong>Condition:</strong> Connected + Exactly 2 vertices ki degree ODD hai!</p>
+        <p>(Path in odd-degree vertices se start/end hoti hai)</p>
+      </div>
+    </div>
+
+    <div class="hl-box orange">
+      <div class="box-title">History: Königsberg Bridge Problem (1736)</div>
+      <p>Euler ne pehli baar graph theory use kiya — kya saare 7 bridges ek baar mein cross ho sakte hain? Answer: NO — 4 vertices mein odd degree thi!</p>
+    </div>
+
+    <h2>Hamiltonian Paths & Cycles</h2>
+    <div class="hl-box green">
+      <div class="box-title">📌 Hamiltonian</div>
+      <p>Har VERTEX exactly once visit karo (Euler mein edges, Hamiltonian mein vertices!)</p>
+      <p><strong>Dirac's Theorem:</strong> Agar har vertex ki degree ≥ n/2 (n vertices), toh Hamiltonian cycle exist karta hai</p>
+      <p><strong>Ore's Theorem:</strong> Agar non-adjacent u,v ke liye deg(u)+deg(v) ≥ n, toh Hamiltonian cycle</p>
+      <p>Note: Hamiltonian determine karna NP-Complete hai!</p>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q3: Kn, Cn, Wn, Qn mein se bipartite kaun hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Kₙ: Only if n≤2 (K₁ ya K₂)<br>
+        Cₙ: Only if n is even (C₄, C₆, C₈, ...)<br>
+        Wₙ: Never! (center always forms odd cycles with rim)<br>
+        Qₙ: Always! (Hypercube hamesha bipartite hota hai)
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q: Graph mein degree sequence (3,3,3,3,3,3) hai. Euler circuit hai?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Sabhi degrees ODD hain (3 is odd)!<br>
+        Euler circuit ke liye SABHI degrees EVEN chahiye<br>
+        <strong>Euler circuit exist nahi karta!</strong><br>
+        (Par agar connected hai aur exactly 2 odd-degree vertices hote, toh Euler PATH hota)
+      </div>
+    </div>
+
+    <div class="dpp-q">
+      <span class="q-num">DPP Q2: Qₙ mein kitne vertices aur edges?</span>
+      <button class="show-ans-btn" onclick="toggleAns(this)">Dekho 👀</button>
+      <div class="answer">
+        Q₁: 2 vertices, 1 edge (ek line)<br>
+        Q₂: 4 vertices, 4 edges (square)<br>
+        Q₃: 8 vertices, 12 edges (cube)<br>
+        Qₙ: <strong>|V| = 2ⁿ, |E| = n·2ⁿ⁻¹</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SECTION 17: QUICK CHEAT SHEET -->
+<!-- ======================================== -->
+<div class="notebook-page" id="sec17">
+  <div class="page-holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="page-content">
+    <div class="section-header">
+      <span class="section-num">FINAL</span>
+      <div class="section-title"><span class="section-emoji">🏆</span>Quick Revision Cheat Sheet<span class="section-tag">All Topics</span></div>
+    </div>
+
+    <div class="cheat-box">
+      <h3>📝 LOGIC — Last Minute Yaad Karo</h3>
+      <ul>
+        <li>p→q ONLY false when p=T, q=F</li>
+        <li>p→q ≡ ¬p∨q ≡ ¬q→¬p (contrapositive)</li>
+        <li>De Morgan: ¬(p∧q)=¬p∨¬q, ¬(p∨q)=¬p∧¬q</li>
+        <li>∀ → "All" use karo → implies (→) | ∃ → "Some" use karo → AND (∧)</li>
+        <li>¬∀x P(x) ≡ ∃x ¬P(x) | ¬∃x P(x) ≡ ∀x ¬P(x)</li>
+        <li>DPLL: Unit Prop → Pure Literal → Branch → Backtrack</li>
+      </ul>
+    </div>
+
+    <div class="cheat-box">
+      <h3>🔵 ABSTRACT ALGEBRA — Formulas</h3>
+      <div class="formula-white">Lagrange: |H| divides |G| for H ≤ G</div>
+      <div class="formula-white">ord(a) in ℤₙ = n/gcd(a,n)</div>
+      <div class="formula-white">Generators of ℤₙ = elements coprime to n → φ(n) generators</div>
+      <div class="formula-white">Fermat: aᵖ⁻¹ ≡ 1 (mod p), Euler: aᵠ⁽ⁿ⁾ ≡ 1 (mod n)</div>
+      <div class="formula-white">Field iff ℤₙ with n prime | F[x]/⟨irred.⟩ = field</div>
+    </div>
+
+    <div class="cheat-box">
+      <h3>🔄 RECURRENCES — Methods</h3>
+      <ul>
+        <li>Iteration: expand, find pattern, sum the series</li>
+        <li>Char. eq: rᵏ − c₁rᵏ⁻¹ − ... = 0</li>
+        <li>Distinct roots: aₙ = Σαᵢrᵢⁿ</li>
+        <li>Repeated root r₀ (mult. m): include n⁰·r₀ⁿ, n¹·r₀ⁿ, ..., nᵐ⁻¹·r₀ⁿ</li>
+        <li>Non-homogeneous: guess particular solution based on f(n)</li>
+      </ul>
+    </div>
+
+    <div class="cheat-box">
+      <h3>👑 MASTER THEOREM — Formula</h3>
+      <div class="formula-white">T(n) = aT(n/b) + f(n) | Compare f(n) with n^(log_b a)</div>
+      <ul>
+        <li>f smaller → T = Θ(n^(log_b a))</li>
+        <li>f equal → T = Θ(n^(log_b a) · log n)</li>
+        <li>f larger (+ regularity) → T = Θ(f(n))</li>
+      </ul>
+    </div>
+
+    <div class="cheat-box">
+      <h3>📊 GENERATING FUNCTIONS — Key Table</h3>
+      <div class="formula-white">1/(1-x) = Σxⁿ (sequence of all 1s)</div>
+      <div class="formula-white">1/(1-x)² = Σ(n+1)xⁿ | x/(1-x)² = Σn·xⁿ</div>
+      <div class="formula-white">1/(1-x)^k = Σ C(n+k-1, k-1) xⁿ</div>
+      <div class="formula-white">GF of Fibonacci = x/(1-x-x²)</div>
+    </div>
+
+    <div class="cheat-box">
+      <h3>🌐 GRAPH THEORY — Must Know</h3>
+      <div class="formula-white">Handshaking: Σdeg = 2|E| → sum always even!</div>
+      <div class="formula-white">Kₙ: n(n-1)/2 edges | Kₘ,ₙ: m·n edges</div>
+      <div class="formula-white">Euler Circuit: connected + ALL EVEN degrees</div>
+      <div class="formula-white">Euler Path: connected + EXACTLY 2 ODD degrees</div>
+      <div class="formula-white">Bipartite ↔ No ODD cycles | Qₙ: always bipartite</div>
+      <div class="formula-white">Tree: n vertices → n-1 edges, connected, acyclic</div>
+    </div>
+
+    <h2>🎯 Exam Strategy</h2>
+    <div class="hl-box red">
+      <div class="box-title">⚠️ Kal ke exam ke liye!</div>
+      <ol>
+        <li><strong>Logic questions mein:</strong> Hamesha truth table ya equivalences se verify karo</li>
+        <li><strong>Proof mein:</strong> Har step pe justification likho (Premise, MP, MT, HS, etc.)</li>
+        <li><strong>Group Theory:</strong> Pehle check karo — closure, associativity, identity, inverses</li>
+        <li><strong>Lagrange:</strong> Order divisibility yaad rakhna — bahut help karta hai shortcuts mein</li>
+        <li><strong>Recurrences:</strong> Pehle homogeneous solve karo, phir particular guess karo</li>
+        <li><strong>Master Theorem:</strong> n^(log_b a) calculate karo, f(n) se compare karo</li>
+        <li><strong>Generating Functions:</strong> 1/(1-x) = Σxⁿ — ye starting point hai sab ka</li>
+        <li><strong>Graphs:</strong> Degree sum = 2|E| se start karo har problem mein</li>
+      </ol>
+    </div>
+
+    <div class="sticky" style="max-width: 100%; transform: rotate(0deg); margin-top: 24px;">
+      💪 Bhai, tu kar sakta hai! Sab padhh liya, ab kal exam mein dhamaka kar! 
+      Sabse pehle pura paper scan karo, asaan questions pehle karo, phir tough wale. 
+      Time management rakhna. All the best! 🚀🔥
+    </div>
+
+  </div>
+</div>
+
+</div><!-- END MAIN -->
+
+<div class="footer">
+  Made with ❤️ for Akhilesh's exam prep | Newton School of Technology — M4 Discrete Maths
+  <br>Saari DPPs aur Worksheets padh ke banaya gaya hai 📚
+</div>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top pe jao">⬆</button>
+
+<script>
+  // Toggle answer visibility
+  function toggleAns(btn) {
+    const ans = btn.nextElementSibling;
+    if (ans.classList.contains('visible')) {
+      ans.classList.remove('visible');
+      btn.textContent = 'Answer Dekho 👀';
+    } else {
+      ans.classList.add('visible');
+      btn.textContent = 'Answer Chhupao 🙈';
+    }
+  }
+
+  // Smooth scroll to section
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Update active nav button
+    document.querySelectorAll('.toc-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Update active nav on scroll
+  const sections = ['sec1','sec2','sec3','sec4','sec5','sec6','sec7','sec8','sec9','sec10','sec11','sec12','sec13','sec14','sec15','sec16','sec17'];
+  const buttons = document.querySelectorAll('.toc-btn');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target.id);
+        if (idx !== -1) {
+          buttons.forEach(b => b.classList.remove('active'));
+          buttons[idx].classList.add('active');
+          buttons[idx].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+        }
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // Show/hide back-to-top
+  window.addEventListener('scroll', () => {
+    const btn = document.querySelector('.back-top');
+    btn.style.opacity = window.scrollY > 500 ? '1' : '0';
+    btn.style.pointerEvents = window.scrollY > 500 ? 'all' : 'none';
+  });
+</script>
+</body>
+</html>
